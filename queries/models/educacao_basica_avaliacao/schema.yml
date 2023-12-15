@@ -1,0 +1,60 @@
+version: 2
+models :
+  - name: prova_rio
+    description: "**Descrição**: Resultado da avaliação das Provas de Múltipla Escolha\
+      \ realizadas por organização contratada pela SME. \r\nVisão dos Micros Dados,\
+      \ aluno e escola.\n**Frequência de atualização**: Anual\n**Cobertura temporal**:\
+      \ 2021\n**Órgão gestor dos dados**: Secretaria Municipal de Educação\n**Publicado\
+      \ por**: Nuno Caminada Silva\n**Publicado por (email)**: nuno.silva@rioeduca.net\n"
+    columns:
+      - name: ano
+        description: Ano de referência do resultado da prova do aluno.
+      - name: cd_inep
+        description: Código INEP da escola.
+      - name: esc_id
+        description: Identificador da escola.
+      - name: grupamento
+        description: Agrupamento entre o ano escolar do aluno e da turma.
+      - name: turno
+        description: Turno da turma. Pode ser integral, manhã, tarde ou noite.
+      - name: tur_id
+        description: Identificador da turma.
+      - name: alu_id
+        description: Identificador do aluno.
+      - name: genero
+        description: Gênero do aluno, pode ser masculino ou feminino.
+      - name: raca_cor
+        description: Raça ou cor do aluno. Branca, preta, parda, amarela, indígena,
+          não declarada ou sem informação.
+      - name: bolsa_familia
+        description: Booleano que indica se o aluno recebe bolsa família. 0 se não
+          recebe e 1 se recebe.
+      - name: cd_disciplina
+        description: Código da disciplina (1-LÍNGUA PORTUGUESA;2-MATEMÁTICA).
+      - name: nm_disciplina
+        description: Nome da disciplina (LÍNGUA PORTUGUESA OU MATEMÁTICA).
+      - name: fl_previsto
+        description: Flag para previsto - Booleano, 1 se estava previsto de avaliação
+          e 0 se não.
+      - name: fl_avaliado
+        description: Flag para avaliado - Booleano, 1 se foi avaliado e 0 se não.
+      - name: dc_resposta
+        description: Número (por extenso) de itens respondidos.
+      - name: nu_acerto
+        description: Número de acertos.
+      - name: tx_acerto
+        description: Percentual de acertos.
+      - name: dc_padrao
+        description: 'Padrão de desempenho. Domínio: Básico, Avançado, Abaixo do Básico,
+          Adequado.'
+      - name: vl_proficiencia
+        description: Valor (número) da proficiência.
+      - name: vl_proficiencia_erro
+        description: Erro (número/valor) da proficiência.
+      - name: cd_habilidade
+        description: Concatenação dos códigos das habilidades, formando o conjunto
+          de habilidades avaliadas na prova.
+      - name: dc_habilidade_acerto
+        description: Descritor - Concatenação dos acertos nas habilidades.
+      - name: dc_habilidade_total
+        description: Descritor - Concatenação do total das habilidades

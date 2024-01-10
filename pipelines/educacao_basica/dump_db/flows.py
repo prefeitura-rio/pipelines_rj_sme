@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Database dumping flows for SME project
+Database dumping flows for SME project.
 """
+
+import prefeitura_rio
 
 from copy import deepcopy
 
@@ -33,6 +35,8 @@ sme_default_parameters = {
     "vault_secret_path": "clustersqlsme",
     "dataset_id": "educacao_basica",
 }
-dump_sme_flow = set_default_parameters(dump_sme_flow, default_parameters=sme_default_parameters)
+dump_sme_flow = set_default_parameters(
+    dump_sme_flow, default_parameters=sme_default_parameters
+)
 
 dump_sme_flow.schedule = sme_educacao_basica_daily_update_schedule

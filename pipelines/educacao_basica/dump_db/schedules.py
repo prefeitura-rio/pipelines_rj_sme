@@ -466,7 +466,7 @@ sme_clocks = generate_dump_db_schedules(
     db_port="1433",
     db_type="sql_server",
     dataset_id="educacao_basica",
-    infisical_secret_path="/db-educacao-basica"
+    infisical_secret_path="/db-educacao-basica",
     table_parameters=sme_queries,
 )
 

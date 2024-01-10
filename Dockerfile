@@ -1,4 +1,4 @@
-# Build arguments
+# Build arguments 
 ARG PYTHON_VERSION=3.10-slim
 
 # Start Python image

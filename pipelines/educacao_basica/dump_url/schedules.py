@@ -8,9 +8,10 @@ from datetime import datetime, timedelta
 
 import pytz
 from prefect.schedules import Schedule
-from pipelines.constants import constants
 from prefeitura_rio.pipelines_utils.io import untuple_clocks as untuple
 from prefeitura_rio.pipelines_utils.prefect import generate_dump_url_schedules
+
+from pipelines.constants import constants
 
 #####################################
 #
@@ -28,7 +29,7 @@ gsheets_urls = {
     }
 }
 
-gsheets_clocks = generate_dump_url_schedules(
+gsheets_clocks = generate_dump_url_schedules.run(
     interval=timedelta(days=365),
     start_date=datetime(2022, 11, 4, 20, 0, tzinfo=pytz.timezone("America/Sao_Paulo")),
     labels=[

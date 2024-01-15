@@ -3,15 +3,14 @@
 Schedules for the database dump pipeline
 """
 
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 
-from prefect.schedules import Schedule
 import pytz
-
-from pipelines.constants import constants
+from prefect.schedules import Schedule
 from prefeitura_rio.pipelines_utils.io import untuple_clocks as untuple
 from prefeitura_rio.pipelines_utils.prefect import generate_dump_db_schedules
 
+from pipelines.constants import constants
 
 #####################################
 #
@@ -19,7 +18,7 @@ from prefeitura_rio.pipelines_utils.prefect import generate_dump_db_schedules
 #
 #####################################
 
-sme_queries = {
+sme_frequencia_queries = {
     "turma": {
         "dataset_id": "educacao_basica_frequencia",
         "dump_mode": "overwrite",
@@ -264,9 +263,9 @@ sme_clocks = generate_dump_db_schedules(
     db_host="10.70.6.103",
     db_port="1433",
     db_type="sql_server",
-    dataset_id="educacao_basica",
+    dataset_id="educacao_basica_frequencia",
     infisical_secret_path="/db-educacao-basica",
-    table_parameters=sme_queries,
+    table_parameters=sme_frequencia_queries,
 )
 
-sme_educacao_basica_daily_update_schedule = Schedule(clocks=untuple(sme_clocks))
+sme_educacao_basica_frequencia_daily_update_schedule = Schedule(clocks=untuple(sme_clocks))

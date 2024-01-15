@@ -3,15 +3,14 @@
 Schedules for the database dump pipeline
 """
 
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 
-from prefect.schedules import Schedule
 import pytz
-
-from pipelines.constants import constants
+from prefect.schedules import Schedule
 from prefeitura_rio.pipelines_utils.io import untuple_clocks as untuple
 from prefeitura_rio.pipelines_utils.prefect import generate_dump_db_schedules
 
+from pipelines.constants import constants
 
 #####################################
 #
@@ -224,7 +223,7 @@ sme_queries = {
 }
 
 
-sme_clocks=generate_dump_db_schedules(
+sme_clocks = generate_dump_db_schedules(
     interval=timedelta(days=1),
     start_date=datetime(2022, 1, 1, 2, 10, tzinfo=pytz.timezone("America/Sao_Paulo")),
     labels=[

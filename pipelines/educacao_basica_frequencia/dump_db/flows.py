@@ -11,8 +11,8 @@ from prefeitura_rio.pipelines_templates.dump_db.flows import flow as dump_sql_fl
 from prefeitura_rio.pipelines_utils.prefect import set_default_parameters
 
 from pipelines.constants import constants
-from pipelines.educacao_basica.dump_db.schedules import (
-    sme_educacao_basica_daily_update_schedule,
+from pipelines.educacao_basica_frequencia.dump_db.schedules import (
+    sme_educacao_basica_frequencia_daily_update_schedule,
 )
 
 dump_sme_frequencia_flow = deepcopy(dump_sql_flow)
@@ -31,11 +31,11 @@ sme_default_parameters = {
     "db_host": "10.70.6.103",
     "db_port": "1433",
     "db_type": "sql_server",
-    "vault_secret_path": "clustersqlsme",
+    "infisical_secret_path": "/db-educacao-basica",
     "dataset_id": "educacao_basica_frequencia",
 }
 dump_sme_frequencia_flow = set_default_parameters(
     dump_sme_frequencia_flow, default_parameters=sme_default_parameters
 )
 
-dump_sme_frequencia_flow.schedule = sme_educacao_basica_daily_update_schedule
+dump_sme_frequencia_flow.schedule = sme_educacao_basica_frequencia_daily_update_schedule

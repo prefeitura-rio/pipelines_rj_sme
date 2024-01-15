@@ -4,6 +4,16 @@ ARG PYTHON_VERSION=3.10-slim
 # Start Python image
 FROM python:${PYTHON_VERSION}
 
+# Install a few dependencies
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y curl gnupg2 libaio1 && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    echo "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
+    ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Setting environment with prefect version
 ARG PREFECT_VERSION=1.4.1
 ENV PREFECT_VERSION $PREFECT_VERSION

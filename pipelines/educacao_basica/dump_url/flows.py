@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Database  dumping flows for SEOP project
+Database  dumping flows for SEOP project.
 """
 
 from copy import deepcopy
 
 from prefect.run_configs import KubernetesRun
 from prefect.storage import GCS
-from pipelines.constants import constants
-from pipelines.educacao_basica.dump_url.schedules import gsheets_year_update_schedule
 from prefeitura_rio.pipelines_templates.dump_url.flows import dump_url_flow
 from prefeitura_rio.pipelines_utils.prefect import set_default_parameters
+
+from pipelines.constants import constants
+from pipelines.educacao_basica.dump_url.schedules import gsheets_year_update_schedule
 
 sme_gsheets_flow = deepcopy(dump_url_flow)
 sme_gsheets_flow.name = "SME: Educacao Basica - Ingerir CSV do Google Drive"

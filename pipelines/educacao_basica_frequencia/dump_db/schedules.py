@@ -265,6 +265,7 @@ sme_clocks = generate_dump_db_schedules(
     db_type="sql_server",
     dataset_id="educacao_basica_frequencia",
     infisical_secret_path="/db-educacao-basica",
+    dbt_alias=True,
     table_parameters=sme_frequencia_queries,
 )
 

@@ -1,3 +1,5 @@
+{{ config(alias='turma_curriculo', schema='educacao_basica_frequencia') }}
+
 SELECT
     SAFE_CAST(tcr_prioridade AS INT64) AS prioridade_curriculo,
     SAFE_CAST(tcr_situacao AS INT64) AS situacao,

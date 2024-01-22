@@ -1,3 +1,5 @@
+{{ config(alias='turma_aula', schema='educacao_basica_frequencia') }}
+
 SELECT
     SAFE_CAST(tau_id AS STRING) AS id_aula_disciplina,
     SAFE_CAST(tau_sequencia AS INT64) AS sequencia_aula,

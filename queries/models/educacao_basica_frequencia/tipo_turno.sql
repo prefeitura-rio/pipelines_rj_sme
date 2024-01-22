@@ -1,3 +1,5 @@
+{{ config(alias='tipo_turno', schema='educacao_basica_frequencia') }}
+
 SELECT
     SAFE_CAST(ttn_id AS STRING) AS id_tipo_turno,
     SAFE_CAST(ttn_nome AS STRING) AS tipo_turno,

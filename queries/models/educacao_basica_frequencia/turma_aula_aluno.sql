@@ -1,3 +1,5 @@
+{{ config(alias='turma_aula_aluno', schema='educacao_basica_frequencia') }}
+
 SELECT
     SAFE_CAST(taa_frequencia AS INT64) AS faltas_disciplina_dia,
     SAFE_CAST(taa_situacao AS INT64) AS situacao,

@@ -1,3 +1,5 @@
+{{ config(alias='turma', schema='educacao_basica_frequencia') }}
+
 SELECT
     SAFE_CAST(ano AS INT64) AS ano,
     SAFE_CAST(curso AS STRING) AS curso,

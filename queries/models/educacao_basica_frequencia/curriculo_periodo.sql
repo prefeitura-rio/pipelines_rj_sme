@@ -1,3 +1,5 @@
+{{ config(alias='curriculo_periodo', schema='educacao_basica_frequencia') }}
+
 SELECT
     SAFE_CAST(crp_id AS STRING) AS id_periodo_curriculo,
     SAFE_CAST(crp_ordem AS INT64) AS ordem_periodo,

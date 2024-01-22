@@ -1,4 +1,9 @@
-{{ config(alias='turma_aula_aluno', schema='educacao_basica_frequencia') }}
+{{ config(alias='turma_aula_aluno', schema='educacao_basica_frequencia', materialized='incremental',
+        partition_by={
+            "field": "tau_dataAlteracao",
+            "data_type": "date",
+            "granularity": "month",
+        }) }}
 
 SELECT
     SAFE_CAST(taa_frequencia AS INT64) AS faltas_disciplina_dia,

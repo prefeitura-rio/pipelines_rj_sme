@@ -1,4 +1,9 @@
-{{ config(alias='turma_aula', schema='educacao_basica_frequencia') }}
+{{ config(alias='turma_aula', schema='educacao_basica_frequencia', materialized='incremental',
+        partition_by={
+            "field": "tau_dataAlteracao",
+            "data_type": "date",
+            "granularity": "month",
+        }) }}
 
 SELECT
     SAFE_CAST(tau_id AS STRING) AS id_aula_disciplina,

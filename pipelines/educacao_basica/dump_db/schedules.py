@@ -26,6 +26,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "overwrite",
         "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 Ano,
@@ -73,6 +74,7 @@ sme_queries = {
         "partition_date_format": "%Y",
         "materialization_mode": "prod",
         "dump_mode": "append",
+        "dbt_alias": True,
         "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
         "execute_query": """
             SELECT
@@ -89,6 +91,7 @@ sme_queries = {
         "partition_date_format": "%Y",
         "materialization_mode": "prod",
         "dump_mode": "append",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 *
@@ -103,6 +106,7 @@ sme_queries = {
         "partition_date_format": "%Y",
         "materialization_mode": "prod",
         "dump_mode": "append",
+        "dbt_alias": True,
         "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Avaliacao",
     },
@@ -114,6 +118,7 @@ sme_queries = {
         "partition_date_format": "%Y",
         "materialization_mode": "prod",
         "dump_mode": "append",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 Ano AS Ano,
@@ -146,6 +151,7 @@ sme_queries = {
         "dump_to_gcs": False,
         "materialization_mode": "prod",
         "dump_mode": "overwrite",
+        "dbt_alias": True,
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Dependencia",
     },
     "escola": {
@@ -154,6 +160,7 @@ sme_queries = {
         "dump_to_gcs": False,
         "materialization_mode": "prod",
         "dump_mode": "overwrite",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 CRE,
@@ -188,6 +195,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "append",
         "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 esc_id AS esc_id,
@@ -218,6 +226,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "append",
         "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_alias": True,
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Movimentacao_lgpd",
     },
 }
@@ -233,7 +242,6 @@ sme_clocks = generate_dump_db_schedules(
     db_host="10.70.6.103",
     db_port="1433",
     db_type="sql_server",
-    dbt_alias=True,
     dataset_id="educacao_basica",
     infisical_secret_path="/db-educacao-basica",
     table_parameters=sme_queries,

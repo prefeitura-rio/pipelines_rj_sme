@@ -26,6 +26,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Turma",
     },
     "turno": {
@@ -35,6 +36,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 trn_id,
@@ -58,6 +60,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 cur_id,
@@ -97,6 +100,7 @@ sme_frequencia_queries = {
         "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
+        "dbt_alias": True,
         "materialization_mode": "prod",
         "execute_query": """
             SELECT
@@ -117,6 +121,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tur_id,
@@ -131,6 +136,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tur_id,
@@ -154,6 +160,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tud_id,
@@ -194,6 +201,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tud_id,
@@ -221,6 +229,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tud_id,
@@ -265,7 +274,6 @@ sme_clocks = generate_dump_db_schedules(
     db_type="sql_server",
     dataset_id="educacao_basica_frequencia",
     infisical_secret_path="/db-educacao-basica",
-    dbt_alias=True,
     table_parameters=sme_frequencia_queries,
 )
 

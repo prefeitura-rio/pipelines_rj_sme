@@ -1,3 +1,5 @@
+{{ config(alias='avaliacao', schema='educacao_basica') }}
+
 {{
     config(
         materialized='table',
@@ -5,7 +7,7 @@
             "field": "data_particao",
             "data_type": "date",
             "granularity": "year",
-        }    
+        }
     )
 }}
 

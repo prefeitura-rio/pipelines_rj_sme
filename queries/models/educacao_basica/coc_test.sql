@@ -1,3 +1,5 @@
+{{ config(alias='coc_test', schema='educacao_basica') }}
+
 {{
     config(
         materialized='incremental',
@@ -5,11 +7,11 @@
             "field": "data_particao",
             "data_type": "date",
             "granularity": "year",
-        }    
+        }
     )
 }}
 
-SELECT 
+SELECT
     SAFE_CAST(REGEXP_REPLACE(ano, r'\.0$', '') AS INT64) AS ano,
     SAFE_CAST(REGEXP_REPLACE(cre, r'\.0$', '') AS STRING) AS id_cre,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) AS id_turma,

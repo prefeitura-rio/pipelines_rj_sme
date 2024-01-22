@@ -1,3 +1,5 @@
+{{ config(alias='movimentacao', schema='educacao_basica') }}
+
 {{
     config(
         materialized='incremental',
@@ -5,7 +7,7 @@
             "field": "data_particao",
             "data_type": "date",
             "granularity": "month",
-        }    
+        }
     )
 }}
 

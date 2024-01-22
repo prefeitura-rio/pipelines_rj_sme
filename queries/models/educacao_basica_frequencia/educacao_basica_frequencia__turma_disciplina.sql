@@ -31,3 +31,14 @@ SELECT
     SAFE_CAST(tud_semProfessor AS BOOL) AS tud_semProfessor,
     SAFE_CAST(tud_naoExibirBoletim AS BOOL) AS tud_naoExibirBoletim
 FROM `rj-sme.educacao_basica_frequencia_staging.turma_disciplina`
+WHERE
+    SAFE_CAST(data_particao AS DATE) < CURRENT_DATE('America/Sao_Paulo')
+
+{% if is_incremental() %}
+
+{% set max_partition = run_query("SELECT gr FROM (SELECT IF(max(data_particao) > CURRENT_DATE('America/Sao_Paulo'), CURRENT_DATE('America/Sao_Paulo'), max(data_particao)) as gr FROM " ~ this ~ ")").columns[0].values()[0] %}
+
+AND
+    SAFE_CAST(data_particao AS DATE) > ("{{ max_partition }}")
+
+{% endif %}

@@ -1,6 +1,6 @@
 {{ config(alias='turma_aula', schema='educacao_basica_frequencia', materialized='incremental',
         partition_by={
-            "field": "tau_dataAlteracao",
+            "field": "data_particao",
             "data_type": "date",
             "granularity": "month",
         }) }}
@@ -33,13 +33,13 @@ SELECT
     SAFE_CAST(tau_recursosUtilizados AS STRING) AS recursos_utilizados
 FROM `rj-sme.educacao_basica_frequencia_staging.turma_aula`
 WHERE
-    SAFE_CAST(data_alteracao AS DATE) < CURRENT_DATE('America/Sao_Paulo')
+    SAFE_CAST(data_particao AS DATE) < CURRENT_DATE('America/Sao_Paulo')
 
 {% if is_incremental() %}
 
 {% set max_partition = run_query("SELECT gr FROM (SELECT IF(max(data_particao) > CURRENT_DATE('America/Sao_Paulo'), CURRENT_DATE('America/Sao_Paulo'), max(data_particao)) as gr FROM " ~ this ~ ")").columns[0].values()[0] %}
 
 AND
-    SAFE_CAST(data_alteracao AS DATE) > ("{{ max_partition }}")
+    SAFE_CAST(data_particao AS DATE) > ("{{ max_partition }}")
 
 {% endif %}

@@ -1,6 +1,6 @@
 {{ config(alias='turma_disciplina', schema='educacao_basica_frequencia', materialized='incremental',
         partition_by={
-            "field": "tud_dataAlteracao",
+            "field": "data_particao",
             "data_type": "date",
             "granularity": "month",
         }) }}

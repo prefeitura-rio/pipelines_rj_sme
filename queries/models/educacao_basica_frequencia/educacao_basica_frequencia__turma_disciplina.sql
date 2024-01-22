@@ -29,7 +29,8 @@ SELECT
     SAFE_CAST(tud_naoExibirNota AS BOOL) AS tud_naoExibirNota,
     SAFE_CAST(tud_naoExibirFrequencia AS BOOL) AS tud_naoExibirFrequencia,
     SAFE_CAST(tud_semProfessor AS BOOL) AS tud_semProfessor,
-    SAFE_CAST(tud_naoExibirBoletim AS BOOL) AS tud_naoExibirBoletim
+    SAFE_CAST(tud_naoExibirBoletim AS BOOL) AS tud_naoExibirBoletim,
+    SAFE_CAST(data_particao AS DATE) data_particao
 FROM `rj-sme.educacao_basica_frequencia_staging.turma_disciplina`
 WHERE
     SAFE_CAST(data_particao AS DATE) < CURRENT_DATE('America/Sao_Paulo')

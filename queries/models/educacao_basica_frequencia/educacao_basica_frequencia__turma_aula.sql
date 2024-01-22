@@ -30,7 +30,8 @@ SELECT
     SAFE_CAST(tau_statusPlanoAula AS INT64) AS status_plano_aula,
     SAFE_CAST(tpc_id AS STRING) AS id_tipo_calendario,
     SAFE_CAST(tud_id AS STRING) AS id_disciplina,
-    SAFE_CAST(tau_recursosUtilizados AS STRING) AS recursos_utilizados
+    SAFE_CAST(tau_recursosUtilizados AS STRING) AS recursos_utilizados,
+    SAFE_CAST(data_particao AS DATE) AS data_particao
 FROM `rj-sme.educacao_basica_frequencia_staging.turma_aula`
 WHERE
     SAFE_CAST(data_particao AS DATE) < CURRENT_DATE('America/Sao_Paulo')

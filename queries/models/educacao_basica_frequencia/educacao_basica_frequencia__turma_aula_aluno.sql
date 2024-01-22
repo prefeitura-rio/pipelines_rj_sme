@@ -17,7 +17,8 @@ SELECT
     SAFE_CAST(tau_id AS STRING) AS id_aula_disciplina,
     SAFE_CAST(tud_id AS STRING) AS id_disciplina_turma,
     SAFE_CAST(mtu_id AS STRING) AS id_matricula_turma,
-    SAFE_CAST(alu_id AS STRING) AS id_aluno
+    SAFE_CAST(alu_id AS STRING) AS id_aluno,
+    SAFE_CAST(data_particao AS DATE) AS data_particao
 FROM `rj-sme.educacao_basica_frequencia_staging.turma_aula_aluno`
 WHERE
     SAFE_CAST(data_particao AS DATE) < CURRENT_DATE('America/Sao_Paulo')

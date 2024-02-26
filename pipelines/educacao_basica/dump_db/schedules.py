@@ -92,6 +92,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "append",
         "dbt_alias": True,
+        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
         "execute_query": """
             SELECT
                 *

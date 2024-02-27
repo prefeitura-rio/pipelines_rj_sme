@@ -8,7 +8,7 @@
 # Note that you can include other files from the main configuration
 # file using the .include directive.
 #.include filename
-openssl_conf = default_conf
+openssl_conf = openssl_init
 
 # This definition stops the following lines choking if HOME isn't
 # defined.
@@ -390,7 +390,8 @@ oldcert = $insta::certout # insta.cert.pem
 cmd = rr
 oldcert = $insta::certout # insta.cert.pem
 
-[default_conf]
+[openssl_init]
+providers = provider_sect
 ssl_conf = ssl_sect
 
 [ssl_sect]
@@ -398,4 +399,4 @@ system_default = system_default_sect
 
 [system_default_sect]
 MinProtocol = TLSv1.0
-CipherString = DEFAULT@SECLEVEL=1
+CipherString = ALL@SECLEVEL=0

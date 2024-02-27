@@ -28,6 +28,7 @@ dump_sme_flow.run_config = KubernetesRun(
     ],
 )
 
+# no-op: trigger gh actions
 sme_default_parameters = {
     "db_database": "GestaoEscolar",
     "db_host": "10.70.6.103",

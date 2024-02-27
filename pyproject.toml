@@ -12,10 +12,9 @@ prefect = "1.4.1"
 prefeitura-rio = { git = "https://github.com/prefeitura-rio/prefeitura-rio", rev = "db45b4b05f96a9dbf7c286083e74bce2454ee501", extras = [
     "pipelines",
     "pipelines-templates",
-    "actions"
+    "actions",
 ] }
 pendulum = "^3.0.0"
-
 
 [tool.poetry.group.dev]
 optional = true

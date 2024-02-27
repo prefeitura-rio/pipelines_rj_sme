@@ -1,3 +1,5 @@
+{{ config(alias='frequencia', schema='educacao_basica') }}
+
 {{
     config(
         materialized='incremental',
@@ -10,7 +12,7 @@
 }}
 
 
-SELECT 
+SELECT
     SAFE_CAST(REGEXP_REPLACE(esc_id, r'\.0$', '') AS STRING) AS id_escola,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) AS id_turma,
     SAFE_CAST(turma AS STRING) AS turma,

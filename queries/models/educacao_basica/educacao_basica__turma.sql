@@ -1,4 +1,6 @@
-SELECT 
+{{ config(alias='turma', schema='educacao_basica') }}
+
+SELECT
     SAFE_CAST(ano AS INT64) AS ano,
     SAFE_CAST(REGEXP_REPLACE(esc_id, r'\.0$', '') AS STRING) AS id_escola,
     SAFE_CAST(REGEXP_REPLACE(dep_id, r'\.0$', '') AS STRING) AS id_dependencia,

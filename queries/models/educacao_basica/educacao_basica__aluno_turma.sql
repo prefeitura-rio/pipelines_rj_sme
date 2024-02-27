@@ -1,3 +1,5 @@
+{{ config(alias='aluno_turma', schema='educacao_basica') }}
+
 {{
     config(
         materialized='incremental',
@@ -5,10 +7,10 @@
             "field": "data_particao",
             "data_type": "date",
             "granularity": "year",
-        }    
+        }
     )
 }}
-SELECT 
+SELECT
     SAFE_CAST(ano AS INT64) ano,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) id_turma,
     SUBSTR(SHA256(

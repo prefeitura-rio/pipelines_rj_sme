@@ -26,6 +26,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Turma",
     },
     "turno": {
@@ -35,6 +36,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 trn_id,
@@ -58,6 +60,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 cur_id,
@@ -97,6 +100,7 @@ sme_frequencia_queries = {
         "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
+        "dbt_alias": True,
         "materialization_mode": "prod",
         "execute_query": """
             SELECT
@@ -117,6 +121,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tur_id,
@@ -131,6 +136,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tur_id,
@@ -154,6 +160,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tud_id,
@@ -186,7 +193,7 @@ sme_frequencia_queries = {
     },
     "turma_aula_aluno": {
         "dataset_id": "educacao_basica_frequencia",
-        "partition_columns": "tau_dataAlteracao",
+        "partition_columns": "taa_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
         "lower_bound_date": "current_month",
         "dump_mode": "overwrite",
@@ -194,6 +201,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tud_id,
@@ -221,6 +229,7 @@ sme_frequencia_queries = {
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
+        "dbt_alias": True,
         "execute_query": """
             SELECT
                 tud_id,

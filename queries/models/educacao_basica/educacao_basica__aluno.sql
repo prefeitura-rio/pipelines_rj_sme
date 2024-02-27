@@ -1,4 +1,6 @@
-SELECT 
+{{ config(alias='aluno', schema='educacao_basica') }}
+
+SELECT
     SAFE_CAST(ano AS INT64) ano,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) id_turma,
     SAFE_CAST(turma AS STRING) turma,
@@ -27,7 +29,7 @@ SELECT
     SAFE_CAST(REGEXP_REPLACE(idade_3112, r'\.0$', '') AS INT64) idade_final_ano,
     SAFE_CAST(REGEXP_REPLACE(cod_def, r'\.0$', '') AS STRING) id_deficiencia,
     SAFE_CAST(deficiencia AS STRING) deficiencia,
-    SAFE_CAST(bairro AS STRING) bairro, 
+    SAFE_CAST(bairro AS STRING) bairro,
     SAFE_CAST(mora_com_filiacao AS STRING) mora_com_filiacao,
     SAFE_CAST(tipo_transporte AS STRING) tipo_transporte,
     SAFE_CAST(bolsa_familia AS STRING) bolsa_familia,

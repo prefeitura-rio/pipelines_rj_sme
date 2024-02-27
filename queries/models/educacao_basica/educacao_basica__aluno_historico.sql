@@ -1,3 +1,5 @@
+{{ config(alias='aluno_historico', schema='educacao_basica') }}
+
 {{
     config(
         materialized='incremental',
@@ -9,7 +11,7 @@
     )
 }}
 
-SELECT 
+SELECT
     SAFE_CAST(ano AS INT64) ano,
     SUBSTR(SHA256(
         CONCAT(

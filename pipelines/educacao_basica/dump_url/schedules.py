@@ -29,7 +29,7 @@ gsheets_urls = {
     }
 }
 
-gsheets_clocks = generate_dump_url_schedules.run(
+gsheets_clocks = generate_dump_url_schedules(
     interval=timedelta(days=365),
     start_date=datetime(2022, 11, 4, 20, 0, tzinfo=pytz.timezone("America/Sao_Paulo")),
     labels=[

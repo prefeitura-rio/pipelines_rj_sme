@@ -25,7 +25,7 @@ sme_queries = {
         "dump_to_gcs": False,
         "materialization_mode": "prod",
         "dump_mode": "overwrite",
-        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "dbt_alias": True,
         "execute_query": """
             SELECT
@@ -75,7 +75,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "append",
         "dbt_alias": True,
-        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "execute_query": """
             SELECT
                 *
@@ -92,7 +92,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "append",
         "dbt_alias": True,
-        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "execute_query": """
             SELECT
                 *
@@ -108,7 +108,7 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "append",
         "dbt_alias": True,
-        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Avaliacao",
     },
     "coc": {  # essa tabela utiliza a view coc0 pois contem o coc 0 e de 1 a 5
@@ -195,7 +195,7 @@ sme_queries = {
         "dump_to_gcs": False,  # exceeds minimum (2022-05-31 -> 20,41GB)
         "materialization_mode": "prod",
         "dump_mode": "append",
-        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "dbt_alias": True,
         "execute_query": """
             SELECT
@@ -226,7 +226,7 @@ sme_queries = {
         "dump_to_gcs": False,
         "materialization_mode": "prod",
         "dump_mode": "append",
-        "dbt_model_secret_parameters": {"hash_seed": "hash_seed"},
+        "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "dbt_alias": True,
         "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Movimentacao_lgpd",
     },

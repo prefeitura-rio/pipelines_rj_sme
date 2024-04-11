@@ -20,13 +20,13 @@ SELECT
     SAFE_CAST(grupamento AS STRING) AS grupamento,
     SUBSTR(SHA256(
         CONCAT(
-            '{{ var("hash_seed") }}',
+            '{{ var("HASH_SEED") }}',
             SAFE_CAST(REGEXP_REPLACE(alu_id, r'\.0$', '')  AS STRING)
         )
     ), 2,17) as  id_aluno,
     SUBSTR(SHA256(
         CONCAT(
-            '{{ var("hash_seed") }}',
+            '{{ var("HASH_SEED") }}',
             SAFE_CAST(REGEXP_REPLACE(alu_id, r'\.0$', '')  AS STRING),
             SAFE_CAST(ano AS STRING)
         )

@@ -259,6 +259,40 @@ sme_frequencia_queries = {
             FROM GestaoEscolar.dbo.TUR_TurmaDisciplina
         """,
     },
+    "formato_avaliacao": {
+        "dataset_id": "educacao_basica_frequencia",
+        "partition_columns": "tud_dataAlteracao",
+        "partition_date_format": "%Y-%m-%d",
+        "lower_bound_date": "current_month",
+        "dump_mode": "overwrite",
+        "materialize_after_dump": True,
+        "materialize_to_datario": False,
+        "dump_to_gcs": False,
+        "materialization_mode": "prod",
+        "dbt_alias": True,
+        "execute_query": """
+            SELECT
+                fav_id, ent_id, esc_id, uni_id, fav_padrao, fav_nome, fav_situacao,
+                fav_dataCriacao, fav_dataAlteracao, fav_tipo, esa_idConceitoGlobal,
+                esa_idPorDisciplina, esa_idDocente, valorMinimoAprovacaoConceitoGlobal,
+                valorMinimoAprovacaoPorDisciplina, percentualMinimoFrequencia,
+                tipoProgressaoParcial,valorMinimoProgressaoParcialPorDisciplina,
+                qtdeMaxDisciplinasProgressaoParcial,
+                fav_tipoLancamentoFrequencia, fav_bloqueiaFrequenciaEfetivacao,
+                fav_planejamentoAulasNotasConjunto,
+                fav_conceitoGlobalDocente, fav_obrigatorioRelatorioReprovacao,
+                fav_bloqueiaFrequenciaEfetivacaoDisciplina,
+                fav_tipoApuracaoFrequencia, fav_calculoQtdeAulasDadas,
+                esa_idConceitoGlobalAdicional,
+                fav_conceitoGlobalAdicional,
+                fav_criterioAprovacaoResultadoFinal, fav_avaliacaoFinalAnalitica, fav_variacao,
+                fav_sugerirResultadoFinalDisciplina,
+                fav_percentualMinimoFrequenciaFinalAjustadaDisciplina,
+                fav_conceitoGlobalAhSerVerificado,
+                fav_percDisciplinaAbaixoNotaMin, fav_notaMinDisciplina
+            FROM GestaoEscolar.dbo.ACA_FormatoAvaliacao
+        """,
+    },
 }
 
 

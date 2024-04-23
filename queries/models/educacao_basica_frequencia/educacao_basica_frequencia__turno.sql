@@ -12,4 +12,4 @@ SELECT
     SAFE_CAST(trn_horaInicio AS TIME) AS hora_inicio,
     SAFE_CAST(trn_horaFim AS TIME) AS hora_fim,
     SAFE_CAST(ttn_id AS STRING) AS id_tipo_turno
-FROM `rj-sme.educacao_basica_frequencia_staging.turno` LIMIT 1000
+FROM `rj-sme.educacao_basica_frequencia_staging.turno`

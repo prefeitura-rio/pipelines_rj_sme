@@ -1,45 +1,30 @@
-{{ config(alias='turma_disciplina', schema='educacao_basica_frequencia', materialized='incremental',
-        partition_by={
-            "field": "data_particao",
-            "data_type": "date",
-            "granularity": "month",
-        }) }}
+{{
+    config(alias='turma_disciplina', schema='educacao_basica_frequencia', materialized='incremental',
+    partition_by={
+        "field": "data_particao",
+        "data_type": "date",
+        "granularity": "month",
+    })
+}}
 
 SELECT
-    SAFE_CAST(tud_id AS STRING) AS id_disciplina_turma,
-    SAFE_CAST(tud_codigo AS STRING) AS cod_disciplina,
-    SAFE_CAST(tud_nome AS STRING) AS nome_disciplina,
-    SAFE_CAST(tud_multiseriado AS BOOL) AS multiseriado,
-    SAFE_CAST(tud_vagas AS INT64) AS numero_vagas,
-    SAFE_CAST(tud_minimoMatriculados AS INT64) AS minimo_matriculados,
-    SAFE_CAST(tud_duracao AS INT64) AS duracao,
-    SAFE_CAST(tud_modo AS INT64) AS modo,
-    SAFE_CAST(tud_tipo AS INT64) AS tipo_disciplina,
-    SAFE_CAST(tud_dataInicio AS DATE) AS data_inicio,
-    SAFE_CAST(tud_dataFim AS DATE) AS data_fim,
-    SAFE_CAST(tud_situacao AS INT64) AS situacao,
-    SAFE_CAST(tud_dataCriacao AS DATETIME) AS data_criacao,
-    SAFE_CAST(tud_dataAlteracao AS DATETIME) AS data_alteracao,
-    SAFE_CAST(tud_cargaHorariaSemanal AS INT64) AS carga_hora_semanal,
-    SAFE_CAST(tud_aulaForaPeriodoNormal AS BOOL) AS aula_periodo,
-    SAFE_CAST(tud_global AS BOOL) AS global,
-    SAFE_CAST(tud_disciplinaEspecial AS BOOL) AS disciplina_especial,
-    SAFE_CAST(tud_naoLancarNota AS BOOL) AS tud_naoLancarNota,
-    SAFE_CAST(tud_naoLancarFrequencia AS BOOL) AS tud_naoLancarFrequencia,
-    SAFE_CAST(tud_naoExibirNota AS BOOL) AS tud_naoExibirNota,
-    SAFE_CAST(tud_naoExibirFrequencia AS BOOL) AS tud_naoExibirFrequencia,
-    SAFE_CAST(tud_semProfessor AS BOOL) AS tud_semProfessor,
-    SAFE_CAST(tud_naoExibirBoletim AS BOOL) AS tud_naoExibirBoletim,
+    SAFE_CAST(TRIM(tud_aulaforaperiodonormal) AS BOOL) AS aula_fora_periodo_normal,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_cargahorariasemanal), r'\.0$', '') AS INT64) AS carga_hora_semanal,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_codigo), r'\.0$', '') AS STRING) AS id_disciplina,
+    SAFE_CAST(DATE(tud_dataalteracao) AS DATE) AS data_alteracao,
+    SAFE_CAST(DATE(tud_datacriacao) AS DATE) AS data_criacao,
+    SAFE_CAST(TRIM(tud_datafim) AS STRING) AS data_fim,
+    SAFE_CAST(DATE(tud_datainicio) AS DATE) AS data_inicio,
+    SAFE_CAST(TRIM(tud_disciplinaespecial) AS BOOL) AS disciplina_especial,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_duracao), r'\.0$', '') AS STRING) AS id_duracao,
+    SAFE_CAST(TRIM(tud_global) AS BOOL) AS global,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_id), r'\.0$', '') AS STRING) AS id_disciplina_turma,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_minimomatriculados), r'\.0$', '') AS INT64) AS minimo_matriculados,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_modo), r'\.0$', '') AS STRING) AS id_modo,
+    SAFE_CAST(TRIM(tud_multiseriado) AS BOOL) AS multiseriado,
+    SAFE_CAST(TRIM(tud_nome) AS STRING) AS nome_disciplina,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_situacao), r'\.0$', '') AS STRING) AS id_situacao,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_tipo), r'\.0$', '') AS STRING) AS id_tipo,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_vagas), r'\.0$', '') AS INT64) AS numero_vagas,
     SAFE_CAST(data_particao AS DATE) AS data_particao
-FROM `rj-sme.educacao_basica_frequencia_staging.turma_disciplina`
-WHERE
-    SAFE_CAST(data_particao AS DATE) < CURRENT_DATE('America/Sao_Paulo')
-
-{% if is_incremental() %}
-
-{% set max_partition = run_query("SELECT gr FROM (SELECT IF(max(data_particao) > CURRENT_DATE('America/Sao_Paulo'), CURRENT_DATE('America/Sao_Paulo'), max(data_particao)) as gr FROM " ~ this ~ ")").columns[0].values()[0] %}
-
-AND
-    SAFE_CAST(data_particao AS DATE) > ("{{ max_partition }}")
-
-{% endif %}
+FROM `rj-sme.educacao_basica_frequencia_staging.turma_disciplina` AS t

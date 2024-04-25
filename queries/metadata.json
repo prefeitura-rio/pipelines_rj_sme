@@ -1,655 +1,103 @@
 {
-    "educacao_basica_frequencia": {
-        "educacao_basica_frequencia__turma_aula_aluno": {
-            "title": "educacao_basica_frequencia: turma_aula_aluno",
-            "short_description": "Falta de um aluno em plano de aula de determinado tipo de determinada disciplina em um dado dia.",
-            "long_description": "Falta de um aluno em plano de aula de determinado tipo de determinada disciplina em um dado dia. Uma disciplina pode ter vários tempos em um mesmo dia. Para saber o dia da frequencia do aluno deve-se acessar a tabela turma-aula. Pode haver vários planos de aula de uma mesma disciplina em um dia, um para cada tipo de aula. Por exemplo um plano de aula para prova e outra para aulas.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
+    "educacao_basica": {
+        "educacao_basica__coc": {
+            "title": "Educação Básica: Conselho de classe",
+            "short_description": "COCs fechados das turmas de escolas da prefeitura do Rio de Janeiro.",
+            "long_description": "COCs fechados (não leva em conta o atual ) das turmas de escolas da prefeitura do Rio de Janeiro, com informações desde 2014. \r\nEstas informações são levantadas para, entre outras coisas, comparar a variação entre um COC e outro.",
+            "update_frequency": "Mensal",
+            "temporal_coverage": "Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
             "tags": [
+                "administração pública",
                 "SME",
                 "aluno",
-                "Plano de aula",
-                "Disciplina",
-                "Falta"
+                "educação",
+                "avaliação"
             ],
             "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
+                "91117c15dceb41eaa08df881fa9f9310"
             ],
             "columns": [
                 {
-                    "name": "faltas_disciplina_dia",
-                    "description": "Quantidade de faltas do aluno no dia"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
-                },
-                {
-                    "name": "anotacao",
-                    "description": "Anotação sobre o aluno na aula"
-                },
-                {
-                    "name": "frequencia_tempo",
-                    "description": "Frequencia do tempo"
-                },
-                {
-                    "name": "usuario_alteracao",
-                    "description": "Identificador do usuário que realizou a última alteração no registro"
-                },
-                {
-                    "name": "id_matricula_disciplina",
-                    "description": "Identificador de matricula do aluno para determinada disciplina em uma turma"
-                },
-                {
-                    "name": "id_disciplina_turma",
-                    "description": "Identificador de disciplina para cada turma"
-                },
-                {
-                    "name": "id_aluno",
-                    "description": "Identificador do aluno"
-                },
-                {
-                    "name": "id_matricula_turma",
-                    "description": "Identificador de matrícula do aluno na turma"
-                },
-                {
-                    "name": "id_situacao",
-                    "description": "Situação do registro: 1 – Ativo;  3 – Excluído. É excluído quando foram inseridos dados incorretamente"
-                },
-                {
-                    "name": "id_aula_disciplina",
-                    "description": "Identificador das aulas da disciplina da turma em determinado dia. Uma aula corresponde a um tempo da disciplina. Este identificador pode corresponder a várias aulas, desde que estejam no mesmo dia"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__turma_curriculo": {
-            "title": "educacao_basica_frequencia: turma_curriculo",
-            "short_description": "Grupamento de determinada turma",
-            "long_description": "Grupamento de determinada turma.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "turma",
-                "Currículo"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "prioridade_curriculo",
-                    "description": "Número de prioridade do currículo da turma"
-                },
-                {
-                    "name": "id_situacao",
-                    "description": "Situação do registro: 1 – Ativo; 3 – Excluído"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
-                },
-                {
-                    "name": "id_periodo_curriculo",
-                    "description": "Identificador do período do currículo, sequencial (manual) com base no curso e no currículo"
-                },
-                {
-                    "name": "id_curriculo",
-                    "description": "Identificador de currículo, sequencial (manual) com base no curso"
-                },
-                {
-                    "name": "id_curso",
-                    "description": "Identificador de curso, sequencial"
+                    "name": "id_cre",
+                    "description": "Número da CRE que administra a unidade escolar onde o COC ocorreu. \r\nCRE é a sigla para coordenadoria regional."
                 },
                 {
                     "name": "id_turma",
-                    "description": "Identificador de turma"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__turma_disciplina": {
-            "title": "educacao_basica_frequencia: turma_disciplina",
-            "short_description": "Disciplina de determinada turma",
-            "long_description": "Disciplina de determinada turma de escolas municipais do município do Rio de Janeiro. A turma associada deve ser vista na tabela turma_disciplina_rel.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "turma",
-                "Disciplina"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "multiseriado",
-                    "description": "Verificador se a disciplina da turma é multiseriada"
+                    "description": "Identificador da turma na base de dados."
                 },
                 {
-                    "name": "numero_vagas",
-                    "description": "Número de vagas da disciplina da turma"
+                    "name": "id_turma_escola",
+                    "description": "Identificador da turma. É dado pela escola. É único em determinada escola e determinado ano. \r\nHá uma padronização, ex. 1601 é para o sexto ano."
                 },
                 {
-                    "name": "minimo_matriculados",
-                    "description": "Número mínimo de matriculados na disciplina da turma"
+                    "name": "ano",
+                    "description": "Ano do COC. Uma turma é identificada pela unidade escolar onde ela esta, pelo seu número e por seu ano."
                 },
                 {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
+                    "name": "id_unidade",
+                    "description": "Número da unidade escolar, dado pela SME, relativa ao COC. Contém 7 digitos."
                 },
                 {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
+                    "name": "grupamento",
+                    "description": "Ano da turma. Ex. primeiro ano, segundo ano etc."
                 },
                 {
-                    "name": "id_modo",
-                    "description": "Modo: 1 – Normal; 2 – Regime Especial; 3 – Excepcional"
-                },
-                {
-                    "name": "id_disciplina",
-                    "description": "Código da disciplina da turma"
-                },
-                {
-                    "name": "nome_disciplina",
-                    "description": "Nome da disciplina da turma"
-                },
-                {
-                    "name": "data_inicio",
-                    "description": "Data inicial da disciplina da turma"
-                },
-                {
-                    "name": "data_fim",
-                    "description": "Data final da disciplina da turma"
-                },
-                {
-                    "name": "id_situacao",
-                    "description": "Situação do registro: 1 – Ativo; 3 – Excluído; 4 – Cancelada; 5 – Encerrada"
-                },
-                {
-                    "name": "global",
-                    "description": "Verificador se a disciplina da turma é global"
-                },
-                {
-                    "name": "disciplina_especial",
-                    "description": "Indicar se a turma/disciplina"
-                },
-                {
-                    "name": "id_disciplina_turma",
-                    "description": "Identificador sequencial da disciplina da turma"
-                },
-                {
-                    "name": "aula_fora_periodo_normal",
-                    "description": "Verificador se existe aulas fora do período normal"
-                },
-                {
-                    "name": "carga_hora_semanal",
-                    "description": "Carga horária semanal da disciplina da turma"
-                },
-                {
-                    "name": "id_duracao",
-                    "description": "Duração: 1 – Anual; 2 – Semestral; 3 – Condensada; 4 – Livre"
-                },
-                {
-                    "name": "id_tipo",
-                    "description": "\"Tipo: 1 – Obrigatória; 2 – Estágio; 3 – Optativa; 4 – Eletiva"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__turma_aula": {
-            "title": "educacao_basica_frequencia: turma_aula",
-            "short_description": "Plano de aula de determinado tipo de aula de uma determinada disciplina em determinado dia.",
-            "long_description": "Plano de aula de determinado tipo de aula. Um plano de aula contém o conteúdo ( e dinâmica ) dado nos tempos de uma determinada disciplina em determinado dia. Dinâmica indica a forma de alcançar os objetivos pedagógicos pré-estabelecidos. Pode haver vários planos de aula de uma mesma disciplina em um dia, um para cada tipo de aula. Por exemplo um plano de aula para prova e outra para aulas.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "Plano de aula",
-                "Disciplina",
-                "Tipo de aula"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "id_aula_disciplina",
-                    "description": "Parte do identificador do plano de aula, que é composto também por tud_id."
-                },
-                {
-                    "name": "sequencia_aula",
-                    "description": "Número da ordem do tempo no plano de aula."
-                },
-                {
-                    "name": "data_aula",
-                    "description": "Data do plano de aula."
-                },
-                {
-                    "name": "numero_aula",
-                    "description": "Número de tempo da disciplina no plano de aula de determinado tipo."
-                },
-                {
-                    "name": "plano_aula",
-                    "description": "Descrição do plano de aula. Contém o conteúdo a ser dado e a dinâmica."
-                },
-                {
-                    "name": "diario_classe",
-                    "description": "Diário de classe da disciplina da turma. Eventos que aconteceram na turma."
-                },
-                {
-                    "name": "id_situacao",
-                    "description": "Situação do registro: 1 – Aula prevista; 3 – Excluído; 4 – Aula dada; 6 – Aula cancelada"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
-                },
-                {
-                    "name": "conteudo",
-                    "description": "Conteúdo efetivamente dado nas aulas e a sua dinâmica."
-                },
-                {
-                    "name": "efetivado",
-                    "description": "Indica que o professor realizou o plano de aula. Isto ocorre mesmo que somente um tempo tenha sido dado."
-                },
-                {
-                    "name": "posicao_docente",
-                    "description": "Indica se o docente que ministrou o plano de aula foi o titular ou o substituto."
-                },
-                {
-                    "name": "id_usuario_criacao",
-                    "description": "Usuário do sistema que criou o registro."
-                },
-                {
-                    "name": "id_usuario_alteracao",
-                    "description": "Usuário do sistema que realizou a ultima alteração do registro."
-                },
-                {
-                    "name": "status_anotacoes",
-                    "description": "Status que indica a existência ou não de anotações"
-                },
-                {
-                    "name": "status_plano_aula",
-                    "description": "Status que indica a existência ou não de plano de aula."
-                },
-                {
-                    "name": "id_tipo_calendario",
-                    "description": "Identificador do COC onde o plano de aula foi realizado."
-                },
-                {
-                    "name": "id_disciplina",
-                    "description": "Identificador de disciplina"
-                },
-                {
-                    "name": "recursos_utilizados",
-                    "description": "lnforme dos recursos utilizados na aula"
-                },
-                {
-                    "name": "atividade_casa",
-                    "description": "Assunto da atividade indicada para os alunos da turma realizarem em casa."
-                }
-            ]
-        },
-        "educacao_basica_frequencia__tipo_turno": {
-            "title": "educacao_basica_frequencia: tipo_turno",
-            "short_description": "Tipos de turno possíveis",
-            "long_description": "Tipos de turno possíveis.  Ex. integral, manhã, noite e tarde.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "Tipo de turno"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "id_tipo_turno",
-                    "description": "Identificador, sequencial do tipo de turno"
-                },
-                {
-                    "name": "tipo_turno",
-                    "description": "Nome do tipo de turno."
-                },
-                {
-                    "name": "id_situacao",
-                    "description": "Situação do registro: 1 – Ativo; 2 – Bloqueado; 3 – Excluído"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__curriculo_periodo": {
-            "title": "educacao_basica_frequencia: curriculo_periodo",
-            "short_description": "Grupamentos das etapas, o mesmo que curso",
-            "long_description": "Grupamentos das etapas.  Grupamento - berçario, maternal I e maternal II e pré-escola I e II, 1º ao 9º.  Etapa, o mesmo que curso:  um subtipo de segmento. Exemplos: fundamental I bilingue, Fundamental ( 1 ao 9 ) bilingue.  Segmento - educação infantil, ensino fundamental I ( 1º ano, 2º ano etc ... ), fundamental II.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "Currículo",
-                "Período",
-                "Etapas",
-                "Curso"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "id_periodo_curriculo",
-                    "description": "Identificador do período do currículo, sequencial (manual) com base no curso e no currículo"
-                },
-                {
-                    "name": "ordem_periodo",
-                    "description": "Ordem do período do currículo"
-                },
-                {
-                    "name": "descricao_periodo",
-                    "description": "Descrição do período do currículo"
-                },
-                {
-                    "name": "ano_idade_inicio",
-                    "description": "Ano da idade ideal inicial"
-                },
-                {
-                    "name": "mes_idade_inicio",
-                    "description": "Mês da idade ideal inicial"
-                },
-                {
-                    "name": "ano_idade_final",
-                    "description": "Ano da idade ideal final"
-                },
-                {
-                    "name": "mes_idade_final",
-                    "description": "Mês da idade ideal final"
-                },
-                {
-                    "name": "id_situacao",
-                    "description": "Situação do registro: 1–Ativo; 3–Excluído"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
-                },
-                {
-                    "name": "controle_tempo",
-                    "description": "Controle de tempo: 1–Tempo de aula; 2-Horas"
-                },
-                {
-                    "name": "aulas_semana",
-                    "description": "Quantidade de aulas por semana"
-                },
-                {
-                    "name": "tempos_semana",
-                    "description": "Quantidade de tempos de aula por semana"
-                },
-                {
-                    "name": "horas_dia",
-                    "description": "Quantidade de horas por dia"
-                },
-                {
-                    "name": "minutos_dia",
-                    "description": "Quantidade de minutos por dia"
+                    "name": "turno",
+                    "description": "Turno da turma. Pode ser Manhã, Tarde, Noite ou Integral. \r\nPode ser primeiro turno ou segundo turno em turmas mais antigas."
                 },
                 {
                     "name": "id_coc",
-                    "description": "Número do Conselho de Classe (coc) que subdivide o ano escolar em período de 2 meses e meio. Valores posíveis (1,2,3,4,5, NULL). Sempre NULL"
+                    "description": "Número do conselho de classe.\r\nÉ único por período letivo.\r\nConselho de classe é um conjunto de reuniões de professores que ocorre no final do bimestre. \r\nNo COC é dado um conceito final para o aluno, diferente das notas por matérias."
                 },
                 {
-                    "name": "id_curriculo",
-                    "description": "Identificador de currículo, sequencial (manual) com base no curso, sempre 1"
+                    "name": "alunos",
+                    "description": "Número total de alunos do COC, na turma, no ano."
                 },
                 {
-                    "name": "id_etapa_mec_inep",
-                    "description": "Identificador de etapa do MEC/INEP. Sempre NULL"
+                    "name": "masculino",
+                    "description": "Número total de alunos do sexo masculino, do COC, na turma, no ano."
                 },
                 {
-                    "name": "id_curso",
-                    "description": "Identificador de curso, sequencia. Etapa???"
+                    "name": "feminino",
+                    "description": "Número total de alunos do sexo feminino, do COC, na turma, no ano."
+                },
+                {
+                    "name": "deficiente",
+                    "description": "Número total de alunos deficientes, do COC, na turma, no ano."
+                },
+                {
+                    "name": "masculino_deficiente",
+                    "description": "Número total de alunos do sexo masculino deficientes, do COC, na turma, no ano."
+                },
+                {
+                    "name": "feminino_deficiente",
+                    "description": "Número total de alunos do sexo feminino deficientes, do COC, na turma, no ano."
+                },
+                {
+                    "name": "masculino_nao_deficiente",
+                    "description": "Número total de alunos do sexo masculino não deficientes, do COC, na turma, no ano."
+                },
+                {
+                    "name": "feminino_nao_deficiente",
+                    "description": "Número total de alunos do sexo feminino não deficientes, do COC, na turma, no ano."
+                },
+                {
+                    "name": "vagas",
+                    "description": "Capacidade menos o total de alunos em determinado COC."
+                },
+                {
+                    "name": "capacidade",
+                    "description": "Capacidade da turma no ano, de acordo com o tamanho da sala. \r\nA capacidade da turma pode ser no máximo a constante em resolução da SME, independente do tamanho da sala. \r\nA capacidade pode, eventualmente, ser menor do que a resolução da SME \r\n\r\n(vai ser verificada esta definição )."
                 }
             ]
         },
-        "educacao_basica_frequencia__formato_avaliacao": {
-            "title": "educacao_basica_frequencia: formato_avaliacao",
-            "short_description": "Formato de avaliação dos grupamentos",
-            "long_description": "Formato de avaliação dos grupamentos. Este formato pode ter impacto na contagem de frequencia e avaliação das notas. Por exemplo a avalição pode ser por nota ou conceito, a frequência mínima pode ser 60% ou 75%.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "Formato avaliação"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "id_formato_avaliacao",
-                    "description": "Identificador sequencial de formato de avaliação"
-                },
-                {
-                    "name": "id_entidade",
-                    "description": "Identificador de entidade"
-                },
-                {
-                    "name": "id_escola",
-                    "description": "FK: Identificador de escola"
-                },
-                {
-                    "name": "id_unidade_escola",
-                    "description": "FK: Identificador de unidade da escola"
-                },
-                {
-                    "name": "formato_avaliacao",
-                    "description": "Verificador se o formato de avaliação é padrão"
-                },
-                {
-                    "name": "nome_avaliacao",
-                    "description": "Nome do formato de avaliação"
-                },
-                {
-                    "name": "tipo_avaliacao",
-                    "description": "Tipo do formato de avaliação:\r\n · 1 – Conceito global\r\n · 2 – Por disciplina\r\n · 3 – Conceito global e por disciplina"
-                },
-                {
-                    "name": "tipo_frequencia",
-                    "description": "Tipo de lançamento de frequência:\r\n · 1 – Aulas planejadas\r\n · 2 – Período"
-                },
-                {
-                    "name": "conceito_global",
-                    "description": "FK: Identificador de escala de avaliação"
-                },
-                {
-                    "name": "valor_aprovacao_global",
-                    "description": "Valor mínimo para aprovação do conceito global"
-                },
-                {
-                    "name": "valor_aprovacao_disciplina",
-                    "description": "Valor mínimo para aprovação por disciplina"
-                },
-                {
-                    "name": "percentual_frequencia",
-                    "description": "Percentual mínimo de frequência para aprovação"
-                },
-                {
-                    "name": "tipo_progressao",
-                    "description": "Tipo de progressão parcial:\r\n · 1 – Período de matrícula seguinte\r\n · 2 – Anterior ao período de matrícula seguinte\r\n · 3 - Sem progressão parcial"
-                },
-                {
-                    "name": "valor_progressao",
-                    "description": "Valor mínimo de progressão parcial por disciplina"
-                },
-                {
-                    "name": "maximo_progressao",
-                    "description": "Quantidade máxima de progressão parcial"
-                },
-                {
-                    "name": "situacao_registro",
-                    "description": "Situação do registro:\r\n · 1 – Ativo\r\n · 2 – Bloqueado\r\n · 3 – Excluído"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_altercao",
-                    "description": "Data/hora da última alteração"
-                },
-                {
-                    "name": "tipo_frequencia_apurada",
-                    "description": "Define se a frequencia será apurada por dia ou por tempos\r\n1 - Tempos de Aula\r\n2 - Dias"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__turma_disciplina_rel": {
-            "title": "educacao_basica_frequencia: turma_disciplina_rel",
-            "short_description": "Disciplina de determinada turma",
-            "long_description": "Disciplina de determinada turma de escolas municipais do município do Rio de Janeiro.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "turma",
-                "Disciplina"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "id_disciplina",
-                    "description": "Identificador de disciplina da turma"
-                },
-                {
-                    "name": "id_turma",
-                    "description": "Identificador de turma"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__turno": {
-            "title": "educacao_basica_frequencia: turno",
-            "short_description": "Turnos das escolas",
-            "long_description": "Turnos das escolas.",
-            "update_frequency": "Diário",
-            "temporal_coverage": "Desde 2012",
-            "data_owner": "SME",
-            "publisher_name": "Camila Maura Moreira da Silva",
-            "publisher_email": "camila.maura@rioeduca.net",
-            "tags": [
-                "SME",
-                "Turno"
-            ],
-            "categories": [
-                "91117c15dceb41eaa08df881fa9f9310",
-                "48df9fb6643d477bb1bb7bf595915a23"
-            ],
-            "columns": [
-                {
-                    "name": "id_turno",
-                    "description": "Identificador, seqüencial do turno"
-                },
-                {
-                    "name": "id_entidade",
-                    "description": "Identificador de entidade"
-                },
-                {
-                    "name": "descricao_turno",
-                    "description": "Descrição do turno"
-                },
-                {
-                    "name": "turno_padrao",
-                    "description": "Verificador se o turno é padrão"
-                },
-                {
-                    "name": "situacao",
-                    "description": "Situação do registro: 1 – Ativo; 2 – Bloqueado; 3 – Excluído"
-                },
-                {
-                    "name": "data_criacao",
-                    "description": "Data/hora de criação do registro"
-                },
-                {
-                    "name": "data_alteracao",
-                    "description": "Data/hora da última alteração"
-                },
-                {
-                    "name": "controle_tempo",
-                    "description": "Controle de tempo:  1 – Tempo de aula; 2 – Horas"
-                },
-                {
-                    "name": "hora_inicio",
-                    "description": "Horário inicial do turno"
-                },
-                {
-                    "name": "hora_fim",
-                    "description": "Horário final do turno"
-                },
-                {
-                    "name": "id_tipo_turno",
-                    "description": "Identificador de tipo de turno"
-                }
-            ]
-        },
-        "educacao_basica_frequencia__turma": {
-            "title": "educacao_basica_frequencia: Turma",
-            "short_description": "Turma de alunos em unidades escolares da prefeitura do Rio de Janeiro.",
-            "long_description": "Turma de alunos, atuais ou passadas, em unidades escolares pertencentes ou de interesse da prefeitura do Rio de Janeiro.",
+        "educacao_basica__dependencia": {
+            "title": "Educação Básica: Dependência",
+            "short_description": "Dependências pertencentes à prefeitura do Rio de Janeiro.",
+            "long_description": "Dependências pertencentes à prefeitura do Rio de Janeiro. Dependência em uma unidade escolar pertencente a prefeitura do Rio de Janeiro. . Ex.: Sala de Aula, Auditório, Laboratório de Informática, despensa, rampa de acesso etc.",
             "update_frequency": "Mensal",
             "temporal_coverage": "Até data corrente",
             "data_owner": "Secretaria Municipal de Educação",
@@ -666,64 +114,775 @@
             ],
             "columns": [
                 {
-                    "name": "id_turma",
-                    "description": "Identificador da turma na base de dados."
-                },
-                {
-                    "name": "ano",
-                    "description": "Ano em que a turma existe ou existiu. \r\nUma turma é identificada pela unidade escolar onde ela esta, pelo seu número e por seu ano."
-                },
-                {
                     "name": "id_escola",
-                    "description": "Identificador da escola na base de dados."
+                    "description": "Identificador da escola, onde está a dependência, na base de dados."
                 },
                 {
                     "name": "id_dependencia",
-                    "description": "Identificador que é a concatenação do identificador da escola (id_escola) com o identificador da dependência (número que identifica unicamente cada dependência na escola) na base de dados."
+                    "description": "Identificador que é a concatenação do identificador da escola (id_escola) onde fica a dependência com o identificador da dependência (número que identifica unicamente cada dependência na escola) na base de dados."
+                },
+                {
+                    "name": "nome",
+                    "description": "Nome da dependência."
+                },
+                {
+                    "name": "tipo",
+                    "description": "Tipo da dependência. Ex.: Sala de Aula, Auditório, Laboratório de Informática, despensa, rampa de acesso etc."
+                },
+                {
+                    "name": "aloca_turma",
+                    "description": "Indica se a dependência pode ser usada para alocar turma ou não."
+                },
+                {
+                    "name": "util_como",
+                    "description": "Utilização atual da dependência. Ex. os mesmos do tipo de depêndencia. \r\nPode diferir do tipo de dependência, pois o tipo de dependência é tipo oficial da dependência, que pode ser diferente da utilização real."
+                },
+                {
+                    "name": "aloca_turma_e_util_como",
+                    "description": "Booleano que indica se a dependência tem uma turma alocada a ela. \r\nSim, não ou emergencial."
+                },
+                {
+                    "name": "capacidade",
+                    "description": "Número máximo de alunos que a dependência comporta. \r\nEm geral é calculado em um m2 por aluno."
+                },
+                {
+                    "name": "area",
+                    "description": "Área, em metros quadrados, da dependência"
+                }
+            ]
+        },
+        "educacao_basica__movimentacao": {
+            "title": "Educação Básica: Movimentação",
+            "short_description": "Movimentações feitas de alunos de interesse da prefeitura do Rio de Janeiro.",
+            "long_description": "Movimentações feitas de alunos de interesse da prefeitura do Rio de Janeiro ( algumas informações desde 1973, são mais completas a partir de 2012 ).\r\nMovimentação é a saída do aluno de uma turma, potencialmente para entrada em outra turma da mesma unidade escolar ou para outra unidade escolar, do município ou não.",
+            "update_frequency": "Anual",
+            "temporal_coverage": "Desde 1973 até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "ano",
+                    "description": "Ano da movimentação."
+                },
+                {
+                    "name": "id_cre",
+                    "description": "Número da CRE que administra a unidade escolar onde a movimentação foi registrada. \r\nNo caso de saída de uma unidade escolar ela é registrada nesta unidade. \r\nCRE é a sigla para coordenadoria regional de educação. \r\nUma CRE reúne unidades escolares da prefeitura em uma determinada região."
+                },
+                {
+                    "name": "id_coc",
+                    "description": "COC cujo período onde o aluno sofreu movimentação. Número do conselho de classe.\r\nÉ único por período letivo. \r\nConselho de classe é um conjunto de reuniões de professores que ocorre no final do bimestre."
+                },
+                {
+                    "name": "id_unidade",
+                    "description": "Número da unidade escolar dado pela SME onde foi registrada a movimentação.\r\nContém 7 dígitos."
                 },
                 {
                     "name": "id_turma_escola",
-                    "description": "Identificador da turma. \r\nÉ dado pela escola. \r\nÉ único em determinada escola e determinado ano.\r\nHá uma padronização, ex. 1601 é para o sexto ano."
-                },
-                {
-                    "name": "curso",
-                    "description": "Tipo do curso que a turma está fazendo. Ex. Ensino fundamental 1, Ensino fundamental classe especial, Educação infantil pré-escola. Este tipo pode variar de ano a ano."
-                },
-                {
-                    "name": "nivel_ensino",
-                    "description": "Nível do ensino da turma. \r\nPode ser Fundamental ou Educação Infantil."
-                },
-                {
-                    "name": "modalidade",
-                    "description": "Modalidade do ensino da turma. \r\nPode ser Regular, Especial ou EJA."
+                    "description": "Identificador da turma da unidade escolar que registrou a movimentação.\r\nÉ dado pela unidade escolar.\r\nÉ único em determinada escola e determinado ano.\r\nHá uma padronização, ex. 1601 é para o sexto ano."
                 },
                 {
                     "name": "grupamento",
-                    "description": "Série da turma. \r\nEm unidades escolares da prefeitura em geral se vai do 1ª a 9ª ano. \r\nEm dados mais antigos pode ir da 1ª a 8ª série."
+                    "description": "Ano da turma da unidade escolar que registrou a movimentação.\r\nEx. primeiro ano, segundo ano etc."
                 },
                 {
-                    "name": "turno",
-                    "description": "Turno da turma.\r\nPode ser Manhã, Tarde, Noite ou Integral.\r\nPode ser primeiro turno ou segundo turno em turmas mais antigas."
+                    "name": "id_aluno",
+                    "description": "Identificador do aluno na base de dados."
                 },
                 {
-                    "name": "sala",
-                    "description": "Nome da dependência que é ocupada pela turma como sala de aula."
+                    "name": "matricula",
+                    "description": "Matricula do aluno que fez a movimentação. Campo anonimizado."
                 },
                 {
-                    "name": "area_sala",
-                    "description": "Área, em metros quadrados, da dependência que é ocupada pela turma."
+                    "name": "genero",
+                    "description": "Sexo do aluno, pode ser masculino ou feminino"
                 },
                 {
-                    "name": "capacidade_sala",
-                    "description": "Capacidade, em número de alunos, da dependência que é ocupada pela turma."
+                    "name": "id_deficiencia",
+                    "description": "Código da deficiência do aluno.\r\n00 caso não tenha nenhuma deficiência."
                 },
                 {
-                    "name": "tipo_sala",
-                    "description": "Tipo da dependência ocupada pela turma. \r\nEx.: Sala de Aula, Auditório, Laboratório de Informática, despensa, rampa de acesso etc."
+                    "name": "deficiencia",
+                    "description": "Tipo da deficiência do aluno, caso ele tenha."
                 },
                 {
-                    "name": "sala_util_como",
-                    "description": "Utilização atual da dependência ocupada pela turma. \r\nEx. os mesmos do tipo de dependência(tipo_sala). Pode diferir do tipo de dependência, pois o tipo de dependência é tipo oficial da dependência, que pode ser diferente da utilização real."
+                    "name": "data_nascimento",
+                    "description": "Data de nascimento do aluno."
+                },
+                {
+                    "name": "idade_atual",
+                    "description": "Idade atual do aluno."
+                },
+                {
+                    "name": "idade_final_ano",
+                    "description": "Idade do aluno no final do ano."
+                },
+                {
+                    "name": "data_movimentacao",
+                    "description": "Data em que ocorreu a movimentação."
+                },
+                {
+                    "name": "id_movimentacao",
+                    "description": "Identificador do tipo da movimentação na base de dados."
+                },
+                {
+                    "name": "movimentacao",
+                    "description": "Nome do tipo da movimentação.\r\nEx. Transferência da rede particular, transferência para a rede particular, Abandono etc."
+                },
+                {
+                    "name": "ordem",
+                    "description": "Ordem da movimentação de determinado aluno durante a sua vida escolar no município do Rio de Janeiro."
+                },
+                {
+                    "name": "tipo",
+                    "description": "Indica se a movimentação é de entrada ou saída, mesmo dentro da mesma unidade escolar. Tem sempre o valor 'Entrada' quando a transferência é entre turmas dentro da mesma unidade escolar."
+                }
+            ]
+        },
+        "educacao_basica__aluno_turma": {
+            "title": "Educação Básica: Aluno e Turma",
+            "short_description": "Relacionamento entre alunos e turmas.",
+            "long_description": "Relacionamento entre alunos e turmas.",
+            "update_frequency": "Anual",
+            "temporal_coverage": "Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação",
+                "turma"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "ano",
+                    "description": "Ano da turma associado ao id da turma."
+                },
+                {
+                    "name": "id_turma",
+                    "description": "Identificador da turma, criado anualmente."
+                },
+                {
+                    "name": "id_aluno",
+                    "description": "Identificador do aluno."
+                }
+            ]
+        },
+        "educacao_basica__coc_test": {},
+        "educacao_basica__aluno_historico": {
+            "title": "Educação Básica: Histórico de Aluno",
+            "short_description": "Histórico de alunos que passaram pela rede municipal de educação da prefeitura do Rio de Janeiro.",
+            "long_description": "Histórico e dados pessoais de todos os alunos que passaram pela rede municipal de educação da prefeitura do Rio de Janeiro.",
+            "update_frequency": "Anual",
+            "temporal_coverage": "Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "ano",
+                    "description": "Ano de cobertura do histórico."
+                },
+                {
+                    "name": "id_aluno",
+                    "description": "Identificador do aluno."
+                },
+                {
+                    "name": "matricula",
+                    "description": "Matrícula do aluno (anonimizada)."
+                },
+                {
+                    "name": "nome",
+                    "description": "Nome do aluno (anonimizado)."
+                },
+                {
+                    "name": "naturalidade",
+                    "description": "Cidade de nascimento da criança."
+                },
+                {
+                    "name": "endereco",
+                    "description": "Endereço do aluno. (anonimizado)"
+                },
+                {
+                    "name": "cep",
+                    "description": "CEP do endereço do aluno. (anonimizado)"
+                },
+                {
+                    "name": "filiacao_1",
+                    "description": "Nome da mãe. (anonimizado)"
+                },
+                {
+                    "name": "nacionalidade",
+                    "description": "País de nascimento da criança."
+                },
+                {
+                    "name": "filiacao_1_profissao",
+                    "description": "Ocupação da mãe."
+                },
+                {
+                    "name": "filiacao_1_escolaridade",
+                    "description": "Escolaridade da mãe."
+                },
+                {
+                    "name": "filiacao_2",
+                    "description": "Nome do pai. (anonimizado)."
+                },
+                {
+                    "name": "filiacao_2_profissao",
+                    "description": "Ocupação do pai."
+                },
+                {
+                    "name": "filiacao_2_escolaridade",
+                    "description": "Escolaridade do pai"
+                },
+                {
+                    "name": "cpf",
+                    "description": "CPF do aluno. (anonimizado)"
+                },
+                {
+                    "name": "nis_aluno",
+                    "description": "Número de Inscrição Social do aluno. (anonimizado)"
+                },
+                {
+                    "name": "nis_resp",
+                    "description": "Número de Inscrição Social do responsável do aluno.(anonimizado)"
+                },
+                {
+                    "name": "raca_cor",
+                    "description": "Raça e cor auto declarados na ocasião da matrícula."
+                },
+                {
+                    "name": "id_deficiencia",
+                    "description": "Código da deficiência do aluno."
+                },
+                {
+                    "name": "tipo_transporte",
+                    "description": "Tipo de transporte que a criança utiliza para se deslocar para a escola."
+                },
+                {
+                    "name": "tempo_deslocamento",
+                    "description": "Descrição do tempo que a criança leva para se deslocar até a escola."
+                },
+                {
+                    "name": "regressa_sozinho",
+                    "description": "Descrição do tempo que a criança leva para se deslocar até a escola."
+                },
+                {
+                    "name": "religiao",
+                    "description": "Religião do aluno declarada no momento da matrícula."
+                },
+                {
+                    "name": "cfc",
+                    "description": "Booleano, 1 se recebe o Cartão Família Carioca e 0 se não."
+                },
+                {
+                    "name": "territorios_sociais",
+                    "description": "Booleano, 1 se reside na área do Territórios Sociais e 0 se não."
+                },
+                {
+                    "name": "clube_escolar",
+                    "description": "Booleano, 1 se frequenta o Clube Escolar e 0 se não."
+                },
+                {
+                    "name": "nucleo_artes",
+                    "description": "Booleano, 1 se frequenta o Núcleo de Artes e 0 se não."
+                },
+                {
+                    "name": "mais_educacao",
+                    "description": "Booleano, 1 se pertence ao Mais Educação e 0 se não."
+                },
+                {
+                    "name": "data_nascimento",
+                    "description": "Data de nascimento do aluno."
+                },
+                {
+                    "name": "idade_atual",
+                    "description": "Informação da idade atual do aluno."
+                },
+                {
+                    "name": "idade_3112",
+                    "description": "Idade do aluno em 31 de dezembro do ano corrente."
+                },
+                {
+                    "name": "situacao",
+                    "description": "Status de atividade do aluno, ativo ou inativo."
+                },
+                {
+                    "name": "id_ultima_movimentacao",
+                    "description": "Cod. da movimentação mais recente do aluno na rede escolar."
+                },
+                {
+                    "name": "ultima_movimentacao",
+                    "description": "Nome/descrição do tipo de movimentação do aluno na rede escolar."
+                },
+                {
+                    "name": "total_aluno",
+                    "description": "Sinalização para totalização na contagem de registros/ocorrências."
+                },
+                {
+                    "name": "deficiencia",
+                    "description": "Descrição da deficiência do aluno."
+                },
+                {
+                    "name": "genero",
+                    "description": "Gênero do aluno, pode ser masculino ou feminino."
+                }
+            ]
+        },
+        "educacao_basica__frequencia": {
+            "title": "Educação Básica: Frequência",
+            "short_description": "Frequência dos alunos matriculados em uma escola da prefeitura do Rio de Janeiro.",
+            "long_description": "Frequência dos alunos matriculados ou que já tenham sido matriculados em uma escola da prefeitura do Rio de Janeiro desde 2012. A frequência do aluno leva em consideração o periodo (em geral de um mês) e a disciplina feita.",
+            "update_frequency": "Anual",
+            "temporal_coverage": "Desde 2012 Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação",
+                "turma",
+                "escola"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "id_escola",
+                    "description": "Identificador da escola, onde o aluno estuda, na base de dados."
+                },
+                {
+                    "name": "id_turma",
+                    "description": "Identificador da turma do aluno na base de dados."
+                },
+                {
+                    "name": "turma",
+                    "description": "Turma do aluno. Deve respeitar o atributo id_turma."
+                },
+                {
+                    "name": "id_aluno",
+                    "description": "Identificador do aluno, para o qual está sendo calculado a frequência, na base de dados."
+                },
+                {
+                    "name": "id_coc",
+                    "description": "Coc do bimestre que contém o período onde está sendo calculada a frequência. \r\nNúmero do conselho de classe.\r\nÉ único por período letivo. Conselho de classe é uma reunião de professores que ocorre no final do bimestre."
+                },
+                {
+                    "name": "data_inicio",
+                    "description": "Data do início do período em que vai ser calculada a frequência. \r\nUm período, em geral, de um mês, podendo começar e acabar no meio do mês."
+                },
+                {
+                    "name": "data_fim",
+                    "description": "Data do fim do período."
+                },
+                {
+                    "name": "dias_letivos",
+                    "description": "Número de dias letivos no período. Um dia letivo é um dia que teve aula.\r\nO somatório de todos os períodos em um ano deve dar no mínimo 200 dias."
+                },
+                {
+                    "name": "tempos_letivos",
+                    "description": "Número de tempos letivos da disciplina no período.\r\nTempo letivo é um tempo de aula, como uma aula de geografia, história etc. \r\nQuando é fundamental 1 fica igual a dias letivos."
+                },
+                {
+                    "name": "faltas_global",
+                    "description": "Número de tempos letivos em que o aluno faltou em todas as disciplinas. \r\nÉ o somatório dos valores do atributo faltas_disciplina. \r\nQuando é fundamental 2 fica em branco."
+                },
+                {
+                    "name": "id_disciplina",
+                    "description": "Identificador da disciplina,  em que está sendo calculada a frequência, na base de dados. \r\nQuando é fundamental 1 fica em branco."
+                },
+                {
+                    "name": "id_disciplina_ano",
+                    "description": "Código da disciplina em que está sendo calculada a frequência.\r\nÉ único por ano. \r\nQuando é fundamental 1 fica em branco."
+                },
+                {
+                    "name": "disciplina",
+                    "description": "Nome da disciplina em que está sendo calculada a frequência.\r\nEm geral mantém uma constância, podendo durar o nome indefinidamente. deve respeitar o atributo id_disciplina_ano.\r\nQuando é fundamental 1 fica em branco."
+                },
+                {
+                    "name": "faltas_disciplina",
+                    "description": "Número de faltas em tempos letivos do aluno na disciplina. \r\nQuando é fundamental 1 fica zerado."
+                },
+                {
+                    "name": "carga_horaria_semanal",
+                    "description": "Carga horária semanal na disciplina.\r\nQuando é fundamental 1 fica zerado."
+                }
+            ]
+        },
+        "educacao_basica__escola": {
+            "title": "Educação Básica: Escola",
+            "short_description": "Unidade escolar pertencente a, ou de interesse, da prefeitura do Rio de Janeiro onde podem ser alocadas turmas.",
+            "long_description": "Unidade escolar pertencente a, ou de interesse, da prefeitura do Rio de Janeiro onde podem ser alocadas turmas. As unidades escolares de interesse da PCRJ são creche parceiras onde estão matriculados alunos da prefeitura do Rio de Janeiro.",
+            "update_frequency": "Mensal",
+            "temporal_coverage": "Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação",
+                "turma",
+                "escola"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "id_inep",
+                    "description": "Identificador, dado pelo INEP - Instituto Nacional de Estudos e Pesquisas Educacionais, para a unidade escolar, O identificador é único para cada unidade escolar do país."
+                },
+                {
+                    "name": "id_escola",
+                    "description": "Identificador da unidade escolar na base de dados."
+                },
+                {
+                    "name": "nome",
+                    "description": "Nome da unidade escolar. Depende do atributo id_designacao."
+                },
+                {
+                    "name": "tipo",
+                    "description": "\"Tipo da unidade escolar, Pode ser creche, escola, CIEP ou EDI. EDI é a sigla para Espaço de\r\n Desenvolvimento Infantil, unidade escolar especializada na educação para a primeira infância.\""
+                },
+                {
+                    "name": "id_designacao",
+                    "description": "Código de identificação da unidade escolar, constituido pelo código da CRE, Código da micro-área, um sequencial e o tipo da unidade escolar pertencente a PCRJ ou de interesse desta."
+                },
+                {
+                    "name": "endereco",
+                    "description": "Endereço da unidade escolar"
+                },
+                {
+                    "name": "bairro",
+                    "description": "Bairro do endereço da unidade escolar"
+                },
+                {
+                    "name": "cep",
+                    "description": "CEP do endereço da unidade escolar"
+                },
+                {
+                    "name": "email",
+                    "description": "E-mail da unidade escolar"
+                },
+                {
+                    "name": "telefone",
+                    "description": "Telefone da unidade escolar"
+                },
+                {
+                    "name": "direcao",
+                    "description": "Nome do(a) diretor(a) da unidade escolar"
+                },
+                {
+                    "name": "cre",
+                    "description": "Número da CRE que administra a unidade escolar. CRE é a sigla para coordenadoria regional\r\nde educação. Uma CRE reúne unidades escolares da prefeitura em uma determinada região.\""
+                },
+                {
+                    "name": "polo",
+                    "description": "Polo onde esta a unidade escolar.\r\nUm polo é um lugar que atende prioritariamente a alunos matriculados na Unidade Escolar de determinada área, oferecendo oficinas tendo o trabalho como princípio educativo. \r\nEle pode, eventualmente, atender a alunos de áreas de outros polos."
+                },
+                {
+                    "name": "micro_area",
+                    "description": "Micro área onde está a unidade escolar.\r\nUma micro área é uma área geográfica do município do Rio de Janeiro, definida pelo Instituto Pereira Passos (IPP) para facilitar a administração escolar, independente de bairros e outras divisões territoriais feitas pela prefeitura."
+                },
+                {
+                    "name": "id_institucional_pcrj",
+                    "description": "Identificador, dado pela prefeitura do Rio de Janeiro, para a unidade escolar. \r\nSICI é o sistema de codificação institucional."
+                },
+                {
+                    "name": "numero_salas_recurso",
+                    "description": "Total de salas de recurso na unidade. Sala de recurso é uma dependência com professor especializado e recursos especiais para determinada atividade."
+                },
+                {
+                    "name": "numero_salas_aula",
+                    "description": "Número total de salas de aula da unidade escolar."
+                },
+                {
+                    "name": "numero_salas_utilizadas",
+                    "description": "Número de salas de aula, na unidade escolar, efetivamente usadas por turmas."
+                }
+            ]
+        },
+        "educacao_basica__avaliacao": {
+            "title": "Educação Básica: Avaliação",
+            "short_description": "Avaliações de alunos dadas nos Conselhos de Classe (COC).",
+            "long_description": "Avaliações de alunos dadas no COC.\r\nAs notas de disciplinas (ou a global) estão preenchidas (de 0,0 a 10) ou com a anotação 'sem informação' caso não haja nota para ela. \r\nDependendo do tipo de turma (Infantil, Fundamental 1, Fundamental 2, EJA, Classes especiais exclusivas, Turmas de correção de fluxo, etc) algumas notas são preenchidas sempre com a anotação 'sem informação'.",
+            "update_frequency": "Anual",
+            "temporal_coverage": "Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação",
+                "avaliação"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "ano",
+                    "description": "Ano do COC"
+                },
+                {
+                    "name": "id_turma",
+                    "description": "Identificador da turma na base de dados"
+                },
+                {
+                    "name": "id_aluno",
+                    "description": "Identificador do aluno na base de dados"
+                },
+                {
+                    "name": "id_matricula_turma",
+                    "description": "Identificador que associa matricula do aluno a turma."
+                },
+                {
+                    "name": "id_curriculo",
+                    "description": "Identificador de etapa na base de dados. \r\nEx. Educação infantil - creche turno único, 2019 - ensino fundamental I - bilíngue ing-tu"
+                },
+                {
+                    "name": "id_curriculo_periodo",
+                    "description": "Identificador da associação entre currículo (conjunto de disciplinas) e período (de um ano)."
+                },
+                {
+                    "name": "id_coc",
+                    "description": "Identificador único do COC na base de dados. \r\nConselho de classe é um conjunto de reuniões de professores que ocorre no final do bimestre. \r\nNo COC é dado um conceito final para o aluno, diferente das notas por matérias."
+                },
+                {
+                    "name": "coc",
+                    "description": "Nome do COC. Ex. 1º COC, 2º COC etc."
+                },
+                {
+                    "name": "id_turma_escola",
+                    "description": "Identificador da turma. \r\nÉ dado pela escola.\r\nÉ único em determinada escola e determinado ano.\r\nHá uma padronização, ex. 1601 é para o sexto ano."
+                },
+                {
+                    "name": "frequencia",
+                    "description": "Percentagem de dias que o aluno frequentou em relação ao número total de dias letivos."
+                },
+                {
+                    "name": "conceito",
+                    "description": "Conceito dado ao aluno em um COC."
+                },
+                {
+                    "name": "nota_fundamental_1",
+                    "description": "Nota dada pelo professor do fundamental 1.\r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito.\r\nEm geral é preenchido para o fundamental 1."
+                },
+                {
+                    "name": "matematica",
+                    "description": "Conceito dado em matemática ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "portugues",
+                    "description": "Conceito dado em português ao aluno neste COC. Fica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. Em geral é prenchido para o fundamental 2."
+                },
+                {
+                    "name": "ciencias",
+                    "description": "Conceito dado em ciências ao aluno em um COC.\r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "geografia",
+                    "description": "Conceito dado em geografia ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "historia",
+                    "description": "Conceito dado em história ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "educacao_fisica",
+                    "description": "Conceito dado em educação física ao aluno neste COC. Fica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. Em geral é prenchido para o fundamental 2."
+                },
+                {
+                    "name": "ingles",
+                    "description": "Conceito dado em inglês ao aluno em um COC.\r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "espanhol",
+                    "description": "Conceito dado em espanhol ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "frances",
+                    "description": "Conceito dado em francês ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "alemao",
+                    "description": "Conceito dado em alemão ao aluno em um COC.\r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "artes_visuais",
+                    "description": "Conceito dado em artes visuais ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "artes_plasticas",
+                    "description": "Conceito dado em artes plásticas ao aluno em um COC. \r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "artes_cenicas",
+                    "description": "Conceito dado em artes cênicas ao aluno em um COC.\r\nFica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. \r\nEm geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "teatro",
+                    "description": "Conceito dado em teatro ao aluno em um COC. Fica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. Em geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "musica",
+                    "description": "Conceito dado em música ao aluno em um COC. Fica com 'sem informação' caso a criança não tenha sido avaliada neste conceito. Em geral é preenchido para o fundamental 2."
+                },
+                {
+                    "name": "reuniao_pais",
+                    "description": "Indica se teve reunião dos pais"
+                }
+            ]
+        },
+        "educacao_basica__aluno": {
+            "title": "Educação Básica: Aluno",
+            "short_description": "Alunos matriculados em escolas da prefeitura do Rio de Janeiro no ano corrente.",
+            "long_description": "Alunos matriculados em escolas da prefeitura do Rio de Janeiro no ano corrente. \r\nCampos anonimizados para atendimento a LGPD.",
+            "update_frequency": "Anual",
+            "temporal_coverage": "Até data corrente",
+            "data_owner": "Secretaria Municipal de Educação",
+            "publisher_name": "Nuno Caminada Silva",
+            "publisher_email": "nuno.silva@rioeduca.net",
+            "tags": [
+                "SME",
+                "aluno",
+                "educação"
+            ],
+            "categories": [
+                "91117c15dceb41eaa08df881fa9f9310"
+            ],
+            "columns": [
+                {
+                    "name": "ano",
+                    "description": "Ano em que o aluno está matriculado."
+                },
+                {
+                    "name": "id_turma",
+                    "description": "Identificador da turma do aluno na base de dados."
+                },
+                {
+                    "name": "turma",
+                    "description": "Número da turma do aluno."
+                },
+                {
+                    "name": "id_aluno",
+                    "description": "Identificador do aluno na base de dados."
+                },
+                {
+                    "name": "matricula",
+                    "description": "Matrícula do aluno (mascarada, os quatro primeiros dígitos originais e o resto está preenchido com 9s)"
+                },
+                {
+                    "name": "situacao",
+                    "description": "Boleano indicando se o aluno está ativo na rede de ensino.\r\nPode ter os valores ativo ou inativo."
+                },
+                {
+                    "name": "id_utltima_movimentacao",
+                    "description": "Código do tipo da última movimentação do aluno. \r\nA movimentação do aluno indica que o aluno saiu de uma turma, podendo ter ido para outra turma em outra ou na mesma escola."
+                },
+                {
+                    "name": "ultima_movimentacao",
+                    "description": "Indica o tipo da última movimentação do aluno. Ex: Abandono, renovação de matrícula, mudança de turma."
+                },
+                {
+                    "name": "genero",
+                    "description": "Sexo do aluno, pode ser masculino ou feminino"
+                },
+                {
+                    "name": "raca_cor",
+                    "description": "Raça ou cor do aluno. Branca, preta, parda, amarela, indígena, não declarada ou sem informação."
+                },
+                {
+                    "name": "data_nascimento",
+                    "description": "Data de nascimento do aluno."
+                },
+                {
+                    "name": "idade_atual",
+                    "description": "Idade atual do aluno."
+                },
+                {
+                    "name": "idade_final_ano",
+                    "description": "Idade do aluno no final do ano."
+                },
+                {
+                    "name": "id_deficiencia",
+                    "description": "Código da deficiência do aluno. 00 caso não tenha nenhuma deficiência."
+                },
+                {
+                    "name": "deficiencia",
+                    "description": "Tipo da deficiência do aluno, caso ele tenha."
+                },
+                {
+                    "name": "bairro",
+                    "description": "Bairro do endereço do aluno"
+                },
+                {
+                    "name": "mora_com_filiacao",
+                    "description": "0 se não mora com nenhum dos dois pais, 1 se mora com um dos dois."
+                },
+                {
+                    "name": "tipo_transporte",
+                    "description": "Transporte que o aluno usa para ir para a escola. Ex. pedestre, ônibus, metrô, carro, trem, outros ou sem informação."
+                },
+                {
+                    "name": "bolsa_familia",
+                    "description": "Booleana que indica se o aluno recebe bolsa familia. 0 se não recebe e 1 se recebe."
+                },
+                {
+                    "name": "cartao_familia_carioca",
+                    "description": "Booleana que indica se o aluno recebe o cartão família carioca. 0 se não recebe e 1 se recebe."
+                },
+                {
+                    "name": "clube_escolar",
+                    "description": "Booleano indicando que o aluno está inscrito em um clube escolar, 0 se não inscrito e 1 se inscrito. Um clube escolar é um clube pertencente a prefeitura e faz parte de uma escola da prefeitura do Rio de Janeiro."
+                },
+                {
+                    "name": "nucleo_artes",
+                    "description": "Booleano indicando que o aluno está inscrito em um núcleo de artes, 0 se não inscrito e 1 se inscrito. \r\nUm núcleo de artes pertence a prefeitura e faz parte de uma escola da prefeitura do Rio de Janeiro."
+                },
+                {
+                    "name": "mais_educacao",
+                    "description": "Boleano indicando que o aluno está inscrito no Mais Educação, 0 se não inscrito e 1 se inscrito. \r\nPrograma do MEC que dá atividades específicas e acompanhamento ao aluno. Específico para alunos com histórico de evasão ou reprovação."
+                },
+                {
+                    "name": "territorio_social",
+                    "description": "Booleano indicando que o aluno mora em um território social, 0 se não mora e 1 se mora.\r\nUm território social é uma região geográfica do município do Rio de Janeiro, classificada pela prefeitura como de extrema vulnerabilidade social."
+                },
+                {
+                    "name": "tipo_avaliacao_jovens_adultos",
+                    "description": "Tipo de avaliação usada, para o aluno, no ensino de jovens e adultos. Ex: UP 1 ou aval 2."
+                },
+                {
+                    "name": "nome",
+                    "description": "Nome do aluno (mascarado, está preenchido com Xs)"
+                },
+                {
+                    "name": "cpf",
+                    "description": "CPF do aluno (mascarado, está preenchido com 9s)"
                 }
             ]
         }

@@ -261,8 +261,6 @@ sme_frequencia_queries = {
     },
     "formato_avaliacao": {
         "dataset_id": "educacao_basica_frequencia",
-        "partition_columns": "tud_dataAlteracao",
-        "partition_date_format": "%Y-%m-%d",
         "lower_bound_date": "current_month",
         "dump_mode": "overwrite",
         "materialize_after_dump": True,

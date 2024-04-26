@@ -1,10 +1,12 @@
 {{
-    config(alias='turma_disciplina', schema='educacao_basica_frequencia', materialized='incremental',
-    partition_by={
-        "field": "data_particao",
-        "data_type": "date",
-        "granularity": "month",
-    })
+    config(
+        alias='turma_disciplina', schema='educacao_basica_frequencia',
+        partition_by={
+            "field": "data_particao",
+            "data_type": "date",
+            "granularity": "month",
+        }
+    )
 }}
 
 SELECT

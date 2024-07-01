@@ -1,4 +1,8 @@
-{{ config(alias='escola', schema='educacao_basica') }}
+{{ config(
+    alias='escola',
+    schema='educacao_basica'
+    )
+}}
 
 
 SELECT

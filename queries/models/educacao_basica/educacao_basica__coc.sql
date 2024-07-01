@@ -1,8 +1,7 @@
-{{ config(alias='coc', schema='educacao_basica') }}
-
 {{
     config(
-        materialized='incremental',
+        alias='coc',
+        schema='educacao_basica',
         partition_by={
             "field": "data_particao",
             "data_type": "date",
@@ -32,13 +31,3 @@ SELECT
     SAFE_CAST(REGEXP_REPLACE(vagas, r'\.0$', '') AS INT64) AS vagas, ## valor negativo? superlotacao?
     SAFE_CAST(data_particao AS DATE) data_particao,
 FROM `rj-sme.educacao_basica_staging.coc`
-WHERE data_particao < CURRENT_DATE('America/Sao_Paulo')
-
-{% if is_incremental() %}
-
-{% set max_partition = run_query("SELECT gr FROM (SELECT IF(max(data_particao) > CURRENT_DATE('America/Sao_Paulo'), CURRENT_DATE('America/Sao_Paulo'), max(data_particao)) as gr FROM " ~ this ~ ")").columns[0].values()[0] %}
-
-AND
-    data_particao > ("{{ max_partition }}")
-
-{% endif %}

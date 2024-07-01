@@ -1,5 +1,7 @@
 {{
-    config(alias='turma_aula_aluno', schema='educacao_basica_frequencia',
+    config(
+    alias='turma_aula_aluno',
+    schema='educacao_basica_frequencia',
     partition_by={
         "field": "data_particao",
         "data_type": "date",

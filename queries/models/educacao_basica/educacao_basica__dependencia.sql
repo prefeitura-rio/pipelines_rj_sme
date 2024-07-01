@@ -1,4 +1,9 @@
-{{ config(alias='dependencia', schema='educacao_basica') }}
+{{
+    config(
+        alias='dependencia',
+        schema='educacao_basica'
+    )
+}}
 
 SELECT
     SAFE_CAST(REGEXP_REPLACE(esc_id, r'\.0$', '') AS STRING) AS id_escola,

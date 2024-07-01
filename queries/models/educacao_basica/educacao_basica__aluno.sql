@@ -1,4 +1,9 @@
-{{ config(alias='aluno', schema='educacao_basica') }}
+{{
+    config(
+        alias='aluno',
+        schema='educacao_basica'
+    )
+}}
 
 SELECT
     SAFE_CAST(ano AS INT64) ano,

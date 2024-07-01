@@ -1,5 +1,3 @@
-{{ config() }}
-
 {{
     config(
         alias='frequencia',

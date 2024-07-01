@@ -77,9 +77,48 @@ sme_queries = {
         "dbt_alias": True,
         "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "execute_query": """
-            SELECT
-                *
-            FROM GestaoEscolar.dbo.VW_BI_Aluno_Todos_LGPD
+            SELECT 
+                Ano, 
+                Matricula, 
+                Nome, 
+                Sexo, 
+                Naturalidade, 
+                Nacionalidade, 
+                Endereco, 
+                Bairro, 
+                CEP, 
+                Filiacao_1, 
+                Filiacao_1_Profissão, 
+                Filiacao_1_Escolaridade, 
+                Filiacao_2, 
+                Filiacao_2_Profissão, 
+                Filiacao_2_Escolaridade, 
+                Mora_com_Filiacao, 
+                CPF, 
+                NIS_Aluno, 
+                NIS_Resp, 
+                Raça_Cor, 
+                Cod_def, 
+                Deficiência, 
+                Tipo_Transporte, 
+                Tempo_Deslocamento, 
+                Regressa_Sozinho, 
+                Religião, 
+                Bolsa_Familia, 
+                CFC, 
+                Territorios_Sociais, 
+                Clube_Escolar, 
+                Nucleo_Artes, 
+                Mais_Educacao, 
+                DataNascimento, 
+                Idade_Atual, 
+                Idade_3112, 
+                Situacao, 
+                Cod_Ult_Mov, 
+                Ult_Movimentação, 
+                Tot_Aluno, 
+                alu_id
+            FROM GestaoEscolar.dbo.VW_BI_Aluno_Todos_lgpd
         """,
         "interval": timedelta(days=180),
     },
@@ -95,7 +134,9 @@ sme_queries = {
         "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "execute_query": """
             SELECT
-                *
+                Ano, 
+                tur_id, 
+                alu_id
             FROM GestaoEscolar.dbo.VW_BI_Aluno_Turma
         """,
     },
@@ -109,7 +150,41 @@ sme_queries = {
         "dump_mode": "append",
         "dbt_alias": True,
         "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
-        "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Avaliacao",
+        "execute_query": """
+            SELECT 
+                Ano,
+                COC,
+                tpc_nome,
+                tur_codigo,
+                Reunião_Pais,
+                Frequencia,
+                Conceito,
+                GLB,
+                MAT,
+                POR,
+                CIE,
+                GEO,
+                HIS,
+                EFI,
+                ING,
+                ESP,
+                FRA,
+                ALE,
+                AVI,
+                APL,
+                ACE,
+                TEA,
+                MUS,
+                cur_id,
+                crp_id,
+                tur_id,
+                alu_id,
+                mtu_id
+            FROM GestaoEscolar.dbo.VW_BI_Avaliacao
+        """,
+        # Freq_Acumulada,
+        # LE
+        # ART
     },
     "coc": {  # essa tabela utiliza a view coc0 pois contem o coc 0 e de 1 a 5
         "materialize_after_dump": True,
@@ -153,7 +228,21 @@ sme_queries = {
         "materialization_mode": "prod",
         "dump_mode": "overwrite",
         "dbt_alias": True,
-        "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Dependencia",
+        "execute_query": """
+            SELECT 
+                Dependencia,
+                Area_Dep,
+                Capac_Dep,
+                Tipo_Dep,
+                Dep_Aloc_Turma,
+                Dep_Util_Como,
+                Dep_Util_Como_Aloc_Turma,
+                Tot_Dep,
+                esc_id,
+                dep_id
+            FROM GestaoEscolar.dbo.VW_BI_Dependencia
+        
+        """,
     },
     "escola": {
         "materialize_after_dump": True,
@@ -228,7 +317,30 @@ sme_queries = {
         "dump_mode": "append",
         "dbt_model_secret_parameters": [{"secret_path": "/dbt-vars", "secret_name": "HASH_SEED"}],
         "dbt_alias": True,
-        "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Movimentacao_lgpd",
+        "execute_query": """
+            SELECT 
+                Ano,
+                Coc,
+                Aluno,
+                Cre,
+                Unidade,
+                Grupamento,
+                Turma,
+                Cod_mov,
+                Movimentação,
+                Data_mov,
+                Sexo,
+                Cod_def,
+                Deficiência,
+                DataNascimento,
+                Idade_Atual,
+                Idade_3112,
+                Mov_ordem,
+                Tipo_mov,
+                Tot_Mov,
+                alu_id 
+            FROM GestaoEscolar.dbo.VW_BI_Movimentacao_lgpd
+        """,
     },
 }
 

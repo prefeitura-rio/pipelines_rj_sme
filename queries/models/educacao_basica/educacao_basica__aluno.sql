@@ -9,17 +9,17 @@ SELECT
     SAFE_CAST(ano AS INT64) ano,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) id_turma,
     SAFE_CAST(turma AS STRING) turma,
-    SAFE_CAST(REGEXP_REPLACE(alu_id, r'\.0$', '')  AS STRING)  id_aluno_original,
+    alu_id  id_aluno_original,
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            SAFE_CAST(REGEXP_REPLACE(alu_id, r'\.0$', '')  AS STRING)
+            alu_id
         )
     ), 2,17) as  id_aluno,
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            SAFE_CAST(REGEXP_REPLACE(alu_id, r'\.0$', '')  AS STRING),
+            alu_id,
             SAFE_CAST(ano AS STRING)
         )
     ), 2,17) as  id_aluno_ano,

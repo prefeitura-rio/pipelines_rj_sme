@@ -28,4 +28,3 @@ SELECT
     ), 2,17) as  id_aluno_ano,
     SAFE_CAST(data_particao AS DATE) data_particao,
 FROM `rj-sme.educacao_basica_staging.aluno_turma`
-WHERE data_particao < CURRENT_DATE('America/Sao_Paulo')

@@ -282,7 +282,7 @@ sme_queries = {
     "frequencia": {
         "partition_columns": "datainicio",
         "partition_date_format": "%Y-%m-%d",
-        "lower_bound_date": "2022-03-01",
+        "lower_bound_date": "current_year",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,  # exceeds minimum (2022-05-31 -> 20,41GB)
@@ -313,7 +313,7 @@ sme_queries = {
     "movimentacao": {
         "partition_columns": "Data_mov",
         "partition_date_format": "%Y-%m-%d",
-        "lower_bound_date": "2022-03-01",
+        "lower_bound_date": "current_year",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,

@@ -1,5 +1,4 @@
-CREATE OR REPLACE TABLE `rj-sme.educacao_basica_avaliacao.avaliacao_bimestral_2012_a_2019` AS (
-  WITH d2012_a_2019 AS (
+WITH d2012_a_2019 AS (
 (SELECT
   SAFE_CAST(id_designacao as STRING) as id_unidade_escolar,
   SAFE_CAST(id_turma as STRING) as id_turma,
@@ -106,4 +105,3 @@ SELECT
 FROM d2012_a_2019 
 WHERE id_aluno IS NOT NULL OR nota IS NOT NULL
 ORDER BY ano, bimestre, id_aluno, disciplina
-)

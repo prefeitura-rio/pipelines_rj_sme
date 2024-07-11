@@ -1,4 +1,5 @@
-WITH d2012_a_2019 AS (
+CREATE OR REPLACE TABLE `rj-sme.educacao_basica_avaliacao.avaliacao_bimestral_2012_a_2019` AS (
+  WITH d2012_a_2019 AS (
 (SELECT
   SAFE_CAST(id_designacao as STRING) as id_unidade_escolar,
   SAFE_CAST(id_turma as STRING) as id_turma,
@@ -95,8 +96,14 @@ FROM `rj-sme.educacao_basica_avaliacao_staging.bimestral_2019`)
 )
 
 SELECT
-  SHA256(id_aluno) as id_aluno_hash,
+  SUBSTR(SHA256(
+        CONCAT(
+            '{{ var("HASH_SEED") }}',
+            id_aluno
+        )
+    ), 2,17) as  id_aluno_hash,
   *
 FROM d2012_a_2019 
 WHERE id_aluno IS NOT NULL OR nota IS NOT NULL
 ORDER BY ano, bimestre, id_aluno, disciplina
+)

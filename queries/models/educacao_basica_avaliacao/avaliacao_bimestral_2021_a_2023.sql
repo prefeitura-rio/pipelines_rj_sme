@@ -127,7 +127,12 @@ SELECT * FROM d2023
 )
 
 SELECT
-  SHA256(id_aluno) as id_aluno_hash,
+  SUBSTR(SHA256(
+        CONCAT(
+            '{{ var("HASH_SEED") }}',
+            id_aluno
+        )
+    ), 2,17) as  id_aluno_hash,
   *
 FROM d2021_a_2023 
 WHERE id_aluno IS NOT NULL OR taxa_acerto IS NOT NULL

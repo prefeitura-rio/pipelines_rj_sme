@@ -98,10 +98,10 @@ SELECT
   SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            id_aluno
+            TRIM(id_aluno)
         )
     ), 2,17) as  id_aluno_hash,
   *
-FROM d2012_a_2019 
+FROM d2012_a_2019
 WHERE id_aluno IS NOT NULL OR nota IS NOT NULL
 ORDER BY ano, bimestre, id_aluno, disciplina

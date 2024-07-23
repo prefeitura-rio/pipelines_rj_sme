@@ -47,7 +47,7 @@ SELECT
   SAFE_CAST(grupamento as STRING) as aluno_grupamento,
   SAFE_CAST(dc_atendimento_especializado as STRING) AS aluno_atendimento_especializado,
   CASE
-    WHEN cd_disciplina IS NOT NULL THEN SAFE_CAST(SPLIT(cd_disciplina, ".")[0] AS INT64) 
+    WHEN cd_disciplina IS NOT NULL THEN SAFE_CAST(SPLIT(cd_disciplina, ".")[0] AS INT64)
     WHEN nm_disciplina = "LÍNGUA PORTUGUESA" THEN 1
     WHEN nm_disciplina = "MATEMÁTICA" THEN 2
     ELSE NULL
@@ -86,7 +86,7 @@ SELECT
   SAFE_CAST(grupamento as STRING) as aluno_grupamento,
   SAFE_CAST(dc_atendimento_especializado as STRING) AS aluno_atendimento_especializado,
   CASE
-    WHEN cd_disciplina IS NOT NULL THEN SAFE_CAST(SPLIT(cd_disciplina, ".")[0] AS INT64) 
+    WHEN cd_disciplina IS NOT NULL THEN SAFE_CAST(SPLIT(cd_disciplina, ".")[0] AS INT64)
     WHEN nm_disciplina = "Língua Portuguesa" THEN 1
     WHEN nm_disciplina = "Matemática" THEN 2
     ELSE NULL
@@ -117,7 +117,7 @@ FROM `rj-sme.educacao_basica_avaliacao_staging.bimestral_2023`
 
 SELECT * FROM d2021
 
-UNION ALL 
+UNION ALL
 
 SELECT * FROM d2022
 
@@ -130,10 +130,10 @@ SELECT
   SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            id_aluno
+            TRIM(id_aluno)
         )
     ), 2,17) as  id_aluno_hash,
   *
-FROM d2021_a_2023 
+FROM d2021_a_2023
 WHERE id_aluno IS NOT NULL OR taxa_acerto IS NOT NULL
 ORDER BY ano, bimestre, id_aluno, sigla_disciplina

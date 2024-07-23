@@ -33,3 +33,6 @@ models:
     educacao_basica_alocacao:
       +materialized: table
       +schema: educacao_basica
+    educacao_basica_avaliacao:
+      +materialized: table
+      +schema: educacao_basica_avaliacao

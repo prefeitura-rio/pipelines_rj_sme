@@ -18,13 +18,13 @@ SELECT
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            alu_id
+            TRIM(alu_id)
         )
     ), 2,17) as  id_aluno,
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            alu_id,
+            TRIM(alu_id),
             SAFE_CAST(ano_particao AS STRING)
         )
     ), 2,17) as  id_aluno_ano,

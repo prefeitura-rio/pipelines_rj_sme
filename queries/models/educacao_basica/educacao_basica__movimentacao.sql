@@ -20,14 +20,14 @@ SELECT
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            alu_id
+            TRIM(alu_id)
         )
     ), 2,17) as  id_aluno,
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
-            alu_id,
-            SAFE_CAST(ano AS STRING)
+            TRIM(alu_id),
+            SAFE_CAST(TRIM(ano) AS STRING)
         )
     ), 2,17) as  id_aluno_ano,
     SAFE_CAST(aluno AS STRING) AS matricula,
@@ -44,3 +44,4 @@ SELECT
     SAFE_CAST(tipo_mov AS STRING) AS tipo,
     SAFE_CAST(data_particao AS DATE) data_particao,
 FROM `rj-sme.educacao_basica_staging.movimentacao`
+

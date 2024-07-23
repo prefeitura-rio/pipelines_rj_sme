@@ -21,13 +21,24 @@ from pipelines.constants import constants
 sme_frequencia_queries = {
     "turma": {
         "dataset_id": "educacao_basica_frequencia",
-        "dump_mode": "overwrite",
+        "partition_columns": "Ano",
+        "partition_date_format": "%Y",
+        "lower_bound_date": "current_year",
+        "dump_mode": "append",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
         "dbt_alias": True,
-        "execute_query": "SELECT * FROM GestaoEscolar.dbo.VW_BI_Turma",
+        "execute_query": """
+            SELECT
+                Ano, Curso, Nivel_Ensino,
+                Modalidade, Grupamento, Turma,
+                Turno, Sala, Area_Sala, Capac_Sala,
+                Tipo_Sala, Sala_Util_Como, Tot_Turma,
+                tur_id, esc_id, dep_id
+            FROM GestaoEscolar.dbo.VW_BI_Turma
+        """,
     },
     "turno": {
         "dataset_id": "educacao_basica_frequencia",
@@ -131,7 +142,10 @@ sme_frequencia_queries = {
     },
     "turma_curriculo": {
         "dataset_id": "educacao_basica_frequencia",
-        "dump_mode": "overwrite",
+        "partition_columns": "tcr_dataAlteracao",
+        "partition_date_format": "%Y-%m-%d",
+        "lower_bound_date": "current_month",
+        "dump_mode": "append",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -155,7 +169,7 @@ sme_frequencia_queries = {
         "partition_columns": "tau_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
         "lower_bound_date": "current_month",
-        "dump_mode": "overwrite",
+        "dump_mode": "append",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -196,7 +210,7 @@ sme_frequencia_queries = {
         "partition_columns": "taa_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
         "lower_bound_date": "current_month",
-        "dump_mode": "overwrite",
+        "dump_mode": "append",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -224,7 +238,7 @@ sme_frequencia_queries = {
         "partition_columns": "tud_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
         "lower_bound_date": "current_month",
-        "dump_mode": "overwrite",
+        "dump_mode": "append",
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,

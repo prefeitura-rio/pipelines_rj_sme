@@ -47,6 +47,7 @@ SELECT
     SAFE_CAST(tempo_deslocamento AS FLOAT64) tempo_deslocamento,
     SAFE_CAST(regressa_sozinho AS STRING) regressa_sozinho,
     SAFE_CAST(religiao AS STRING) religiao,
+    SAFE_CAST(bolsa_familia AS STRING) bolsa_familia,
     SAFE_CAST(cfc AS STRING) cfc,
     SAFE_CAST(territorios_sociais AS STRING) territorios_sociais,
     SAFE_CAST(clube_escolar AS STRING) clube_escolar,

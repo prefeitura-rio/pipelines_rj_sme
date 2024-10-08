@@ -12,7 +12,6 @@ from pipelines.educacao_basica_avaliacao.dbt.utils import (
 )
 from prefect.schedules import Schedule
 from prefeitura_rio.pipelines_utils.io import untuple_clocks as untuple
-from prefeitura_rio.pipelines_utils.prefect import gene
 
 from pipelines.constants import constants
 

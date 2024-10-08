@@ -39,6 +39,7 @@ educacao_basica_avaliacao_clocks = generate_dbt_schedules(
     labels=[
         constants.RJ_SME_AGENT_LABEL.value,
     ],
+    dataset_id="",
     table_parameters=table_parameters,
 )
 

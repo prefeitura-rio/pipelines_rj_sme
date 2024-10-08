@@ -7,7 +7,7 @@ Schedules for the database dump pipeline
 from datetime import datetime, timedelta
 
 import pytz
-from pipelines_rj_sme.pipelines.educacao_basica_avaliacao.dbt.utils import (
+from pipelines.educacao_basica_avaliacao.dbt.utils import (
     generate_dbt_schedules,
 )
 from prefect.schedules import Schedule

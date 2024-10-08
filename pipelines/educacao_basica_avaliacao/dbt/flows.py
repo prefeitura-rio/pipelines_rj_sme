@@ -5,7 +5,7 @@ MATERIALIZA MODELOS DO DBT.
 
 from copy import deepcopy
 
-from pipelines_rj_sme.pipelines.educacao_basica_avaliacao.dbt.schedules import (
+from pipelines.educacao_basica_avaliacao.dbt.schedules import (
     educacao_basica_avaliacao_update_schedule,
 )
 from prefect.run_configs import KubernetesRun

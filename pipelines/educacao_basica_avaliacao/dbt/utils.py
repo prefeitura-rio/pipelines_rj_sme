@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 from typing import List
+
 from prefect.schedules.clocks import IntervalClock
+
 
 def generate_dbt_schedules(  # pylint: disable=too-many-arguments,too-many-locals
     interval: timedelta,
@@ -41,7 +43,9 @@ def generate_dbt_schedules(  # pylint: disable=too-many-arguments,too-many-local
         if "materialize_to_datario" in parameters:
             parameter_defaults["materialize_to_datario"] = parameters["materialize_to_datario"]
         if "dbt_model_secret_parameters" in parameters:
-            parameter_defaults["dbt_model_secret_parameters"] = parameters["dbt_model_secret_parameters"]
+            parameter_defaults["dbt_model_secret_parameters"] = parameters[
+                "dbt_model_secret_parameters"
+            ]
 
         new_interval = parameters["interval"] if "interval" in parameters else interval
 

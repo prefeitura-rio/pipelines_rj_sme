@@ -7,14 +7,12 @@ Schedules for the database dump pipeline
 from datetime import datetime, timedelta
 
 import pytz
-from pipelines.educacao_basica_avaliacao.dbt.utils import (
-    generate_dbt_schedules,
-)
 from prefect.schedules import Schedule
 from prefeitura_rio.pipelines_utils.io import untuple_clocks as untuple
 from prefeitura_rio.pipelines_utils.prefect import gene
 
 from pipelines.constants import constants
+from pipelines.educacao_basica_avaliacao.dbt.utils import generate_dbt_schedules
 
 #####################################
 #

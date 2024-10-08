@@ -95,13 +95,14 @@ FROM `rj-sme.educacao_basica_avaliacao_staging.bimestral_2019`)
 )
 
 SELECT
+  TRIM(id_aluno) as id_aluno_original,
   SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',
             TRIM(id_aluno)
         )
-    ), 2,17) as  id_aluno_hash,
-  *
+    ), 2,17) as  id_aluno,
+  * EXCEPT(id_aluno)
 FROM d2012_a_2019
 WHERE id_aluno IS NOT NULL OR nota IS NOT NULL
 ORDER BY ano, bimestre, id_aluno, disciplina

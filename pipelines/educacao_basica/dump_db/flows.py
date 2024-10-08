@@ -43,3 +43,5 @@ sme_default_parameters = {
 dump_sme_flow = set_default_parameters(dump_sme_flow, default_parameters=sme_default_parameters)
 
 dump_sme_flow.schedule = sme_educacao_basica_daily_update_schedule
+
+# add comment to trigger build of new models in queries\models\educacao_basica_avaliacao

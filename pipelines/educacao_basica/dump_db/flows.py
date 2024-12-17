@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Database dumping flows for SME project.........
+Database dumping flows for SME project..........
 """
 
 from copy import deepcopy
+from functools import partial
 
 from prefect.run_configs import KubernetesRun
 from prefect.storage import GCS
@@ -20,7 +21,10 @@ from pipelines.educacao_basica.dump_db.schedules import (
 )
 
 dump_sme_flow = deepcopy(dump_sql_flow)
-dump_sme_flow.state_handlers = [handler_inject_bd_credentials, handler_initialize_sentry]
+dump_sme_flow.state_handlers = [
+    partial(handler_inject_bd_credentials, path="/"),
+    handler_initialize_sentry,
+]
 dump_sme_flow.name = "SME: educacao_basica - Ingerir tabelas de banco SQL"
 dump_sme_flow.storage = GCS(constants.GCS_FLOWS_BUCKET.value)
 

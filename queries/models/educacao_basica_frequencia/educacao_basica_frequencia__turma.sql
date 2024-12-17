@@ -5,7 +5,7 @@ SELECT
     SAFE_CAST(REGEXP_REPLACE(area_sala, r',', '.') AS FLOAT64) AS area_sala,
     SAFE_CAST(REGEXP_REPLACE(TRIM(capac_sala), r'\.0$', '') AS INT64) AS capacidade_sala,
     SAFE_CAST(TRIM(curso) AS STRING) AS curso,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(dependencia), r'\.0$', '') AS STRING) AS id_dependencia,
+    SAFE_CAST(REGEXP_REPLACE(TRIM(dep_id), r'\.0$', '') AS STRING) AS id_dependencia,
     SAFE_CAST(REGEXP_REPLACE(TRIM(esc_id), r'\.0$', '') AS STRING) AS id_escola,
     SAFE_CAST(TRIM(grupamento) AS STRING) AS grupamento,
     SAFE_CAST(TRIM(modalidade) AS STRING) AS modalidade,

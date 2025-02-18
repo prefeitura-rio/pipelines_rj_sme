@@ -21,6 +21,11 @@ from pipelines.constants import constants
 sme_frequencia_queries = {
     "frequencia": {
         "dataset_id": "educacao_basica_frequencia",
+        "partition_columns": "dataAula",
+        "partition_date_format": "%Y-%m-%d",
+        "break_query_frequency": "month",
+        "break_query_start": "current_month",
+        "break_query_end": "current_month",
         "dump_mode": "append",
         "materialize_after_dump": True,
         "materialize_to_datario": False,

@@ -24,7 +24,7 @@ sme_frequencia_queries = {
         "partition_columns": "dataAula",
         "partition_date_format": "%Y-%m-%d",
         "break_query_frequency": "month",
-        "break_query_start": "2024-02-02",
+        "break_query_start": "2024-04-04",
         "break_query_end": "current_month",
         "dump_mode": "append",
         "materialize_after_dump": True,

@@ -378,7 +378,7 @@ models :
   - name: educacao_basica_frequencia__frequencia
     description: "**Descrição**: Frequencia diária dos alunos no ano letivo corrente\n**Frequência
       de atualização**: Diariamente / À noite\n**Cobertura temporal**: Ano Corrente\n**Órgão
-      gestor dos dados**: Secretaria Municipal de Educação\n
+      gestor dos dados**: Secretaria Municipal de Educação\n"
     columns:
       - name: id_frequencia
         description: Identificador único do registro da frequência
@@ -442,4 +442,3 @@ models :
         description: Identificador sequencial do turno
       - name: id_curso
         description: Identificador sequencial do curso
-

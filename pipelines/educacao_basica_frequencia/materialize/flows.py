@@ -22,7 +22,10 @@ from pipelines.educacao_basica_frequencia.materialize.schedules import (
 )
 
 materialize_sme_frequencia_flow = deepcopy(templates__run_dbt_model__flow)
-materialize_sme_frequencia_flow.state_handlers = [handler_inject_bd_credentials, handler_initialize_sentry]
+materialize_sme_frequencia_flow.state_handlers = [
+    handler_inject_bd_credentials,
+    handler_initialize_sentry,
+]
 materialize_sme_frequencia_flow.name = "SME: educacao_basica_frequencia - Materializar tabelas"
 materialize_sme_frequencia_flow.storage = GCS(constants.GCS_FLOWS_BUCKET.value)
 

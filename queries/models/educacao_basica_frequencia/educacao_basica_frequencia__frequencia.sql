@@ -1,5 +1,3 @@
-{{ config(alias='frequencia'}}
-
 SELECT  SAFE_CAST(frq_id AS INT64) AS frq_id,
         SAFE_CAST(cre AS STRING) AS cre,
         SAFE_CAST(tur_id AS INT64) AS tur_id,

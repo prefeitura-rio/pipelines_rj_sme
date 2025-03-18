@@ -12,7 +12,6 @@ from prefeitura_rio.pipelines_utils.io import untuple_clocks as untuple
 
 from pipelines.constants import constants
 
-
 #####################################
 #
 # SME Schedules
@@ -41,5 +40,3 @@ sme_clocks = [
     for count, (_, table_id) in enumerate(sme_frequencia_tables.items())
 ]
 sme_educacao_basica_frequencia_daily_update_schedule = Schedule(clocks=untuple(sme_clocks))
-
-

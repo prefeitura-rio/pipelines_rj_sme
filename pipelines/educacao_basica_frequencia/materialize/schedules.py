@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Schedules for the database dump pipeline....
+Schedules for the database materialize pipeline....
 """
 
 from datetime import datetime, timedelta

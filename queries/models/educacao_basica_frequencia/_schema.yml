@@ -389,23 +389,23 @@ models :
       - name: id_escola
         description: Identificador da escola na base de dados
       - name: id_secundario_turma
-        description: Código secundário da turma que indica semanticamente a série e a sala. Exemplo: 1701, 1702
+        description: "Código secundário da turma que indica semanticamente a série e a sala. Exemplo: 1701, 1702"
       - name: id_ano_calendario
         description: Identificador do ano calendário do registro da frequência
       - name: tipo_turma
-        description: Tipo de turma: 1 – Turma normal; 2 – Turma eletiva; 6 – Turma treinamento
+        description: "Tipo de turma: 1 – Turma normal; 2 – Turma eletiva; 6 – Turma treinamento"
       - name: id_disciplina
         description: Código da disciplina da turma
       - name: nome_disciplina
         description: Nome da disciplina da turma
       - name: id_tipo_disciplina
-        description: Identificador de Tipo de disciplina: 1 – Obrigatória; 2 – Estágio; 3 – Optativa; 4 – Eletiva
+        description: "Identificador de Tipo de disciplina: 1 – Obrigatória; 2 – Estágio; 3 – Optativa; 4 – Eletiva"
       - name: carga_horaria_semanal
         description: Carga horária semanal da disciplina da turma
       - name: id_disciplina_turma
         description: Identificador de disciplina para cada turma
       - name: id_aula_disciplina
-        description: Identificador das aulas da disciplina da turma em determinado dia. Uma aula corresponde a um tempo da disciplina. Este identificador pode corresponder a várias aulas, desde que estejam no mesmo dia.
+        description: "Identificador das aulas da disciplina da turma em determinado dia. Uma aula corresponde a um tempo da disciplina. Este identificador pode corresponder a várias aulas, desde que estejam no mesmo dia."
       - name: id_tipo_calendario
         description: Identificador do COC onde o plano de aula foi realizado
       - name: sequencia_aula
@@ -417,7 +417,7 @@ models :
       - name: diario_classe
         description: Diário de classe da disciplina da turma. Eventos que aconteceram na turma.
       - name: id_situacao
-        description: Situação do registro: 1 – Aula prevista; 3 – Excluído; 4 – Aula dada; 6 – Aula cancelada
+        description: "Situação do registro: 1 – Aula prevista; 3 – Excluído; 4 – Aula dada; 6 – Aula cancelada"
       - name: efetivado
         description: Indica que o professor realizou o plano de aula. Isto ocorre mesmo que somente um tempo tenha sido dado.
       - name: id_aluno
@@ -427,7 +427,7 @@ models :
       - name: id_matricula_disciplina
         description: Identificador de matrícula do aluno para determinada disciplina em uma turma
       - name: id_situacao_aula
-        description: Situação do registro: 1 – Ativo; 3 – Excluído. É excluído quando foram inseridos dados incorretamente.
+        description: "Situação do registro: 1 – Ativo; 3 – Excluído. É excluído quando foram inseridos dados incorretamente."
       - name: faltas_disciplina_dia
         description: Quantidade de faltas do aluno no dia
       - name: frequencia_tempo

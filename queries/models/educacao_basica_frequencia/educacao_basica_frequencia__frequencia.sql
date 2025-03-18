@@ -1,4 +1,4 @@
-{{ config(alias='frequencia', schema='educacao_basica_frequencia') }}
+{{ config(alias='frequencia'}}
 
 SELECT  SAFE_CAST(frq_id AS INT64) AS frq_id,
         SAFE_CAST(cre AS STRING) AS cre,
@@ -27,9 +27,9 @@ SELECT  SAFE_CAST(frq_id AS INT64) AS frq_id,
         SAFE_CAST(taa_frequencia AS INT64) AS taa_frequencia,
         SAFE_CAST(taa_frequenciaBitMap AS STRING) AS taa_frequenciaBitMap,
         SAFE_CAST(trn_descricao AS STRING) AS trn_descricao,
-        SAFE_CAST(etapa AS STRING) AS etapa,
+        -- SAFE_CAST(etapa AS STRING) AS etapa, "Etapa de ensino está null ou seja não estamos usando"
         SAFE_CAST(dataAula AS DATETIME) AS dataAula,
         SAFE_CAST(cal_ano AS INT64) AS cal_ano,
         SAFE_CAST(trn_id AS INT64) AS trn_id,
         SAFE_CAST(cur_id AS INT64) AS cur_id
-FROM `rj-sme.educacao_basica_frequencia_staging.frequencia` AS t;
+from {{ source('educacao_basica_frequencia_staging', 'FRQ_FREQUENCIA')}}

@@ -374,3 +374,72 @@ models :
           os mesmos do tipo de dependência(tipo_sala). Pode diferir do tipo de dependência,
           pois o tipo de dependência é tipo oficial da dependência, que pode ser diferente
           da utilização real."
+
+  - name: educacao_basica_frequencia__frequencia
+    description: "**Descrição**: Frequencia diária dos alunos no ano letivo corrente\n**Frequência
+      de atualização**: Diariamente / À noite\n**Cobertura temporal**: Ano Corrente\n**Órgão
+      gestor dos dados**: Secretaria Municipal de Educação\n
+    columns:
+      - name: id_frequencia
+        description: Identificador único do registro da frequência
+      - name: coordenacao_regional
+        description: Número da coordenação regional de educação (01 a 11)
+      - name: id_turma
+        description: Identificador de turma
+      - name: id_escola
+        description: Identificador da escola na base de dados
+      - name: id_secundario_turma
+        description: Código secundário da turma que indica semanticamente a série e a sala. Exemplo: 1701, 1702
+      - name: id_ano_calendario
+        description: Identificador do ano calendário do registro da frequência
+      - name: tipo_turma
+        description: Tipo de turma: 1 – Turma normal; 2 – Turma eletiva; 6 – Turma treinamento
+      - name: id_disciplina
+        description: Código da disciplina da turma
+      - name: nome_disciplina
+        description: Nome da disciplina da turma
+      - name: id_tipo_disciplina
+        description: Identificador de Tipo de disciplina: 1 – Obrigatória; 2 – Estágio; 3 – Optativa; 4 – Eletiva
+      - name: carga_horaria_semanal
+        description: Carga horária semanal da disciplina da turma
+      - name: id_disciplina_turma
+        description: Identificador de disciplina para cada turma
+      - name: id_aula_disciplina
+        description: Identificador das aulas da disciplina da turma em determinado dia. Uma aula corresponde a um tempo da disciplina. Este identificador pode corresponder a várias aulas, desde que estejam no mesmo dia.
+      - name: id_tipo_calendario
+        description: Identificador do COC onde o plano de aula foi realizado
+      - name: sequencia_aula
+        description: Número da ordem do tempo no plano de aula
+      - name: numero_aula
+        description: Número de tempo da disciplina no plano de aula de determinado tipo
+      - name: plano_aula
+        description: Descrição do plano de aula. Contém o conteúdo a ser dado e a dinâmica
+      - name: diario_classe
+        description: Diário de classe da disciplina da turma. Eventos que aconteceram na turma.
+      - name: id_situacao
+        description: Situação do registro: 1 – Aula prevista; 3 – Excluído; 4 – Aula dada; 6 – Aula cancelada
+      - name: efetivado
+        description: Indica que o professor realizou o plano de aula. Isto ocorre mesmo que somente um tempo tenha sido dado.
+      - name: id_aluno
+        description: Identificador do aluno
+      - name: id_matricula_turma
+        description: Identificador de matrícula do aluno na turma
+      - name: id_matricula_disciplina
+        description: Identificador de matrícula do aluno para determinada disciplina em uma turma
+      - name: id_situacao_aula
+        description: Situação do registro: 1 – Ativo; 3 – Excluído. É excluído quando foram inseridos dados incorretamente.
+      - name: faltas_disciplina_dia
+        description: Quantidade de faltas do aluno no dia
+      - name: frequencia_tempo
+        description: Frequência do tempo
+      - name: descricao_turno
+        description: Descrição do turno
+      - name: data_aula
+        description: Data do plano de aula
+      - name: ano_calendario
+        description: Ano do calendário, sempre será o ano vigente
+      - name: id_turno
+        description: Identificador sequencial do turno
+      - name: id_curso
+        description: Identificador sequencial do curso
+

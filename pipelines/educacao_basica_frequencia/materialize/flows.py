@@ -23,7 +23,7 @@ from pipelines.educacao_basica_frequencia.dump_db.schedules import (
 
 dump_sme_frequencia_flow = deepcopy(templates__run_dbt_model__flow)
 dump_sme_frequencia_flow.state_handlers = [handler_inject_bd_credentials, handler_initialize_sentry]
-dump_sme_frequencia_flow.name = "SME: educacao_basica_frequencia - Ingerir tabelas de banco SQL"
+dump_sme_frequencia_flow.name = "SME: educacao_basica_frequencia - Materializar tabelas"
 dump_sme_frequencia_flow.storage = GCS(constants.GCS_FLOWS_BUCKET.value)
 
 dump_sme_frequencia_flow.run_config = KubernetesRun(

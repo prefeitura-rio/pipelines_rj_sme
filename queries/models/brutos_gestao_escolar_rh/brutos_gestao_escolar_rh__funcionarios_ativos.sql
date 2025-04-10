@@ -1,4 +1,6 @@
-
+{{config(
+    alias='funcionarios_ativos',
+)}}
 
 SELECT
     CAST(CPF AS string) AS cpf_servidor,
@@ -22,4 +24,4 @@ SELECT
     CAST(NLOTACAO_A AS string) AS nome_lotacao_primeira_matricula_servidor,
     CAST(LOTACAO_B AS string) AS sigla_lotacao_segunda_matricula_servidor,
     CAST(NLOTACAO_B AS string) AS nome_lotacao_segunda_matricula_servidor
-FROM `rj-sme.brutos_gestao_escolar_rh_staging.RHU_FUNCIONARIOSATIVOS`
+FROM {{ source('brutos_gestao_escolar_rh_staging', 'RHU_FUNCIONARIOSATIVOS') }}

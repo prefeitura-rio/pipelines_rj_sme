@@ -10,6 +10,7 @@ from prefeitura_rio.pipelines_utils.prefect import set_default_parameters
 from prefeitura_rio.pipelines_utils.state_handlers import handler_inject_bd_credentials
 
 from pipelines.constants import constants
+from pipelines.dbt_transform.schedules import dbt_schedules
 
 rj_sme__dbt_transform__flow = deepcopy(templates__dbt_transform__flow)
 rj_sme__dbt_transform__flow.state_handlers = [handler_inject_bd_credentials]
@@ -28,5 +29,7 @@ rj_sme__dbt_transform__flow = set_default_parameters(
         "bigquery_project": constants.RJ_SME_AGENT_LABEL.value,
     },
 )
+
+rj_sme__dbt_transform__flow.schedule = dbt_schedules
 
 # COMMENT TO TRIGGER.

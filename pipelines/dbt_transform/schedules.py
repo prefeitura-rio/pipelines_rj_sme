@@ -17,7 +17,7 @@ common_parameters = {
     "github_repo": constants.REPOSITORY_URL.value,
     "gcs_buckets": constants.GCS_BUCKET.value,
     "bigquery_project": constants.RJ_SME_AGENT_LABEL.value,
-    "environment": "prod",
+    "environment": "dev",  # Dev environment because we don't have a prod profile
     "rename_flow": True,
 }
 

@@ -23,3 +23,9 @@ class constants(Enum):
     # Other constants
     ######################################
     # EXAMPLE_CONSTANT = "example_constant"
+
+    ######################################
+    # DBT TRANSFORM
+    ######################################
+    GCS_BUCKET = {"prod": "rj-sme_dbt", "dev": "rj-sme-dev_dbt"}
+    REPOSITORY_URL = "https://github.com/prefeitura-rio/pipelines_rj_sme.git"

@@ -8,4 +8,4 @@ sources:
       error_after: {count: 24, period: hour}
     loaded_at_field: _airbyte_extracted_at
     tables:
-    - name: brutos_gesta_escolar_rh__funcionarios_ativos
+    - name: RHU_FUNCIONARIOSATIVOS

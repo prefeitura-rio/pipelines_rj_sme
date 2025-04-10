@@ -27,6 +27,7 @@ models:
     brutos_gestao_escolar_rh:
       +materialized: table
       +schema: brutos_gestao_escolar_rh
+      +tags: "daily"
     educacao_basica:
       +materialized: table
       +schema: educacao_basica

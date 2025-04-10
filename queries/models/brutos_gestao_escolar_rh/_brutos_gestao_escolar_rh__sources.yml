@@ -9,4 +9,3 @@ sources:
     loaded_at_field: _airbyte_extracted_at
     tables:
     - name: brutos_gesta_escolar_rh__funcionarios_ativos
-    

@@ -1,6 +1,6 @@
 
 
-SELECT 
+SELECT
     CAST(CPF AS string) AS cpf_servidor,
     CAST(NOME AS string) AS nome_servidor,
     CAST(EMAIL AS string) AS email_servidor,

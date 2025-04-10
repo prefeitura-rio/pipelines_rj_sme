@@ -27,5 +27,5 @@ class constants(Enum):
     ######################################
     # DBT TRANSFORM
     ######################################
-    GCS_BUCKET = {"prod": "rj-sme_dbt", "dev": "rj-sme-dev_dbt"}
+    GCS_BUCKET = {"dev": "rj-sme_dbt"}
     REPOSITORY_URL = "https://github.com/prefeitura-rio/pipelines_rj_sme.git"

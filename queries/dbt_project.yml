@@ -24,6 +24,9 @@ models:
     example:
       +materialized: view
       +schema: example
+    brutos_gestao_escolar_rh:
+      +materialized: table
+      +schema: brutos_gestao_escolar_rh
     educacao_basica:
       +materialized: table
       +schema: educacao_basica

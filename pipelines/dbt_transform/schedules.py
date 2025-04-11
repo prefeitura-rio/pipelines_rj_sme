@@ -26,11 +26,7 @@ daily_parameters = [
         **common_parameters,
         "command": "build",
         "select": "tag:daily",
-    },
-    {
-        **common_parameters,
-        "command": "source freshness",
-    },
+    }
 ]
 
 weekly_parameters = [

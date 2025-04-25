@@ -12,6 +12,7 @@
 
 SELECT
     SAFE_CAST(ano AS INT64) ano,
+    TRIM(alu_id) AS id_aluno_original,
     SUBSTR(SHA256(
         CONCAT(
             '{{ var("HASH_SEED") }}',

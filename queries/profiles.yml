@@ -1,5 +1,5 @@
 queries:
-  target: dev
+  target: prod
   outputs:
     dev:
       dataset: dbt

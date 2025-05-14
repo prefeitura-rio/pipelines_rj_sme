@@ -319,12 +319,7 @@ sme_frequencia_queries = {
     },
     "tur_turma": {
         "dataset_id": "educacao_basica_frequencia",
-        "partition_columns": "tur_dataAlteracao",
-        "partition_date_format": "%Y-%m-%d",
-        "break_query_frequency": "month",
-        "break_query_start": "current_month",
-        "break_query_end": "current_month",
-        "dump_mode": "append",
+        "dump_mode": "overwrite",
         "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,

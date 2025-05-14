@@ -325,7 +325,7 @@ sme_frequencia_queries = {
         "break_query_start": "current_month",
         "break_query_end": "current_month",
         "dump_mode": "append",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -355,13 +355,13 @@ sme_frequencia_queries = {
                    tur_dataEncerramento,
                    tur_seqChamada,
                    tur_flag_tem_acrescimo
-            FROM GestaoEscolar.dbo.TUR_Turma;
+            FROM GestaoEscolar.dbo.TUR_Turma
         """,
     },
     "esc_escola": {
         "dataset_id": "educacao_basica_frequencia",
         "dump_mode": "overwrite",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -388,7 +388,7 @@ sme_frequencia_queries = {
             uad_idSuperiorGestao,
             esc_fundoVerso,
             esc_microareaCampo
-            FROM GestaoEscolar.dbo.ESC_Escola;
+            FROM GestaoEscolar.dbo.ESC_Escola
         """,
     },
     "aca_aluno_justificativa_falta": {
@@ -399,7 +399,7 @@ sme_frequencia_queries = {
         "break_query_start": "current_month",
         "break_query_end": "current_month",
         "dump_mode": "append",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -414,13 +414,13 @@ sme_frequencia_queries = {
             afj_dataCriacao,
             afj_dataAlteracao,
             pro_id
-            FROM GestaoEscolar.dbo.ACA_AlunoJustificativaFalta;
+            FROM GestaoEscolar.dbo.ACA_AlunoJustificativaFalta
         """,
     },
     "aca_tipo_justificativa_falta": {
         "dataset_id": "educacao_basica_frequencia",
         "dump_mode": "overwrite",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -433,7 +433,7 @@ sme_frequencia_queries = {
             tjf_dataAlteracao,
             tjf_abonaFalta,
             tjf_codigo
-            FROM GestaoEscolar.dbo.ACA_TipoJustificativaFalta;
+            FROM GestaoEscolar.dbo.ACA_TipoJustificativaFalta
         """,
     },
     "mtr_matricula_turma": {
@@ -444,7 +444,7 @@ sme_frequencia_queries = {
         "break_query_start": "current_month",
         "break_query_end": "current_month",
         "dump_mode": "append",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -468,7 +468,7 @@ sme_frequencia_queries = {
             mtu_numeroChamada,
             alc_id,
             usu_idResultado
-            FROM GestaoEscolar.dbo.MTR_MatriculaTurma;
+            FROM GestaoEscolar.dbo.MTR_MatriculaTurma
         """,
     },
 }

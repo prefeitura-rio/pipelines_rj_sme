@@ -1,4 +1,4 @@
-{{ config(alias='turno', schema='educacao_basica_frequencia') }}
+{{ config(alias='turno', schema='brutos_gestao_escolar') }}
 
 SELECT
     SAFE_CAST(REGEXP_REPLACE(TRIM(ent_id), r'\.0$', '') AS STRING) AS id_entidade,
@@ -12,4 +12,4 @@ SELECT
     SAFE_CAST(TRIM(trn_padrao) AS BOOL) AS turno_padrao,
     SAFE_CAST(REGEXP_REPLACE(TRIM(trn_situacao), r'\.0$', '') AS INT64) AS situacao,
     SAFE_CAST(REGEXP_REPLACE(TRIM(ttn_id), r'\.0$', '') AS INT64) AS id_tipo_turno,
-FROM `rj-sme.educacao_basica_frequencia_staging.turno` AS t
+FROM {{ source('educacao_basica_frequencia_staging', 'turno') }} AS t

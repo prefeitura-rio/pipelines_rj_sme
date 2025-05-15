@@ -1,4 +1,4 @@
-{{ config(alias='formato_avaliacao', schema='educacao_basica_frequencia') }}
+{{ config(alias='formato_avaliacao', schema='brutos_gestao_escolar') }}
 
 SELECT
     SAFE_CAST(REGEXP_REPLACE(TRIM(ent_id), r'\.0$', '') AS STRING) AS id_entidade,
@@ -20,4 +20,4 @@ SELECT
     SAFE_CAST(TRIM(valorminimoaprovacaoconceitoglobal) AS STRING) AS valor_aprovacao_global,
     SAFE_CAST(TRIM(valorminimoaprovacaopordisciplina) AS STRING) AS valor_aprovacao_disciplina,
     SAFE_CAST(TRIM(valorminimoprogressaoparcialpordisciplina) AS STRING) AS valor_progressao,
-FROM `rj-sme.educacao_basica_frequencia_staging.formato_avaliacao` AS t
+FROM {{ source('educacao_basica_frequencia_staging', 'formato_avaliacao') }} AS t

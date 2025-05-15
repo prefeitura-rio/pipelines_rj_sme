@@ -1,6 +1,6 @@
 {{
     config(
-        alias='turma_disciplina', schema='educacao_basica_frequencia',
+        alias='turma_disciplina', schema='brutos_gestao_escolar',
         partition_by={
             "field": "data_particao",
             "data_type": "date",
@@ -29,4 +29,4 @@ SELECT
     SAFE_CAST(REGEXP_REPLACE(TRIM(tud_tipo), r'\.0$', '') AS STRING) AS id_tipo,
     SAFE_CAST(REGEXP_REPLACE(TRIM(tud_vagas), r'\.0$', '') AS INT64) AS numero_vagas,
     SAFE_CAST(data_particao AS DATE) AS data_particao
-FROM `rj-sme.educacao_basica_frequencia_staging.turma_disciplina` AS t
+FROM {{ source('educacao_basica_frequencia_staging', 'turma_disciplina') }} AS t

@@ -1,6 +1,6 @@
 {{ config(alias='esc_escola', schema='brutos_gestao_escolar') }}
 
-SELECT 
+SELECT
     SPLIT(esc_id, '.')[0] AS esc_id,
     SPLIT(ent_id, '.')[0] AS ent_id,
     SPLIT(uad_id, '.')[0] AS uad_id,

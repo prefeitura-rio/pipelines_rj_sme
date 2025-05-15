@@ -1,6 +1,6 @@
 {{ config(alias='mtr_matricula_turma', schema='brutos_gestao_escolar') }}
 
-SELECT 
+SELECT
     SPLIT(alu_id, '.')[0] AS alu_id,
     SPLIT(mtu_id, '.')[0] AS mtu_id,
     SPLIT(tur_id, '.')[0] AS tur_id,

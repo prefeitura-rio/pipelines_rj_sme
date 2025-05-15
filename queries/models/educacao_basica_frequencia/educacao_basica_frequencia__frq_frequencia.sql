@@ -10,7 +10,7 @@
 ) }}
 
 with Turmas as (
-    SELECT 
+    SELECT
         substring(esc.esc_codigo,1,2) as cre,
         tur.tur_id,
         tur.esc_id,
@@ -26,17 +26,17 @@ with Turmas as (
         tcr.cur_id,
         fav.fav_tipoApuracaoFrequencia
     FROM {{ ref('brutos_gestao_escolar__tur_turma') }} tur
-    INNER JOIN {{ ref('brutos_gestao_escolar__turma_disciplina_rel') }} rtd 
+    INNER JOIN {{ ref('brutos_gestao_escolar__turma_disciplina_rel') }} rtd
         ON rtd.tur_id = tur.tur_id AND tur_situacao = '1'
-    INNER JOIN {{ ref('brutos_gestao_escolar__turma_disciplina') }} tud 
+    INNER JOIN {{ ref('brutos_gestao_escolar__turma_disciplina') }} tud
         ON tud.tud_id = rtd.tud_id AND tud_situacao = '1'
-    INNER JOIN {{ ref('brutos_gestao_escolar__formato_avaliacao') }} fav 
+    INNER JOIN {{ ref('brutos_gestao_escolar__formato_avaliacao') }} fav
         ON fav.fav_id = tur.fav_id AND fav_situacao <> '3'
-    INNER JOIN {{ ref('brutos_gestao_escolar__turno') }} trn 
+    INNER JOIN {{ ref('brutos_gestao_escolar__turno') }} trn
         ON tur.trn_id = trn.trn_id AND trn_situacao = '1'
-    INNER JOIN {{ ref('brutos_gestao_escolar__esc_escola') }} esc 
+    INNER JOIN {{ ref('brutos_gestao_escolar__esc_escola') }} esc
         ON tur.esc_id = esc.esc_id AND esc_situacao = '1'
-    INNER JOIN {{ ref('brutos_gestao_escolar__turma_curriculo') }} tcr 
+    INNER JOIN {{ ref('brutos_gestao_escolar__turma_curriculo') }} tcr
         ON tcr.tur_id = tur.tur_id AND tcr_situacao = '1'
 ),
 
@@ -65,9 +65,9 @@ FrequenciaDia as (
         tau.tau_id,
         tau.tpc_id,
         tau.tau_sequencia,
-        CASE 
+        CASE
             WHEN fav_tipoApuracaoFrequencia = '2' THEN '1'
-            ELSE tau.tau_numeroAulas 
+            ELSE tau.tau_numeroAulas
         END AS tau_numeroAulas,
         tau.tau_situacao,
         tau.tau_efetivado,
@@ -75,9 +75,9 @@ FrequenciaDia as (
         taa.mtu_id,
         taa.mtd_id,
         taa.taa_situacao,
-        CASE 
+        CASE
             WHEN fav_tipoApuracaoFrequencia = '2' AND taa.taa_frequencia > '0' THEN '1'
-            ELSE taa.taa_frequencia 
+            ELSE taa.taa_frequencia
         END AS taa_frequencia,
         taa.taa_frequenciaBitMap,
         tur.trn_id,
@@ -86,18 +86,18 @@ FrequenciaDia as (
         EXTRACT(YEAR FROM CAST(tau.tau_data AS DATETIME)) AS cal_ano,
         taa.taa_dataAlteracao AS updated_at
     FROM Turmas tur
-    INNER JOIN {{ ref('brutos_gestao_escolar__turma_aula') }} tau 
+    INNER JOIN {{ ref('brutos_gestao_escolar__turma_aula') }} tau
         ON tau.tud_id = tur.tud_id
         AND EXTRACT(YEAR FROM CAST(tau.tau_data AS DATETIME)) = 2025
-    INNER JOIN {{ ref('brutos_gestao_escolar__turma_aula_aluno') }} taa 
-        ON taa.tud_id = tau.tud_id 
+    INNER JOIN {{ ref('brutos_gestao_escolar__turma_aula_aluno') }} taa
+        ON taa.tud_id = tau.tud_id
         AND taa.tau_id = tau.tau_id
         AND CAST(taa.taa_dataAlteracao AS DATETIME) >= '2025-01-01'
         {% if is_incremental() %}
             AND taa.taa_dataAlteracao > (SELECT MAX(updated_at) FROM {{ this }})
         {% endif %}
-    INNER JOIN {{ ref('brutos_gestao_escolar__mtr_matricula_turma') }} mtu 
-        ON mtu.mtu_id = taa.mtu_id 
+    INNER JOIN {{ ref('brutos_gestao_escolar__mtr_matricula_turma') }} mtu
+        ON mtu.mtu_id = taa.mtu_id
         AND mtu.alu_id = taa.alu_id
         AND mtu.mtu_situacao <> '3'
 )

@@ -42,8 +42,8 @@ sme_frequencia_queries = {
             FROM GestaoEscolar.dbo.VW_BI_Turma
         """,
     },
-    "CLS_TurmaAulaAluno": {
-        "dataset_id": "brutos_gestao_escolar_staging",
+    "turma_aula_aluno": {
+        "dataset_id": "educacao_basica_frequencia",
         "partition_columns": "taa_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
         "break_query_frequency": "day",

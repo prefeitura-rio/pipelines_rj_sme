@@ -71,7 +71,7 @@ sme_frequencia_queries = {
                 usu_idDocenteAlteracao
             FROM GestaoEscolar.dbo.CLS_TurmaAulaAluno
         """,
-    }
+    },
 }
 
 

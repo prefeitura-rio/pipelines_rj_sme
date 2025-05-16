@@ -25,4 +25,4 @@ SELECT
 	SAFE_CAST(TRIM(tur_dataEncerramento) AS DATETIME) as tur_dataEncerramento,
     SAFE_CAST(TRIM(tur_seqChamada) AS BOOLEAN) as tur_seqChamada,
     SAFE_CAST(TRIM(tur_flag_tem_acrescimo) AS BOOLEAN) as tur_flag_tem_acrescimo
-FROM {{ source('educacao_basica_frequencia_staging', 'tur_turma') }} tur
+FROM {{ source('brutos_gestao_escolar_staging', 'TUR_Turma') }} tur

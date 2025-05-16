@@ -1,17 +1,17 @@
 version: 2
 
 sources:
-  - name: educacao_basica_frequencia_staging
+  - name: brutos_gestao_escolar_staging
     database: rj-sme
-    schema: educacao_basica_frequencia_staging
+    schema: brutos_gestao_escolar_staging
     tables:
-      - name: tur_turma
-      - name: turma_disciplina_rel
-      - name: turma_disciplina
-      - name: formato_avaliacao
-      - name: turno
-      - name: esc_escola
-      - name: turma_curriculo
-      - name: turma_aula
+      - name: TUR_Turma
+      - name: TUR_TurmaRelTurmaDisciplina
+      - name: TUR_TurmaDisciplina
+      - name: ACA_FormatoAvaliacao
+      - name: ACA_Turno
+      - name: ESC_Escola
+      - name: TUR_TurmaCurriculo
+      - name: CLS_TurmaAula
       - name: turma_aula_aluno
-      - name: mtr_matricula_turma
+      - name: MTR_MatriculaTurma

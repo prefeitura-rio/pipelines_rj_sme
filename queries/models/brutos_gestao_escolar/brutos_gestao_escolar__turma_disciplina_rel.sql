@@ -3,4 +3,4 @@
 SELECT
     SAFE_CAST(REGEXP_REPLACE(TRIM(tud_id), r'\.0$', '') AS STRING) AS id_disciplina,
     SAFE_CAST(REGEXP_REPLACE(TRIM(tur_id), r'\.0$', '') AS STRING) AS id_turma,
-FROM {{ source('educacao_basica_frequencia_staging', 'turma_disciplina_rel') }} AS t
+FROM {{ source('brutos_gestao_escolar_staging', 'TUR_TurmaRelTurmaDisciplina') }} AS t

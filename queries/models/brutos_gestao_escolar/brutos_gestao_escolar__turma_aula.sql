@@ -30,7 +30,7 @@ WITH fonte AS (
         SAFE_CAST(REGEXP_REPLACE(TRIM(usu_id), r'\.0$', '') AS STRING) AS id_usuario_criacao,
         SAFE_CAST(REGEXP_REPLACE(TRIM(usu_iddocentealteracao), r'\.0$', '') AS STRING) AS id_usuario_alteracao,
         SAFE_CAST(data_particao AS DATE) AS data_particao
-    FROM {{ source('educacao_basica_frequencia_staging', 'turma_aula') }} AS t
+    FROM {{ source('brutos_gestao_escolar_staging', 'CLS_TurmaAula') }} AS t
     {% if is_incremental() %}
       WHERE SAFE_CAST(TRIM(tau_dataalteracao) AS DATETIME) > (SELECT MAX(data_alteracao) FROM {{ this }})
     {% endif %}

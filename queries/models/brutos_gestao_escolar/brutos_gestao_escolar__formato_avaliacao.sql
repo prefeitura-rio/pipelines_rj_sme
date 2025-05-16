@@ -1,23 +1,30 @@
 {{ config(alias='formato_avaliacao', schema='brutos_gestao_escolar') }}
 
-SELECT
-    SAFE_CAST(REGEXP_REPLACE(TRIM(ent_id), r'\.0$', '') AS STRING) AS id_entidade,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(esa_idconceitoglobal), r'\.0$', '') AS INT64) AS conceito_global,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(esc_id), r'\.0$', '') AS INT64) AS id_escola,
-    SAFE_CAST(TRIM(fav_dataalteracao) AS DATETIME ) AS data_altercao,
-    SAFE_CAST(TRIM(fav_datacriacao) AS DATETIME ) AS data_criacao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(fav_id), r'\.0$', '') AS INT64) AS id_formato_avaliacao,
-    SAFE_CAST(TRIM(fav_nome) AS STRING) AS nome_avaliacao,
-    SAFE_CAST(TRIM(fav_padrao) AS BOOL) AS formato_avaliacao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(fav_situacao), r'\.0$', '') AS INT64) AS situacao_registro,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(fav_tipo), r'\.0$', '') AS INT64) AS tipo_avaliacao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(fav_tipoapuracaofrequencia), r'\.0$', '') AS INT64) AS tipo_frequencia_apurada,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(fav_tipolancamentofrequencia), r'\.0$', '') AS INT64) AS tipo_frequencia,
-    SAFE_CAST(TRIM(percentualminimofrequencia) AS DECIMAL) AS percentual_frequencia,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(qtdemaxdisciplinasprogressaoparcial), r'\.0$', '') AS INT64) AS maximo_progressao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tipoprogressaoparcial), r'\.0$', '') AS INT64) AS tipo_progressao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(uni_id), r'\.0$', '') AS INT64) AS id_unidade_escola,
-    SAFE_CAST(TRIM(valorminimoaprovacaoconceitoglobal) AS STRING) AS valor_aprovacao_global,
-    SAFE_CAST(TRIM(valorminimoaprovacaopordisciplina) AS STRING) AS valor_aprovacao_disciplina,
-    SAFE_CAST(TRIM(valorminimoprogressaoparcialpordisciplina) AS STRING) AS valor_progressao,
-FROM {{ source('educacao_basica_frequencia_staging', 'formato_avaliacao') }} AS t
+with source as (
+    select * from {{ source('brutos_gestao_escolar_staging', 'ACA_FormatoAvaliacao') }}
+),
+renamed as (
+    select
+        {{ adapter.quote("ent_id") }} AS id_entidade,
+        {{ adapter.quote("esc_id") }} AS id_escola,
+        {{ adapter.quote("fav_id") }} AS id_formato_avaliacao,
+        {{ adapter.quote("uni_id") }} AS id_unidade_escola,
+        {{ adapter.quote("fav_nome") }} AS nome_avaliacao,
+        {{ adapter.quote("fav_tipo") }} AS tipo_avaliacao,
+        {{ adapter.quote("fav_padrao") }} AS formato_avaliacao,
+        {{ adapter.quote("fav_situacao") }} AS situacao_registro,
+        {{ adapter.quote("fav_dataCriacao") }} AS data_criacao,
+        {{ adapter.quote("fav_dataAlteracao") }} AS data_altercao,
+        {{ adapter.quote("esa_idConceitoGlobal") }} AS conceito_global,
+        {{ adapter.quote("fav_tipoApuracaoFrequencia") }} AS tipo_frequencia_apurada,
+        {{ adapter.quote("fav_tipoLancamentoFrequencia") }} AS tipo_frequencia,
+        {{ adapter.quote("percentualMinimoFrequencia") }} AS percentual_frequencia,
+        {{ adapter.quote("qtdeMaxDisciplinasProgressaoParcial") }} AS maximo_progressao,
+        {{ adapter.quote("tipoProgressaoParcial") }} AS tipo_progressao,
+        {{ adapter.quote("valorMinimoAprovacaoConceitoGlobal") }} AS valor_aprovacao_global,
+        {{ adapter.quote("valorMinimoAprovacaoPorDisciplina") }} AS valor_aprovacao_disciplina,
+        {{ adapter.quote("valorMinimoProgressaoParcialPorDisciplina") }} AS valor_progressao
+    from source
+)
+select * from renamed
+    

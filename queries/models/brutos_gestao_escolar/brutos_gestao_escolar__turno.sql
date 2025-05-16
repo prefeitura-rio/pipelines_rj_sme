@@ -12,4 +12,4 @@ SELECT
     SAFE_CAST(TRIM(trn_padrao) AS BOOL) AS turno_padrao,
     SAFE_CAST(REGEXP_REPLACE(TRIM(trn_situacao), r'\.0$', '') AS INT64) AS situacao,
     SAFE_CAST(REGEXP_REPLACE(TRIM(ttn_id), r'\.0$', '') AS INT64) AS id_tipo_turno,
-FROM {{ source('educacao_basica_frequencia_staging', 'turno') }} AS t
+FROM {{ source('brutos_gestao_escolar_staging', 'ACA_Turno') }} AS t

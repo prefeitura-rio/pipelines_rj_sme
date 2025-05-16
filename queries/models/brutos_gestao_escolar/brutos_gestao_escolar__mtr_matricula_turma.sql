@@ -1,22 +1,36 @@
-{{ config(alias='mtr_matricula_turma', schema='brutos_gestao_escolar') }}
+{{ config(
+        alias='mtr_matricula_turma', 
+        schema='brutos_gestao_escolar',
+        materialized='incremental',
+        unique_key=['alu_id', 'mtu_id'],
+    )}}
 
-SELECT
-    SPLIT(alu_id, '.')[0] AS alu_id,
-    SPLIT(mtu_id, '.')[0] AS mtu_id,
-    SPLIT(tur_id, '.')[0] AS tur_id,
-    SPLIT(cur_id, '.')[0] AS cur_id,
-    SPLIT(crr_id, '.')[0] AS crr_id,
-    SPLIT(crp_id, '.')[0] AS crp_id,
-    CAST(TRIM(mtu_dataMatricula) AS DATETIME) AS mtu_dataMatricula,
-    TRIM(mtu_avaliacao) AS mtu_avaliacao,
-    TRIM(mtu_frequencia) AS mtu_frequencia,
-    TRIM(mtu_relatorio) AS mtu_relatorio,
-    TRIM(mtu_resultado) AS mtu_resultado,
-    CAST(TRIM(mtu_dataSaida) AS DATETIME) AS mtu_dataSaida,
-    TRIM(mtu_situacao) AS mtu_situacao,
-    CAST(TRIM(mtu_dataCriacao) AS DATETIME) AS mtu_dataCriacao,
-    CAST(TRIM(mtu_dataAlteracao) AS DATETIME) AS mtu_dataAlteracao,
-    TRIM(mtu_numeroChamada) AS mtu_numeroChamada,
-    SPLIT(alc_id, '.')[0] AS alc_id,
-    SPLIT(usu_idResultado, '.')[0] AS usu_idResultado
-FROM {{ source('educacao_basica_frequencia_staging', 'mtr_matricula_turma') }} tur
+with source as (
+    select * from {{ source('brutos_gestao_escolar_staging', 'MTR_MatriculaTurma') }}
+    {% if is_incremental() %}
+        where mtu_dataAlteracao > (select max(mtu_dataAlteracao) from {{ this }})
+    {% endif %}
+),
+renamed as (
+    select
+        {{ adapter.quote("alu_id") }} AS alu_id,
+        {{ adapter.quote("mtu_id") }} AS mtu_id,
+        {{ adapter.quote("tur_id") }} AS tur_id,
+        {{ adapter.quote("cur_id") }} AS cur_id,
+        {{ adapter.quote("crr_id") }} AS crr_id,
+        {{ adapter.quote("crp_id") }} AS crp_id,
+        {{ adapter.quote("mtu_dataMatricula") }} AS mtu_dataMatricula,
+        {{ adapter.quote("mtu_avaliacao") }} AS mtu_avaliacao,
+        {{ adapter.quote("mtu_frequencia") }} AS mtu_frequencia,
+        {{ adapter.quote("mtu_relatorio") }} AS mtu_relatorio,
+        {{ adapter.quote("mtu_resultado") }} AS mtu_resultado,
+        {{ adapter.quote("mtu_dataSaida") }} AS mtu_dataSaida,
+        {{ adapter.quote("mtu_situacao") }} AS mtu_situacao,
+        {{ adapter.quote("mtu_dataCriacao") }} AS mtu_dataCriacao,
+        {{ adapter.quote("mtu_dataAlteracao") }} AS mtu_dataAlteracao,
+        {{ adapter.quote("mtu_numeroChamada") }} AS mtu_numeroChamada,
+        {{ adapter.quote("alc_id") }} AS alc_id,
+        {{ adapter.quote("usu_idResultado") }} AS usu_idResultado
+    from source
+)
+select * from renamed

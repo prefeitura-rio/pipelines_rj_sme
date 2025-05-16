@@ -24,4 +24,4 @@ SELECT
     SAFE_CAST(TRIM(usu_iddocentealteracao) AS STRING) AS usuario_alteracao,
     SAFE_CAST(data_particao AS DATE) AS data_particao
 
-FROM {{ source('educacao_basica_frequencia_staging', 'turma_aula_aluno') }} AS t
+FROM {{ source('brutos_gestao_escolar_staging', 'turma_aula_aluno') }} AS t

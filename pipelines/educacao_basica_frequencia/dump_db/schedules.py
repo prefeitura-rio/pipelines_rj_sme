@@ -43,7 +43,7 @@ sme_frequencia_queries = {
         """,
     },
     "turma_aula_aluno": {
-        "dataset_id": "educacao_basica_frequencia",
+        "dataset_id": "brutos_gestao_escolar",
         "partition_columns": "taa_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
         "break_query_frequency": "day",
@@ -65,7 +65,7 @@ sme_frequencia_queries = {
                 taa_frequencia,
                 taa_situacao,
                 taa_dataCriacao,
-                taa_dataAlteracao,
+                CONVERT(date, taa_dataAlteracao) AS taa_dataAlteracao,
                 taa_anotacao,
                 taa_frequenciaBitMap,
                 usu_idDocenteAlteracao

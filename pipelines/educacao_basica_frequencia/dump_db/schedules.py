@@ -42,13 +42,13 @@ sme_frequencia_queries = {
             FROM GestaoEscolar.dbo.VW_BI_Turma
         """,
     },
-    "turma_aula_aluno": {
-        "dataset_id": "educacao_basica_frequencia",
+    "CLS_TurmaAulaAluno": {
+        "dataset_id": "brutos_gestao_escolar_staging",
         "partition_columns": "taa_dataAlteracao",
         "partition_date_format": "%Y-%m-%d",
-        "break_query_frequency": "month",
-        "break_query_start": "current_month",
-        "break_query_end": "current_month",
+        "break_query_frequency": "day",
+        "break_query_start": "current_day",
+        "break_query_end": "current_day",
         "dump_mode": "append",
         "materialize_after_dump": False,
         "materialize_to_datario": False,

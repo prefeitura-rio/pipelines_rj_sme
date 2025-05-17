@@ -1,18 +1,19 @@
 {{ config(
-        alias='mtr_matricula_turma',
+        alias='mtr_matricula_turma', 
         schema='brutos_gestao_escolar',
         materialized='incremental',
-        unique_key=['alu_id', 'mtu_id'],
+        unique_key=['alu_id', 'mtu_id']
     )}}
 
 with source as (
     select * from {{ source('brutos_gestao_escolar_staging', 'MTR_MatriculaTurma') }}
     {% if is_incremental() %}
-        where mtu_dataAlteracao > (select max(mtu_dataAlteracao) from {{ this }})
+        where _airbyte_extracted_at > (select max(loaded_at) from {{ this }})
     {% endif %}
 ),
 renamed as (
     select
+        {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
         {{ adapter.quote("alu_id") }} AS alu_id,
         {{ adapter.quote("mtu_id") }} AS mtu_id,
         {{ adapter.quote("tur_id") }} AS tur_id,

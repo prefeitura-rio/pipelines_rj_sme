@@ -1,6 +1,23 @@
-{{ config(alias='turma_disciplina_rel', schema='brutos_gestao_escolar') }}
+{{ config(
+        alias='turma_disciplina_rel', 
+        schema='brutos_gestao_escolar',
+        materialized='incremental',
+        unique_key=['id_disciplina', 'id_turma'])
+    }}
 
-SELECT
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_id), r'\.0$', '') AS STRING) AS id_disciplina,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tur_id), r'\.0$', '') AS STRING) AS id_turma,
-FROM {{ source('brutos_gestao_escolar_staging', 'TUR_TurmaRelTurmaDisciplina') }} AS t
+with source as (
+    select * from {{ source('brutos_gestao_escolar_staging', 'TUR_TurmaRelTurmaDisciplina') }}
+    {% if is_incremental() %}
+      where _airbyte_extracted_at > (select max(loaded_at) from {{ this }})
+    {% endif %}
+),
+
+renamed as (
+    select
+        {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
+        {{ adapter.quote("tud_id") }} AS id_disciplina,
+        {{ adapter.quote("tur_id") }} AS id_turma
+    from source
+)
+
+select * from renamed

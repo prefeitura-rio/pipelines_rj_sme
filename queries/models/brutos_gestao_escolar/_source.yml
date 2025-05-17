@@ -15,3 +15,5 @@ sources:
       - name: CLS_TurmaAula
       - name: turma_aula_aluno
       - name: MTR_MatriculaTurma
+      - name: ACA_CurriculoPeriodo
+      - name: ACA_TipoTurno

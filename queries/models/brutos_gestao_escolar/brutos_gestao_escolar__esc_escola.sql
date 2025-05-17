@@ -5,6 +5,7 @@ with source as (
   ),
   renamed as (
       select
+        {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
         {{ adapter.quote("cid_id") }},
         {{ adapter.quote("ent_id") }},
         {{ adapter.quote("esc_id") }},

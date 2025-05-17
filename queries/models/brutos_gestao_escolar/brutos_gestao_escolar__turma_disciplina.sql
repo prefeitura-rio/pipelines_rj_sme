@@ -1,32 +1,41 @@
 {{
     config(
-        alias='turma_disciplina', schema='brutos_gestao_escolar',
-        partition_by={
-            "field": "data_particao",
-            "data_type": "date",
-            "granularity": "month",
-        }
+        alias='turma_disciplina', 
+        schema='brutos_gestao_escolar',
+        materialized='incremental',
+        unique_key=['id_disciplina_turma']
     )
 }}
 
-SELECT
-    SAFE_CAST(TRIM(tud_aulaforaperiodonormal) AS BOOL) AS aula_fora_periodo_normal,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_cargahorariasemanal), r'\.0$', '') AS INT64) AS carga_hora_semanal,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_codigo), r'\.0$', '') AS STRING) AS id_disciplina,
-    SAFE_CAST(DATE(tud_dataalteracao) AS DATE) AS data_alteracao,
-    SAFE_CAST(DATE(tud_datacriacao) AS DATE) AS data_criacao,
-    SAFE_CAST(TRIM(tud_datafim) AS STRING) AS data_fim,
-    SAFE_CAST(DATE(tud_datainicio) AS DATE) AS data_inicio,
-    SAFE_CAST(TRIM(tud_disciplinaespecial) AS BOOL) AS disciplina_especial,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_duracao), r'\.0$', '') AS STRING) AS id_duracao,
-    SAFE_CAST(TRIM(tud_global) AS BOOL) AS global,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_id), r'\.0$', '') AS STRING) AS id_disciplina_turma,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_minimomatriculados), r'\.0$', '') AS INT64) AS minimo_matriculados,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_modo), r'\.0$', '') AS STRING) AS id_modo,
-    SAFE_CAST(TRIM(tud_multiseriado) AS BOOL) AS multiseriado,
-    SAFE_CAST(TRIM(tud_nome) AS STRING) AS nome_disciplina,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_situacao), r'\.0$', '') AS STRING) AS id_situacao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_tipo), r'\.0$', '') AS STRING) AS id_tipo,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(tud_vagas), r'\.0$', '') AS INT64) AS numero_vagas,
-    SAFE_CAST(data_particao AS DATE) AS data_particao
-FROM {{ source('brutos_gestao_escolar_staging', 'TUR_TurmaDisciplina') }} AS t
+with source as (
+    select * from {{ source('brutos_gestao_escolar_staging', 'TUR_TurmaDisciplina') }}
+    {% if is_incremental() %}
+      where _airbyte_extracted_at > (select max(loaded_at) from {{ this }})
+    {% endif %}
+),
+
+renamed as (
+    select
+        {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
+        {{ adapter.quote("tud_aulaforaperiodonormal") }} AS aula_fora_periodo_normal,
+        {{ adapter.quote("tud_cargahorariasemanal") }} AS carga_hora_semanal,
+        {{ adapter.quote("tud_codigo") }} AS id_disciplina,
+        {{ adapter.quote("tud_dataalteracao") }} AS data_alteracao,
+        {{ adapter.quote("tud_datacriacao") }} AS data_criacao,
+        {{ adapter.quote("tud_datafim") }} AS data_fim,
+        {{ adapter.quote("tud_datainicio") }} AS data_inicio,
+        {{ adapter.quote("tud_disciplinaespecial") }} AS disciplina_especial,
+        {{ adapter.quote("tud_duracao") }} AS id_duracao,
+        {{ adapter.quote("tud_global") }} AS global,
+        {{ adapter.quote("tud_id") }} AS id_disciplina_turma,
+        {{ adapter.quote("tud_minimomatriculados") }} AS minimo_matriculados,
+        {{ adapter.quote("tud_modo") }} AS id_modo,
+        {{ adapter.quote("tud_multiseriado") }} AS multiseriado,
+        {{ adapter.quote("tud_nome") }} AS nome_disciplina,
+        {{ adapter.quote("tud_situacao") }} AS id_situacao,
+        {{ adapter.quote("tud_tipo") }} AS id_tipo,
+        {{ adapter.quote("tud_vagas") }} AS numero_vagas,
+    from source
+)
+
+select * from renamed

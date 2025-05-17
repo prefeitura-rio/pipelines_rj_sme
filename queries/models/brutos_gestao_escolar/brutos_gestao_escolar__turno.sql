@@ -1,15 +1,24 @@
 {{ config(alias='turno', schema='brutos_gestao_escolar') }}
 
-SELECT
-    SAFE_CAST(REGEXP_REPLACE(TRIM(ent_id), r'\.0$', '') AS STRING) AS id_entidade,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(trn_controletempo), r'\.0$', '') AS INT64) AS controle_tempo,
-    SAFE_CAST(SAFE.PARSE_TIMESTAMP('%Y-%m-%d %H:%M:%S', trn_dataalteracao) AS DATETIME) AS data_alteracao,
-    SAFE_CAST(SAFE.PARSE_TIMESTAMP('%Y-%m-%d %H:%M:%S', trn_datacriacao) AS DATETIME) AS data_criacao,
-    SAFE_CAST(TRIM(trn_descricao) AS STRING) AS descricao_turno,
-    SAFE_CAST(TRIM(trn_horafim) AS TIME) AS hora_fim,
-    SAFE_CAST(TRIM(trn_horainicio) AS TIME) AS hora_inicio,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(trn_id), r'\.0$', '') AS INT64) AS id_turno,
-    SAFE_CAST(TRIM(trn_padrao) AS BOOL) AS turno_padrao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(trn_situacao), r'\.0$', '') AS INT64) AS situacao,
-    SAFE_CAST(REGEXP_REPLACE(TRIM(ttn_id), r'\.0$', '') AS INT64) AS id_tipo_turno,
-FROM {{ source('brutos_gestao_escolar_staging', 'ACA_Turno') }} AS t
+with source as (
+    select * from {{ source('brutos_gestao_escolar_staging', 'ACA_Turno') }}
+),
+
+renamed as (
+    select
+        {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
+        {{ adapter.quote("ent_id") }} AS id_entidade,
+        {{ adapter.quote("trn_controletempo") }} AS controle_tempo,
+        {{ adapter.quote("trn_dataalteracao") }} AS data_alteracao,
+        {{ adapter.quote("trn_datacriacao") }} AS data_criacao,
+        {{ adapter.quote("trn_descricao") }} AS descricao_turno,
+        {{ adapter.quote("trn_horafim") }} AS hora_fim,
+        {{ adapter.quote("trn_horainicio") }} AS hora_inicio,
+        {{ adapter.quote("trn_id") }} AS id_turno,
+        {{ adapter.quote("trn_padrao") }} AS turno_padrao,
+        {{ adapter.quote("trn_situacao") }} AS situacao,
+        {{ adapter.quote("ttn_id") }} AS id_tipo_turno
+    from source
+)
+
+select * from renamed

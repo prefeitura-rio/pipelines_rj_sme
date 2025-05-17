@@ -1,5 +1,5 @@
 {{ config(
-        alias='mtr_matricula_turma', 
+        alias='mtr_matricula_turma',
         schema='brutos_gestao_escolar',
         materialized='incremental',
         unique_key=['alu_id', 'mtu_id']

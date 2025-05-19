@@ -65,7 +65,8 @@ sme_frequencia_queries = {
                 taa_frequencia,
                 taa_situacao,
                 taa_dataCriacao,
-                CONVERT(date, taa_dataAlteracao) AS taa_dataAlteracao,
+                taa_dataAlteracao,
+                CONVERT(date, taa_dataAlteracao) AS taa_dataAlteracao_converted,
                 taa_anotacao,
                 taa_frequenciaBitMap,
                 usu_idDocenteAlteracao

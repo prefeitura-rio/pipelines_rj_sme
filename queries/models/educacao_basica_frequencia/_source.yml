@@ -1,8 +1,0 @@
-version: 2
-
-sources:
-  - name: educacao_basica_frequencia_staging
-    database: rj-sme
-    schema: educacao_basica_frequencia_staging
-    tables:
-      - name: FRQ_FREQUENCIA

@@ -69,7 +69,8 @@ sme_frequencia_queries = {
                 CONVERT(date, taa_dataAlteracao) AS taa_dataAlteracao_converted,
                 taa_anotacao,
                 taa_frequenciaBitMap,
-                usu_idDocenteAlteracao
+                usu_idDocenteAlteracao,
+                GETDATE() AS loaded_at
             FROM GestaoEscolar.dbo.CLS_TurmaAulaAluno
         """,
     },

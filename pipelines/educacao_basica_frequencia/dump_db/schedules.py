@@ -44,7 +44,7 @@ sme_frequencia_queries = {
     },
     "CLS_TurmaAulaAluno": {
         "dataset_id": "educacao_basica_frequencia",
-        "partition_columns": "taa_dataAlteracao",
+        "partition_columns": "taa_dataAlteracao_converted",
         "partition_date_format": "%Y-%m-%d",
         "break_query_frequency": "day",
         "break_query_start": "current_day",

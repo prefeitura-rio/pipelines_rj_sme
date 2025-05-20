@@ -24,20 +24,19 @@ renamed as (
         {{ adapter.quote("tau_datacriacao") }} as data_criacao,
         {{ adapter.quote("tau_diarioclasse") }} as diario_classe,
         {{ adapter.quote("tau_efetivado") }} as efetivado,
-        {{ adapter.quote("tau_id") }} as id_aula_disciplina,
+        SAFE_CAST({{ adapter.quote("tau_id") }} AS STRING) as id_aula_disciplina,
         {{ adapter.quote("tau_numeroaulas") }} as numero_aula,
         {{ adapter.quote("tau_planoaula") }} as plano_aula,
         {{ adapter.quote("tau_recursosutilizados") }} as recursos_utilizados,
         {{ adapter.quote("tau_sequencia") }} as sequencia_aula,
-        {{ adapter.quote("tau_situacao") }} as id_situacao,
+        SAFE_CAST({{ adapter.quote("tau_situacao") }} AS STRING) as id_situacao,
         {{ adapter.quote("tau_statusanotacoes") }} as status_anotacoes,
         {{ adapter.quote("tau_statusplanoaula") }} as status_plano_aula,
         {{ adapter.quote("tdt_posicao") }} as posicao_docente,
-        {{ adapter.quote("tpc_id") }} as id_tipo_calendario,
-        {{ adapter.quote("tud_id") }} as id_disciplina,
-        {{ adapter.quote("usu_id") }} as id_usuario_criacao,
-        {{ adapter.quote("usu_iddocentealteracao") }} as id_usuario_alteracao,
-        {{ adapter.quote("data_particao") }} as data_particao
+        SAFE_CAST({{ adapter.quote("tpc_id") }} AS STRING) as id_tipo_calendario,
+        SAFE_CAST({{ adapter.quote("tud_id") }} AS STRING) as id_disciplina,
+        SAFE_CAST({{ adapter.quote("usu_id") }} AS STRING) as id_usuario_criacao,
+        SAFE_CAST({{ adapter.quote("usu_iddocentealteracao") }} AS STRING) as id_usuario_alteracao,
     from source
 )
 select * from renamed

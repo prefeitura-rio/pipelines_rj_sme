@@ -15,8 +15,8 @@ with source as (
 renamed as (
     select
         {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
-        {{ adapter.quote("tud_id") }} AS id_disciplina,
-        {{ adapter.quote("tur_id") }} AS id_turma
+        SAFE_CAST({{ adapter.quote("tud_id") }} AS STRING) AS id_disciplina,
+        SAFE_CAST({{ adapter.quote("tur_id") }} AS STRING) AS id_turma
     from source
 )
 

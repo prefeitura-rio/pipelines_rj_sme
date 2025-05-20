@@ -6,10 +6,10 @@ with source as (
 renamed as (
     select
         {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
-        {{ adapter.quote("ent_id") }} AS id_entidade,
-        {{ adapter.quote("esc_id") }} AS id_escola,
-        {{ adapter.quote("fav_id") }} AS id_formato_avaliacao,
-        {{ adapter.quote("uni_id") }} AS id_unidade_escola,
+        SAFE_CAST({{ adapter.quote("ent_id") }} AS STRING) AS id_entidade,
+        SAFE_CAST({{ adapter.quote("esc_id") }} AS STRING) AS id_escola,
+        SAFE_CAST({{ adapter.quote("fav_id") }} AS STRING) AS id_formato_avaliacao,
+        SAFE_CAST({{ adapter.quote("uni_id") }} AS STRING) AS id_unidade_escola,
         {{ adapter.quote("fav_nome") }} AS nome_avaliacao,
         {{ adapter.quote("fav_tipo") }} AS tipo_avaliacao,
         {{ adapter.quote("fav_padrao") }} AS formato_avaliacao,

@@ -9,10 +9,11 @@ renamed as (
         {{ adapter.quote("_airbyte_extracted_at") }} AS loaded_at,
         {{ adapter.quote("ttn_dataalteracao") }} AS data_alteracao,
         {{ adapter.quote("ttn_datacriacao") }} AS data_criacao,
-        {{ adapter.quote("ttn_id") }} AS id_tipo_turno,
+        SAFE_CAST({{ adapter.quote("ttn_id") }} AS STRING) AS id_tipo_turno,
         {{ adapter.quote("ttn_nome") }} AS tipo_turno,
-        {{ adapter.quote("ttn_situacao") }} AS id_situacao
+        SAFE_CAST({{ adapter.quote("ttn_situacao") }} AS STRING) AS id_situacao
     from source
 )
+
 
 select * from renamed

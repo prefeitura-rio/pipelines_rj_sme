@@ -13,7 +13,12 @@ sources:
       - name: ESC_Escola
       - name: TUR_TurmaCurriculo
       - name: CLS_TurmaAula
-      - name: turma_aula_aluno
       - name: MTR_MatriculaTurma
       - name: ACA_CurriculoPeriodo
       - name: ACA_TipoTurno
+      
+  - name: educacao_basica_frequencia_staging
+    database: rj-sme
+    schema: educacao_basica_frequencia_staging
+    tables:
+      - name: CLS_TurmaAulaAluno

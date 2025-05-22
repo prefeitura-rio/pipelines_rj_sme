@@ -157,7 +157,7 @@ FROM `rj-sme.educacao_basica_avaliacao_staging.bimestral_2024`
 d2025 as (
 SELECT
   SAFE_CAST(id_turma AS STRING) as id_turma,
-  SAFE_CAST(id_turma AS STRING) as id_turma,
+  SAFE_CAST(id_aluno AS STRING) as id_aluno,
   SAFE_CAST(ano as INT64) as ano,
   SAFE_CAST(SPLIT(bimestre_avaliacao, "º")[0] as INT64) as bimestre,
   SAFE_CAST(id_inep AS STRING) as codigo_inep_escola,

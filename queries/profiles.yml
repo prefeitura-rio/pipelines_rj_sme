@@ -1,4 +1,4 @@
-queries:
+sme:
   target: prod
   outputs:
     dev:

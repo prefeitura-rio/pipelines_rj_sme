@@ -2,7 +2,7 @@ name: 'queries'
 version: '1.0.0'
 config-version: 2
 
-profile: 'queries'
+profile: 'sme'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -24,6 +24,10 @@ models:
     example:
       +materialized: view
       +schema: example
+    brutos_gestao_escolar:
+      +materialized: table
+      +schema: brutos_gestao_escolar
+      +tags: "daily"
     brutos_gestao_escolar_rh:
       +materialized: table
       +schema: brutos_gestao_escolar_rh
@@ -34,6 +38,7 @@ models:
     educacao_basica_frequencia:
       +materialized: table
       +schema: educacao_basica_frequencia
+      +tags: "daily"
     educacao_basica_alocacao:
       +materialized: table
       +schema: educacao_basica

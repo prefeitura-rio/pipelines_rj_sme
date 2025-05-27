@@ -1,16 +1,24 @@
+
 {{
     config(
         alias='turma_aula_aluno',
         schema='brutos_gestao_escolar',
         materialized='incremental',
-        unique_key=['id_aluno', 'id_matricula_disciplina','id_matricula_turma','id_aula_disciplina','id_disciplina_turma']
+        incremental_strategy='merge',
+        partition_by={
+            "field": "data_alteracao",
+            "data_type": "timestamp",
+            "granularity": "year"
+        },
+        unique_key=['id_aluno', 'id_matricula_disciplina','id_matricula_turma','id_aula_disciplina','id_disciplina_turma'],
+        cluster_by=['id_aluno']
     )
 }}
 
 with source as (
     select * from {{ source('educacao_basica_frequencia_staging', 'CLS_TurmaAulaAluno') }}
     {% if is_incremental() %}
-      where data_particao > (select max(data_particao) from {{ this }})
+      where data_particao in (CAST(current_date AS STRING), CAST(date_sub(current_date, interval 1 day) AS STRING))
     {% endif %}
 ),
 renamed as (

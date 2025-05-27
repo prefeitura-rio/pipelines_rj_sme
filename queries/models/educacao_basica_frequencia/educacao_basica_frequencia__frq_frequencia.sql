@@ -1,5 +1,4 @@
         {{ config(
-            unique_key='surrogate_key',
             alias='frequencia'
         ) }}
 
@@ -35,14 +34,6 @@
         ),
         FrequenciaDia as (
             SELECT
-            -- Surrogate Key
-                md5(
-                    cast(tur.id_disciplina_turma as string) || '-' ||
-                    cast(tau.id_aula_disciplina as string) || '-' ||
-                    cast(taa.id_aluno as string) || '-' ||
-                    cast(taa.id_matricula_turma as string) || '-' ||
-                    cast(taa.id_matricula_disciplina as string)
-                ) AS surrogate_key,
 
                 tur.cre,
                 tur.tur_id,
@@ -92,8 +83,7 @@
                 AND mtu.mtu_situacao <> 3
 
         )
-        SELECT  surrogate_key,
-                SAFE_CAST(cre AS STRING) AS coordenacao_regional,
+        SELECT  SAFE_CAST(cre AS STRING) AS coordenacao_regional,
                 SAFE_CAST(tur_id AS INT64) AS id_turma,
                 SAFE_CAST(esc_id AS INT64) AS id_escola,
                 SAFE_CAST(tur_codigo AS STRING) AS id_secundario_turma,

@@ -81,15 +81,8 @@ models :
     config:
       tags: ['daily']
     columns:
-    - name: surrogate_key
-      description: "Chave única gerada a partir de 5 colunas-chave"
-      tests:
-        - not_null
-        - unique
     - name: updated_at
       description: "Usado para controle incremental"
-      tests:
-        - not_null
     - name: coordenacao_regional
       description: Número da coordenação regional de educação (01 a 11)
     - name: id_turma

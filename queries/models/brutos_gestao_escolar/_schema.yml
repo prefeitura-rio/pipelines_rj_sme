@@ -306,3 +306,12 @@ models :
         description: Identificador de etapa do MEC/INEP. Sempre NULL
       - name: id_curso
         description: Identificador de curso, sequencia. Etapa???
+  
+  - name: brutos_gestao_escolar__calendario_periodo
+  - name: brutos_gestao_escolar__turno_horario
+  - name: brutos_gestao_escolar__vw_bi_aluno
+  - name: brutos_gestao_escolar__calendario_anual
+  - name: brutos_gestao_escolar__processo_fechamento_inicio
+  - name: brutos_gestao_escolar__aluno_curriculo
+  - name: brutos_gestao_escolar__aluno_justificativa_falta
+  - name: brutos_gestao_escolar__tipo_justificativa_falta

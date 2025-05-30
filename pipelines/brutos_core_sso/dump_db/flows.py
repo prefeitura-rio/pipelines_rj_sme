@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Database dumping flows for SME project........
+Database dumping flows for SME project.......
 """
 
 from copy import deepcopy
@@ -14,10 +14,10 @@ from prefeitura_rio.pipelines_utils.state_handlers import (
     handler_inject_bd_credentials,
 )
 
+from pipelines.constants import constants
 from pipelines.brutos_core_sso.dump_db.schedules import (
     sme_brutos_core_sso_daily_update_schedule,
 )
-from pipelines.constants import constants
 
 dump_sme_frequencia_flow = deepcopy(dump_sql_flow)
 dump_sme_frequencia_flow.state_handlers = [handler_inject_bd_credentials, handler_initialize_sentry]

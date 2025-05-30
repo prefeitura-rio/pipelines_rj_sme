@@ -36,5 +36,14 @@ renamed as (
         SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("tud_id") }}), r'\.0$', '') AS STRING) AS id_disciplina_turma,
         SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("usu_iddocentealteracao") }}), r'\.0$', '') AS STRING) AS usuario_alteracao,
     from source
+), dedup AS (
+    select *,
+        row_number() over (
+            partition by id_aluno, id_matricula_disciplina, id_matricula_turma, id_aula_disciplina, id_disciplina_turma
+            order by data_alteracao desc
+        ) as row_num
+    from renamed
 )
-select * from renamed
+SELECT *
+FROM dedup
+WHERE row_num = 1

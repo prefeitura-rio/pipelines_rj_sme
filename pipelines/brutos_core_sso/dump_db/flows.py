@@ -19,12 +19,12 @@ from pipelines.brutos_core_sso.dump_db.schedules import (
 )
 from pipelines.constants import constants
 
-dump_sme_frequencia_flow = deepcopy(dump_sql_flow)
-dump_sme_frequencia_flow.state_handlers = [handler_inject_bd_credentials, handler_initialize_sentry]
-dump_sme_frequencia_flow.name = "SME: brutos_core_sso - Ingerir tabelas de banco SQL"
-dump_sme_frequencia_flow.storage = GCS(constants.GCS_FLOWS_BUCKET.value)
+dump_sme_core_sso_flow = deepcopy(dump_sql_flow)
+dump_sme_core_sso_flow.state_handlers = [handler_inject_bd_credentials, handler_initialize_sentry]
+dump_sme_core_sso_flow.name = "SME: brutos_core_sso - Ingerir tabelas de banco SQL"
+dump_sme_core_sso_flow.storage = GCS(constants.GCS_FLOWS_BUCKET.value)
 
-dump_sme_frequencia_flow.run_config = KubernetesRun(
+dump_sme_core_sso_flow.run_config = KubernetesRun(
     image=constants.DOCKER_IMAGE.value,
     labels=[
         constants.RJ_SME_AGENT_LABEL.value,
@@ -39,8 +39,10 @@ sme_default_parameters = {
     "infisical_secret_path": "/db-educacao-basica",
     "dataset_id": "brutos_core_sso",
 }
-dump_sme_frequencia_flow = set_default_parameters(
-    dump_sme_frequencia_flow, default_parameters=sme_default_parameters
+dump_sme_core_sso_flow = set_default_parameters(
+    dump_sme_core_sso_flow, default_parameters=sme_default_parameters
 )
 
-dump_sme_frequencia_flow.schedule = sme_brutos_core_sso_daily_update_schedule
+dump_sme_core_sso_flow.schedule = sme_brutos_core_sso_daily_update_schedule
+
+# Comment to trigger.

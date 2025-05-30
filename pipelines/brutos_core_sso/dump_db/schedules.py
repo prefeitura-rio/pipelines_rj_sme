@@ -28,7 +28,7 @@ sme_core_sso_queries = {
         "dump_mode": "overwrite",
         "execute_query": """
             SELECT  ent_id,
-                    ten_id, 
+                    ten_id,
                     ent_codigo,
                     ent_nomeFantasia,
                     ent_razaoSocial,
@@ -68,7 +68,8 @@ sme_core_sso_queries = {
                     GETDATE() AS loaded_at
             FROM CoreSSO.dbo.SYS_DiaNaoUtil;
         """,
-    },"SYS_EntidadeEndereco": {
+    },
+    "SYS_EntidadeEndereco": {
         "biglake_table": True,
         "materialize_after_dump": True,
         "materialization_mode": "prod",
@@ -86,7 +87,8 @@ sme_core_sso_queries = {
                     ene_dataAlteracao
             FROM CoreSSO.dbo.SYS_EntidadeEndereco;
         """,
-    },"END_Endereco": {
+    },
+    "END_Endereco": {
         "biglake_table": True,
         "materialize_after_dump": True,
         "materialization_mode": "prod",
@@ -107,7 +109,8 @@ sme_core_sso_queries = {
                     end_integridade
             FROM CoreSSO.dbo.END_Endereco;
         """,
-    },"END_Cidade": {
+    },
+    "END_Cidade": {
         "biglake_table": True,
         "materialize_after_dump": True,
         "materialization_mode": "prod",
@@ -124,7 +127,7 @@ sme_core_sso_queries = {
                     cid_integridade
             FROM CoreSSO.dbo.END_Cidade;
         """,
-    }
+    },
 }
 
 

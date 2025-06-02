@@ -330,3 +330,4 @@ models :
   - name: brutos_gestao_escolar__aluno_curriculo
   - name: brutos_gestao_escolar__aluno_justificativa_falta
   - name: brutos_gestao_escolar__tipo_justificativa_falta
+  - name: brutos_gestao_escolar__aluno_historico_completo

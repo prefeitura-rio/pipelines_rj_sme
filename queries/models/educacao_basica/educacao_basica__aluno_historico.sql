@@ -1,6 +1,6 @@
 {{
     config(
-        alias='aluno_historico',
+        alias='aluno_historico_teste',
         schema='educacao_basica',
         partition_by={
             "field": "data_particao",
@@ -10,6 +10,7 @@
     )
 }}
 
+WITH cte AS (
 SELECT
     SAFE_CAST(ano AS INT64) ano,
     TRIM(alu_id) AS id_aluno_original,
@@ -26,7 +27,7 @@ SELECT
             SAFE_CAST(TRIM(ano) AS STRING)
         )
     ), 2,17) as  id_aluno_ano,
-    SAFE_CAST(matricula AS STRING) matricula,
+    -- SAFE_CAST(matricula AS STRING) matricula,
     -- SAFE_CAST(nome AS STRING) nome,
     SAFE_CAST(sexo AS STRING) genero,
     SAFE_CAST(naturalidade AS STRING) naturalidade,
@@ -64,3 +65,16 @@ SELECT
     SAFE_CAST(deficiencia AS STRING) deficiencia,
     SAFE_CAST(data_particao AS DATE) data_particao,
 FROM `rj-sme.educacao_basica_staging.aluno_historico`
+
+)
+
+SELECT cte.*,
+       ahc.Nome,
+       ahc.CPF,
+       ahc.Matricula,
+       ahc.telefone
+FROM cte
+join {{ ref('brutos_gestao_escolar__aluno_historico_completo') }} as ahc
+    on CAST(ahc.alu_id AS STRING) = id_aluno_original 
+    AND ahc.Ano = cte.ano
+    AND ahc.Cod_Ult_Mov = id_ultima_movimentacao

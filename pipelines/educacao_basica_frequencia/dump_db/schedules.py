@@ -73,6 +73,22 @@ sme_frequencia_queries = {
                 GETDATE() AS loaded_at
             FROM GestaoEscolar.dbo.CLS_TurmaAulaAluno
         """,
+    }, "diasCoc": {
+        "materialize_after_dump": False,
+        "materialize_to_datario": False,
+        "dump_to_gcs": False,
+        "materialization_mode": "prod",
+        "dump_mode": "overwrite",
+        "dbt_alias": True,
+        "execute_query": """
+            select distinct cal.cal_id, 
+                            tpc_id, 
+                            dbo.FN_CalcularDiasUteis(cap_dataInicio,cap_dataFim,'8BB1DECA-BB19-E011-87E8-E61F133BFC53',
+                            cal.cal_id) diasCoc
+            from ACA_CalendarioPeriodo cap WITH(NOLOCK)
+            INNER JOIN ACA_CalendarioAnual          CAL WITH(NOLOCK) ON CAL.cal_id = cap.cal_id and cal_situacao <> 3 -- AND CAL.cal_ano = 2024
+            inner join MTR_ProcessoFechamentoInicio pfi WITH(NOLOCK) ON pfi.pfi_anoInicio = cal.cal_ano and pfi_situacao <> 3 and pfi_AnoLetivoCorrente = 1 
+        """,
     },
 }
 
@@ -80,6 +96,7 @@ sme_frequencia_queries = {
 sme_clocks = generate_dump_db_schedules(
     interval=timedelta(days=1),
     start_date=datetime(2022, 1, 1, 2, 10, tzinfo=pytz.timezone("America/Sao_Paulo")),
+    runs_interval_minutes=2,
     labels=[
         constants.RJ_SME_AGENT_LABEL.value,
     ],

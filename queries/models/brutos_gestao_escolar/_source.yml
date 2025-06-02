@@ -24,4 +24,5 @@ sources:
       - name: ACA_AlunoJustificativaFalta
       - name: ACA_TipoJustificativaFalta
       - name: VW_BI_Aluno
+      - name: VW_BI_Aluno_Todos_Os_Anos
 

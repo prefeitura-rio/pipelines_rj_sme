@@ -73,7 +73,8 @@ sme_frequencia_queries = {
                 GETDATE() AS loaded_at
             FROM GestaoEscolar.dbo.CLS_TurmaAulaAluno
         """,
-    }, "diasCoc": {
+    },
+    "diasCoc": {
         "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -81,13 +82,13 @@ sme_frequencia_queries = {
         "dump_mode": "overwrite",
         "dbt_alias": True,
         "execute_query": """
-            select distinct cal.cal_id, 
-                            tpc_id, 
+            select distinct cal.cal_id,
+                            tpc_id,
                             dbo.FN_CalcularDiasUteis(cap_dataInicio,cap_dataFim,'8BB1DECA-BB19-E011-87E8-E61F133BFC53',
                             cal.cal_id) diasCoc
             from ACA_CalendarioPeriodo cap WITH(NOLOCK)
             INNER JOIN ACA_CalendarioAnual          CAL WITH(NOLOCK) ON CAL.cal_id = cap.cal_id and cal_situacao <> 3 -- AND CAL.cal_ano = 2024
-            inner join MTR_ProcessoFechamentoInicio pfi WITH(NOLOCK) ON pfi.pfi_anoInicio = cal.cal_ano and pfi_situacao <> 3 and pfi_AnoLetivoCorrente = 1 
+            inner join MTR_ProcessoFechamentoInicio pfi WITH(NOLOCK) ON pfi.pfi_anoInicio = cal.cal_ano and pfi_situacao <> 3 and pfi_AnoLetivoCorrente = 1
         """,
     },
 }

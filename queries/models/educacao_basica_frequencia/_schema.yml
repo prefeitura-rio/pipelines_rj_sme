@@ -131,7 +131,7 @@ models :
   - name: educacao_basica_frequencia__carga_aluno_frequencia
     config:
       tags: ['daily']
-  
+
   - name: educacao_basica_frequencia__diasCoc
     config:
         tags: ['daily']

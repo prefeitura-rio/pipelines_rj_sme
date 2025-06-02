@@ -16,9 +16,12 @@ sources:
       - name: MTR_MatriculaTurma
       - name: ACA_CurriculoPeriodo
       - name: ACA_TipoTurno
+      - name: ACA_CalendarioPeriodo
+      - name: ACA_TurnoHorario
+      - name: ACA_CalendarioAnual
+      - name: MTR_ProcessoFechamentoInicio
+      - name: ACA_AlunoCurriculo
+      - name: ACA_AlunoJustificativaFalta
+      - name: ACA_TipoJustificativaFalta
+      - name: VW_BI_Aluno
 
-  - name: educacao_basica_frequencia_staging
-    database: rj-sme
-    schema: educacao_basica_frequencia_staging
-    tables:
-      - name: CLS_TurmaAulaAluno

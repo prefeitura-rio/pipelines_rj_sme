@@ -9,26 +9,6 @@ with frqtrn as (
     from {{ ref('brutos_gestao_escolar__turno_horario') }}
     where trh_situacao = 1
     group by trn_id
-),
-
-diasCoc as (
-    select distinct
-        cal.cal_id,
-        tpc_id,
-        dbo.FN_CalcularDiasUteis(
-            cap_dataInicio,
-            cap_dataFim,
-            '8BB1DECA-BB19-E011-87E8-E61F133BFC53',
-            cal.cal_id
-        ) as diasCoc
-    from {{ ref('brutos_gestao_escolar__calendario_periodo') }} cap
-    inner join {{ ref('brutos_gestao_escolar__calendario_anual') }} cal
-        on cal.cal_id = cap.cal_id
-        and cal_situacao <> 3
-    inner join {{ ref('brutos_gestao_escolar__processo_fechamento_inicio') }} pfi
-        on pfi.pfi_anoInicio = cal.cal_ano
-        and pfi_situacao <> 3
-        and pfi_AnoLetivoCorrente = TRUE
 ), frqbase as (
 
     select
@@ -62,53 +42,53 @@ diasCoc as (
     from (
 
         select
-            frq.alu_id,
-            frq.tpc_id,
+            frq.id_aluno as alu_id,
+            frq.id_tipo_calendario as tpc_id,
 
-            case when frq.tpc_id = '1' then round(((diasCoc * temposDia) - sum(IFNULL(taa_frequencia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_1,
-            case when frq.tpc_id = '1' then sum(IFNULL(taa_frequencia,0)) else 0 end as faltas_coc_1,
-            case when frq.tpc_id = '1' then diasCoc * temposDia else 0 end as numeroAulas_coc_1,
+            case when frq.id_tipo_calendario = '1' then round(((diasCoc * temposDia) - sum(IFNULL(faltas_disciplina_dia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_1,
+            case when frq.id_tipo_calendario = '1' then sum(IFNULL(faltas_disciplina_dia,0)) else 0 end as faltas_coc_1,
+            case when frq.id_tipo_calendario = '1' then diasCoc * temposDia else 0 end as numeroAulas_coc_1,
 
-            case when frq.tpc_id = '2' then round(((diasCoc * temposDia) - sum(IFNULL(taa_frequencia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_2,
-            case when frq.tpc_id = '2' then sum(IFNULL(taa_frequencia,0)) else 0 end as faltas_coc_2,
-            case when frq.tpc_id = '2' then diasCoc * temposDia else 0 end as numeroAulas_coc_2,
+            case when frq.id_tipo_calendario = '2' then round(((diasCoc * temposDia) - sum(IFNULL(faltas_disciplina_dia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_2,
+            case when frq.id_tipo_calendario = '2' then sum(IFNULL(faltas_disciplina_dia,0)) else 0 end as faltas_coc_2,
+            case when frq.id_tipo_calendario = '2' then diasCoc * temposDia else 0 end as numeroAulas_coc_2,
 
-            case when frq.tpc_id = '3' then round(((diasCoc * temposDia) - sum(IFNULL(taa_frequencia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_3,
-            case when frq.tpc_id = '3' then sum(IFNULL(taa_frequencia,0)) else 0 end as faltas_coc_3,
-            case when frq.tpc_id = '3' then diasCoc * temposDia else 0 end as numeroAulas_coc_3,
+            case when frq.id_tipo_calendario = '3' then round(((diasCoc * temposDia) - sum(IFNULL(faltas_disciplina_dia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_3,
+            case when frq.id_tipo_calendario = '3' then sum(IFNULL(faltas_disciplina_dia,0)) else 0 end as faltas_coc_3,
+            case when frq.id_tipo_calendario = '3' then diasCoc * temposDia else 0 end as numeroAulas_coc_3,
 
-            case when frq.tpc_id = '4' then round(((diasCoc * temposDia) - sum(IFNULL(taa_frequencia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_4,
-            case when frq.tpc_id = '4' then sum(IFNULL(taa_frequencia,0)) else 0 end as faltas_coc_4,
-            case when frq.tpc_id = '4' then diasCoc * temposDia else 0 end as numeroAulas_coc_4,
+            case when frq.id_tipo_calendario = '4' then round(((diasCoc * temposDia) - sum(IFNULL(faltas_disciplina_dia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_4,
+            case when frq.id_tipo_calendario = '4' then sum(IFNULL(faltas_disciplina_dia,0)) else 0 end as faltas_coc_4,
+            case when frq.id_tipo_calendario = '4' then diasCoc * temposDia else 0 end as numeroAulas_coc_4,
 
-            case when frq.tpc_id = '5' then round(((diasCoc * temposDia) - sum(IFNULL(taa_frequencia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_5,
-            case when frq.tpc_id = '5' then sum(IFNULL(taa_frequencia,0)) else 0 end as faltas_coc_5,
-            case when frq.tpc_id = '5' then diasCoc * temposDia else 0 end as numeroAulas_coc_5,
+            case when frq.id_tipo_calendario = '5' then round(((diasCoc * temposDia) - sum(IFNULL(faltas_disciplina_dia,0))) / CAST(diasCoc * temposDia AS FLOAT64) * 100, 2) else 0 end as freq_COC_5,
+            case when frq.id_tipo_calendario = '5' then sum(IFNULL(faltas_disciplina_dia,0)) else 0 end as faltas_coc_5,
+            case when frq.id_tipo_calendario = '5' then diasCoc * temposDia else 0 end as numeroAulas_coc_5,
 
             diasCoc * temposDia as total_tempos,
-            sum(IFNULL(taa_frequencia,0)) as total_faltas
+            sum(IFNULL(faltas_disciplina_dia,0)) as total_faltas
 
         from {{ ref('educacao_basica_frequencia__frq_frequencia') }} frq
 
         inner join {{ ref('brutos_gestao_escolar__aluno_curriculo') }} alc
-            on alc.alu_id = frq.alu_id
-            and alc.esc_id = frq.esc_id
+            on alc.alu_id = frq.id_aluno
+            and alc.esc_id = frq.id_escola
             and alc.alc_situacao <> 3
-            and frq.dataAula between alc.alc_dataPrimeiraMatricula and IFNULL(alc.alc_dataSaida, CURRENT_DATE())
+            and frq.data_aula between alc.alc_dataPrimeiraMatricula and IFNULL(alc.alc_dataSaida, CURRENT_DATE())
 
         inner join frqtrn trn
-            on trn.trn_id = frq.trn_id
+            on trn.trn_id = frq.id_turno
 
-        inner join diasCoc dia
-            on dia.cal_id = frq.cal_id and dia.tpc_id = frq.tpc_id
+        inner join {{ ref('educacao_basica_frequencia__diasCoc')}} dia
+            on dia.cal_id = frq.id_ano_calendario and dia.tpc_id = frq.id_tipo_calendario
 
-        where tau_efetivado = 1
+        where frq.efetivado = TRUE
 
         group by
-            frq.alu_id,
-            frq.tpc_id,
-            frq.cal_id,
-            frq.trn_id,
+            frq.id_aluno,
+            frq.id_tipo_calendario,
+            frq.id_ano_calendario,
+            frq.id_turno,
             diasCoc,
             temposDia
     ) tab
@@ -148,7 +128,7 @@ select
     frqpri.alu_id,
     alu.Ano,
     substr(esc.esc_codigo, 1, 2) as cre,
-    esc.esc_id,
+    esc.id_esc,
     esc.esc_codigo,
     esc.esc_nome,
     alu.tur_id,
@@ -201,6 +181,6 @@ select
     nm_aulas_coc5
 from {{ ref('brutos_gestao_escolar__vw_bi_aluno') }} alu
 inner join {{ ref('brutos_gestao_escolar__tur_turma') }} tur on alu.tur_id = tur.tur_id and tur.tur_situacao = 1
-inner join {{ ref('brutos_gestao_escolar__esc_escola') }} esc on esc.esc_id = tur.esc_id and esc.esc_situacao = 1
+inner join {{ ref('brutos_gestao_escolar__esc_escola') }} esc on esc.id_esc = tur.esc_id and esc.esc_situacao = 1
 inner join frqpri on frqpri.alu_id = alu.alu_id
 

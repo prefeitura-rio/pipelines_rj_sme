@@ -25,8 +25,3 @@ sources:
       - name: ACA_TipoJustificativaFalta
       - name: VW_BI_Aluno
 
-  - name: educacao_basica_frequencia_staging
-    database: rj-sme
-    schema: educacao_basica_frequencia_staging
-    tables:
-      - name: CLS_TurmaAulaAluno

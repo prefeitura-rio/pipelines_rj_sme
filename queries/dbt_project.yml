@@ -15,6 +15,9 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+vars:
+  HASH_SEED: "{{ env_var('HASH_SEED') }}"
+
 
 models:
   +persist_docs:

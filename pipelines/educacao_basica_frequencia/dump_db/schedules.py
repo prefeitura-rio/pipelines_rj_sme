@@ -27,7 +27,7 @@ sme_frequencia_queries = {
         "break_query_start": "current_year",
         "break_query_end": "current_year",
         "dump_mode": "append",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",

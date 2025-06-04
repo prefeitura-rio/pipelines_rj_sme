@@ -1,6 +1,6 @@
 {{
     config(
-        alias='aluno_historico_teste',
+        alias='aluno_historico_2025',
         schema='educacao_basica',
         partition_by={
             "field": "data_particao",
@@ -27,8 +27,8 @@ SELECT
             SAFE_CAST(TRIM(ano) AS STRING)
         )
     ), 2,17) as  id_aluno_ano,
-    -- SAFE_CAST(matricula AS STRING) matricula,
-    -- SAFE_CAST(nome AS STRING) nome,
+    SAFE_CAST(matricula AS STRING) matricula,
+    SAFE_CAST(nome AS STRING) nome,
     SAFE_CAST(sexo AS STRING) genero,
     SAFE_CAST(naturalidade AS STRING) naturalidade,
     SAFE_CAST(nacionalidade AS STRING) nacionalidade,
@@ -40,7 +40,7 @@ SELECT
     -- SAFE_CAST(filiacao_2 AS STRING) filiacao_2,
     SAFE_CAST(filiacao_2_profissao AS STRING) filiacao_2_profissao,
     SAFE_CAST(filiacao_2_escolaridade AS STRING) filiacao_2_escolaridade,
-    -- SAFE_CAST(cpf AS STRING) cpf,
+    SAFE_CAST(cpf AS STRING) cpf,
     -- SAFE_CAST(nis_aluno AS STRING) nis_aluno,
     -- SAFE_CAST(nis_resp AS STRING) nis_resp,
     SAFE_CAST(raca_cor AS STRING) raca_cor,
@@ -69,9 +69,9 @@ FROM `rj-sme.educacao_basica_staging.aluno_historico`
 )
 
 SELECT cte.*,
-       ahc.Nome,
-       ahc.CPF,
-       ahc.Matricula,
+       ahc.Nome AS nome_real,
+       ahc.CPF AS cpf_real,
+       ahc.Matricula AS matricula_real,
        ahc.telefone
 FROM cte
 join {{ ref('brutos_gestao_escolar__aluno_historico_completo') }} as ahc

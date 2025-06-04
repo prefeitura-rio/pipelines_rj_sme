@@ -9,7 +9,7 @@ dbt-bigquery = "^1.6.1"
 google-cloud-storage = "^2.10.0"
 pendulum = "^3.0.0"
 prefect = "1.4.1"
-prefeitura-rio = {git = "https://github.com/prefeitura-rio/prefeitura-rio", rev = "19d8065738cb7a50bb5308bbfe67a420693daf79", extras = [
+prefeitura-rio = {git = "https://github.com/prefeitura-rio/prefeitura-rio", rev = "e9cd7cbff6d3b02128fd91799aa924a4b11138da", extras = [
   "pipelines",
   "pipelines-templates",
   "actions",

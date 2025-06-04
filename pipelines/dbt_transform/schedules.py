@@ -19,6 +19,7 @@ common_parameters = {
     "bigquery_project": constants.RJ_SME_AGENT_LABEL.value,
     "environment": "prod",
     "rename_flow": True,
+    "dbt_secrets": constants.DBT_SECRETS.value,
 }
 
 daily_parameters = [

@@ -7,6 +7,8 @@ models :
       de atualização**: Mensal\n**Cobertura temporal**: Até data corrente\n**Órgão
       gestor dos dados**: Secretaria Municipal de Educação\n**Publicado por**: Nuno
       Caminada Silva\n**Publicado por (email)**: nuno.silva@rioeduca.net\n"
+    config:
+      tags: ['daily']
     columns:
       - name: id_turma
         description: Identificador da turma na base de dados.

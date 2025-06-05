@@ -66,7 +66,7 @@ sme_queries = {
             FROM GestaoEscolar.dbo.VW_BI_Aluno_lgpd
         """,
     },
-    "aluno_historico": {
+    "aluno_historico_2025": {
         "materialize_after_dump": True,
         "materialize_to_datario": False,
         "dump_to_gcs": False,

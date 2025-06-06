@@ -4,6 +4,9 @@
     )
 }}
 
+with source as (
+    select * FROM {{ source('educacao_basica_staging', 'escola') }}
+)
 
 SELECT
     SAFE_CAST(REGEXP_REPLACE(inep, r'\.0$', '') AS STRING) AS id_inep,
@@ -24,4 +27,5 @@ SELECT
     SAFE_CAST(salas_recurso AS INT64) AS numero_salas_recurso,
     SAFE_CAST(salas_aula AS INT64) AS numero_salas_aula,
     SAFE_CAST(salas_aula_utilizadas AS INT64) AS numero_salas_utilizadas,
-FROM `rj-sme.educacao_basica_staging.escola`
+FROM source
+

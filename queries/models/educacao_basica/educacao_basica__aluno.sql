@@ -5,6 +5,11 @@
     )
 }}
 
+
+with source as (
+    select * FROM {{ source('educacao_basica_staging', 'aluno') }}
+)
+
 SELECT
     SAFE_CAST(ano AS INT64) ano,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) id_turma,
@@ -44,4 +49,4 @@ SELECT
     SAFE_CAST(mais_educacao AS STRING) mais_educacao,
     SAFE_CAST(territorios_sociais AS STRING) territorio_social,
     SAFE_CAST(up_aval AS STRING) tipo_avaliacao_jovens_adultos
-FROM `rj-sme.educacao_basica_staging.aluno`
+FROM source

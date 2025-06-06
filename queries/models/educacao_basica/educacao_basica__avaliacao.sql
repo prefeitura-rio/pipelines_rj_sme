@@ -10,6 +10,11 @@
     )
 }}
 
+with source as (
+    select * FROM {{ source('educacao_basica_staging', 'avaliacao') }}
+)
+
+
 SELECT
     SAFE_CAST(ano AS INT64) AS ano,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) AS id_turma,
@@ -52,4 +57,5 @@ SELECT
     NULLIF(REGEXP_REPLACE(mus, r',', '.'), 'Sem Informação') AS musica,
     NULLIF(REGEXP_REPLACE(reuniao_pais, r',', '.'), 'Sem Informação') AS reuniao_pais,
     SAFE_CAST(data_particao AS DATE) data_particao,
-FROM `rj-sme.educacao_basica_staging.avaliacao`
+FROM source
+

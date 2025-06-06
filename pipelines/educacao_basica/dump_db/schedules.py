@@ -20,7 +20,7 @@ from pipelines.constants import constants
 
 sme_queries = {
     "aluno": {
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -67,7 +67,7 @@ sme_queries = {
         """,
     },
     "aluno_historico_2025": {
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "partition_columns": "Ano",
@@ -126,7 +126,7 @@ sme_queries = {
         "interval": timedelta(days=180),
     },
     "aluno_turma": {
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "partition_columns": "Ano",
@@ -147,7 +147,7 @@ sme_queries = {
         """,
     },
     "avaliacao": {
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "partition_columns": "Ano",
@@ -196,7 +196,7 @@ sme_queries = {
         # ART
     },
     "coc": {  # essa tabela utiliza a view coc0 pois contem o coc 0 e de 1 a 5
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "partition_columns": "Ano",
@@ -234,7 +234,7 @@ sme_queries = {
         """,
     },
     "dependencia": {
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -257,7 +257,7 @@ sme_queries = {
         """,
     },
     "escola": {
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",
@@ -293,7 +293,7 @@ sme_queries = {
         "break_query_frequency": "month",
         "break_query_start": "current_year",
         "break_query_end": "current_year",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,  # exceeds minimum (2022-05-31 -> 20,41GB)
         "materialization_mode": "prod",
@@ -326,7 +326,7 @@ sme_queries = {
         "break_query_frequency": "month",
         "break_query_start": "current_year",
         "break_query_end": "current_year",
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
         "materialization_mode": "prod",

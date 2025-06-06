@@ -171,7 +171,7 @@ models :
         description: Identificador da turma, criado anualmente.
       - name: id_aluno
         description: Identificador do aluno.
-  - name: educacao_basica__aluno_historico
+  - name: educacao_basica__aluno_historico_2025
     description: "**Descrição**: Histórico e dados pessoais de todos os alunos que
       passaram pela rede municipal de educação da prefeitura do Rio de Janeiro.\n
       **Frequência de atualização**: Anual\n**Cobertura temporal**: Até data corrente\n

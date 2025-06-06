@@ -10,6 +10,11 @@
     )
 }}
 
+with source as (
+    select * FROM {{ source('educacao_basica_staging', 'movimentacao') }}
+)
+
+
 SELECT
     SAFE_CAST(REGEXP_REPLACE(ano, r'\.0$', '') AS INT64) AS ano,
     SAFE_CAST(REGEXP_REPLACE(cre, r'\.0$', '') AS STRING) AS id_cre,
@@ -43,5 +48,5 @@ SELECT
     SAFE_CAST(mov_ordem AS STRING) AS ordem,
     SAFE_CAST(tipo_mov AS STRING) AS tipo,
     SAFE_CAST(data_particao AS DATE) data_particao,
-FROM `rj-sme.educacao_basica_staging.movimentacao`
 
+FROM source

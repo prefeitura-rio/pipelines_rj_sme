@@ -11,6 +11,10 @@
 }}
 
 
+with source as (
+    select * FROM {{ source('educacao_basica_staging', 'frequencia') }}
+)
+
 SELECT
     SAFE_CAST(REGEXP_REPLACE(esc_id, r'\.0$', '') AS STRING) AS id_escola,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) AS id_turma,
@@ -40,4 +44,4 @@ SELECT
     SAFE_CAST(REGEXP_REPLACE(faltasdis, r'\.0$', '') AS INT64) AS faltas_disciplina,
     SAFE_CAST(REGEXP_REPLACE(cargahorariasemanal, r'\.0$', '') AS INT64) AS carga_horaria_semanal,
     SAFE_CAST(data_particao AS DATE) data_particao,
-FROM `rj-sme.educacao_basica_staging.frequencia`
+FROM source

@@ -1,7 +1,7 @@
 
 {{
     config(
-        alias='aluno_turma',
+        alias='aluno_turma_2025',
         schema='educacao_basica',
         partition_by={
             "field": "data_particao",
@@ -10,6 +10,10 @@
         }
     )
 }}
+
+with source as (
+    select * FROM {{ source('educacao_basica_staging', 'aluno_turma') }}
+)
 SELECT
     SAFE_CAST(ano AS INT64) ano,
     SAFE_CAST(REGEXP_REPLACE(tur_id, r'\.0$', '') AS STRING) id_turma,
@@ -28,4 +32,4 @@ SELECT
         )
     ), 2,17) as  id_aluno_ano,
     SAFE_CAST(data_particao AS DATE) data_particao,
-FROM `rj-sme.educacao_basica_staging.aluno_turma`
+FROM source

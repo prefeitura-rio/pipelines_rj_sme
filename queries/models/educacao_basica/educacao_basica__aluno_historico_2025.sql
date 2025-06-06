@@ -64,7 +64,7 @@ SELECT
     SAFE_CAST(tot_aluno AS STRING) total_aluno,
     SAFE_CAST(deficiencia AS STRING) deficiencia,
     SAFE_CAST(data_particao AS DATE) data_particao,
-FROM `rj-sme.educacao_basica_staging.aluno_historico`
+FROM {{ source('educacao_basica_staging', 'aluno_historico') }}
 
 )
 

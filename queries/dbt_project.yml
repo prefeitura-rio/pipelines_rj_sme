@@ -37,7 +37,8 @@ models:
       +tags: "daily"
     educacao_basica:
       +materialized: table
-      +schema: educacao_basica
+      +schema: educacao_basica_staging
+      +tags: "daily"
     educacao_basica_frequencia:
       +materialized: table
       +schema: educacao_basica_frequencia

@@ -96,7 +96,7 @@ sme_frequencia_queries = {
 
 sme_clocks = generate_dump_db_schedules(
     interval=timedelta(days=1),
-    start_date=datetime(2022, 1, 1, 2, 10, tzinfo=pytz.timezone("America/Sao_Paulo")),
+    start_date=datetime(2022, 1, 1, 23, 10, tzinfo=pytz.timezone("America/Sao_Paulo")),
     runs_interval_minutes=2,
     labels=[
         constants.RJ_SME_AGENT_LABEL.value,

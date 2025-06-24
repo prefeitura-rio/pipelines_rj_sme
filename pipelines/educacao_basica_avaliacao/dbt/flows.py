@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-MATERIALIZA MODELOS DO DBT.
+MATERIALIZA MODELOS DO DBT..
 """
 
 from copy import deepcopy
@@ -39,4 +39,4 @@ sme_educacao_basica_avaliacao_dbt = set_default_parameters(
 
 sme_educacao_basica_avaliacao_dbt.schedule = educacao_basica_avaliacao_update_schedule
 
-# add comment to trigger build of new models in queries\models\educacao_basica_avaliacao
+# add comment to trigger build of new models in queries\models\educacao_basica_avaliacao.

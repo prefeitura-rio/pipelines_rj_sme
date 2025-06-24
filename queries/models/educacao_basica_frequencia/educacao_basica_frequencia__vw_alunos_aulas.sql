@@ -1,7 +1,7 @@
 {{
     config(
-        materialized='ephemeral',
-        tags=['daily']
+        materialized='table',
+        alias='vw_alunos_aulas',
     )
 }}
 

@@ -104,6 +104,7 @@ sme_frequencia_queries = {
                     , MTU.mtu_id
                     ,CAP.tpc_id
                     ,GestaoEscolar.dbo.FN_CalcularDiasUteis(CAP.cap_dataInicio,DATEADD(DAY, -1, GETDATE()),'8BB1DECA-BB19-E011-87E8-E61F133BFC53',CAP.cal_id) * ISNULL(CRP.crp_qtdeTemposDia,1) numeroAulas
+                    ,GETDATE() AS loaded_at
             FROM MTR_MatriculaTurma MTU WITH(NOLOCK)
                 INNER JOIN TUR_Turma TUR WITH(NOLOCK)
                     ON MTU.tur_id = TUR.tur_id

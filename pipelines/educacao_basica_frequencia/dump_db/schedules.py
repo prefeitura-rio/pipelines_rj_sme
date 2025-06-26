@@ -90,7 +90,8 @@ sme_frequencia_queries = {
             INNER JOIN ACA_CalendarioAnual          CAL WITH(NOLOCK) ON CAL.cal_id = cap.cal_id and cal_situacao <> 3
             inner join MTR_ProcessoFechamentoInicio pfi WITH(NOLOCK) ON pfi.pfi_anoInicio = cal.cal_ano and pfi_situacao <> 3 and pfi_AnoLetivoCorrente = 1
         """,
-    }, "numeroDeAulasCte": {
+    },
+    "numeroDeAulasCte": {
         "materialize_after_dump": False,
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -101,17 +102,17 @@ sme_frequencia_queries = {
            SELECT
                     MTU.alu_id
                     , MTU.mtu_id
-                    ,CAP.tpc_id 
+                    ,CAP.tpc_id
                     ,GestaoEscolar.dbo.FN_CalcularDiasUteis(CAP.cap_dataInicio,DATEADD(DAY, -1, GETDATE()),'8BB1DECA-BB19-E011-87E8-E61F133BFC53',CAP.cal_id) * ISNULL(CRP.crp_qtdeTemposDia,1) numeroAulas
             FROM MTR_MatriculaTurma MTU WITH(NOLOCK)
                 INNER JOIN TUR_Turma TUR WITH(NOLOCK)
                     ON MTU.tur_id = TUR.tur_id
                     AND TUR.tur_situacao IN (1,5)
                 INNER JOIN ACA_CalendarioAnual CAL WITH(NOLOCK)
-                    ON TUR.cal_id = CAL.cal_id 
+                    ON TUR.cal_id = CAL.cal_id
                     AND CAL.cal_ano = DATEPART(YEAR,GETDATE())
                 INNER JOIN TUR_TurmaCurriculo TCR WITH(NOLOCK)
-                    ON TUR.tur_id = TCR.tur_id 
+                    ON TUR.tur_id = TCR.tur_id
                     AND TCR.tcr_situacao = 1
                 INNER JOIN ACA_CurriculoPeriodo CRP WITH(NOLOCK)
                     ON TCR.cur_id = CRP.cur_id
@@ -119,7 +120,7 @@ sme_frequencia_queries = {
                     AND TCR.crp_id = CRP.crp_id
                     AND CRP.crp_situacao = 1
                 INNER JOIN ACA_CalendarioPeriodo CAP WITH(NOLOCK)
-                    ON TUR.cal_id = CAP.cal_id 
+                    ON TUR.cal_id = CAP.cal_id
                     AND DATEADD(DAY, -1, GETDATE()) BETWEEN CAP.cap_dataInicio AND CAP.cap_dataFim
         """,
     },

@@ -186,3 +186,5 @@ models :
         description: Soma total do número de aulas/dias do aluno. Para EDI e EF1 é o mesmo que contar o número de linhas. Para EF2 soma tempos de aula por dia
       - name: frequencia_percentual
         description: Percentual de frequência do aluno calculado pela fórmula (100 - (total_faltas / total_aulas) * 100)
+
+  - name: educacao_basica_frequencia__numeroDeAulasCte

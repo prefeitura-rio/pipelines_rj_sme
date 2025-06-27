@@ -21,7 +21,7 @@ from pipelines.constants import constants
 sme_core_sso_queries = {
     "SYS_Entidade": {
         "biglake_table": True,
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialization_mode": "prod",
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -40,14 +40,14 @@ sme_core_sso_queries = {
                     ent_situacao,
                     ent_dataCriacao,
                     ent_dataAlteracao,
-                    ent_integridade.
+                    ent_integridade,
                     GETDATE() AS loaded_at
             FROM CoreSSO.dbo.SYS_Entidade;
         """,
     },
     "SYS_DiaNaoUtil": {
         "biglake_table": True,
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialization_mode": "prod",
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -71,7 +71,7 @@ sme_core_sso_queries = {
     },
     "SYS_EntidadeEndereco": {
         "biglake_table": True,
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialization_mode": "prod",
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -90,7 +90,7 @@ sme_core_sso_queries = {
     },
     "END_Endereco": {
         "biglake_table": True,
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialization_mode": "prod",
         "materialize_to_datario": False,
         "dump_to_gcs": False,
@@ -112,7 +112,7 @@ sme_core_sso_queries = {
     },
     "END_Cidade": {
         "biglake_table": True,
-        "materialize_after_dump": True,
+        "materialize_after_dump": False,
         "materialization_mode": "prod",
         "materialize_to_datario": False,
         "dump_to_gcs": False,

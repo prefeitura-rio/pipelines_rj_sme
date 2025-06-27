@@ -125,7 +125,7 @@ sme_frequencia_queries = {
                     AND DATEADD(DAY, -1, GETDATE()) BETWEEN CAP.cap_dataInicio AND CAP.cap_dataFim
         """,
     },
-     "CLS_AlunoAvaliacaoTurma": {
+    "CLS_AlunoAvaliacaoTurma": {
         "dataset_id": "educacao_basica_frequencia",
         "partition_columns": "aat_dataAlteracao_converted",
         "partition_date_format": "%Y-%m-%d",
@@ -169,8 +169,8 @@ sme_frequencia_queries = {
                     aat_frequenciaFinalAjustada,
                     GETDATE() AS loaded_at
             FROM GestaoEscolar.dbo.CLS_AlunoAvaliacaoTurma
-        """
-    }
+        """,
+    },
 }
 
 sme_clocks = generate_dump_db_schedules(

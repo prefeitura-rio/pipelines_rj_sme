@@ -170,8 +170,8 @@ sme_frequencia_queries = {
                     GETDATE() AS loaded_at
             FROM GestaoEscolar.dbo.CLS_AlunoAvaliacaoTurma
         """
+    }
 }
-
 
 sme_clocks = generate_dump_db_schedules(
     interval=timedelta(days=1),

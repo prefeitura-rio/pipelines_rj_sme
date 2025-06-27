@@ -125,6 +125,51 @@ sme_frequencia_queries = {
                     AND DATEADD(DAY, -1, GETDATE()) BETWEEN CAP.cap_dataInicio AND CAP.cap_dataFim
         """,
     },
+     "CLS_AlunoAvaliacaoTurma": {
+        "dataset_id": "educacao_basica_frequencia",
+        "partition_columns": "aat_dataAlteracao_converted",
+        "partition_date_format": "%Y-%m-%d",
+        "break_query_frequency": "month",
+        "break_query_start": "current_month",
+        "break_query_end": "current_month",
+        "dump_mode": "append",
+        "materialize_after_dump": False,
+        "materialize_to_datario": False,
+        "dump_to_gcs": False,
+        "materialization_mode": "prod",
+        "dbt_alias": True,
+        "execute_query": """
+            SELECT  tur_id,
+                    alu_id,
+                    mtu_id,
+                    aat_id,
+                    fav_id,
+                    ava_id,
+                    aat_avaliacao,
+                    aat_frequencia,
+                    aat_comentarios,
+                    aat_relatorio,
+                    aat_situacao,
+                    aat_dataCriacao,
+                    aat_dataAlteracao,
+                    CONVERT(date, aat_dataAlteracao) AS aat_dataAlteracao_converted,
+                    aat_semProfessor,
+                    aat_numeroFaltas,
+                    aat_numeroAulas,
+                    arq_idRelatorio,
+                    aat_ausenciasCompensadas,
+                    aat_avaliacaoAdicional,
+                    aat_faltoso,
+                    aat_frequenciaAcumulada,
+                    aat_registroexterno,
+                    aat_frequenciaAcumuladaCalculada,
+                    aat_naoAvaliado,
+                    aat_avaliacaoPosConselho,
+                    aat_justificativaPosConselho,
+                    aat_frequenciaFinalAjustada,
+                    GETDATE() AS loaded_at
+            FROM GestaoEscolar.dbo.CLS_AlunoAvaliacaoTurma
+        """
 }
 
 

@@ -8,3 +8,5 @@ sources:
       - name: CLS_TurmaAulaAluno
       - name: diasCoc
       - name: numeroDeAulasCte
+      - name: CLS_AlunoAvaliacaoTurma
+

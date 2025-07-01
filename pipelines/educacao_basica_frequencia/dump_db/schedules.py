@@ -101,9 +101,8 @@ sme_frequencia_queries = {
         "execute_query": """
            SELECT
                     MTU.alu_id
-                    , MTU.mtu_id
                     ,CAP.tpc_id
-                    ,GestaoEscolar.dbo.FN_CalcularDiasUteis(CAP.cap_dataInicio,DATEADD(DAY, -1, GETDATE()),'8BB1DECA-BB19-E011-87E8-E61F133BFC53',CAP.cal_id) * ISNULL(CRP.crp_qtdeTemposDia,1) numeroAulas
+			        ,GestaoEscolar.dbo.FN_CalcularDiasUteis(CAP.cap_dataInicio,GETDATE(),'8BB1DECA-BB19-E011-87E8-E61F133BFC53',CAP.cal_id) * ISNULL(CRP.crp_qtdeTemposDia,1) numeroAulas
                     ,GETDATE() AS loaded_at
             FROM MTR_MatriculaTurma MTU WITH(NOLOCK)
                 INNER JOIN TUR_Turma TUR WITH(NOLOCK)
@@ -111,7 +110,7 @@ sme_frequencia_queries = {
                     AND TUR.tur_situacao IN (1,5)
                 INNER JOIN ACA_CalendarioAnual CAL WITH(NOLOCK)
                     ON TUR.cal_id = CAL.cal_id
-                    AND CAL.cal_ano = DATEPART(YEAR,GETDATE())
+                    AND CAL.cal_ano = YEAR(GETDATE())
                 INNER JOIN TUR_TurmaCurriculo TCR WITH(NOLOCK)
                     ON TUR.tur_id = TCR.tur_id
                     AND TCR.tcr_situacao = 1
@@ -122,7 +121,7 @@ sme_frequencia_queries = {
                     AND CRP.crp_situacao = 1
                 INNER JOIN ACA_CalendarioPeriodo CAP WITH(NOLOCK)
                     ON TUR.cal_id = CAP.cal_id
-                    AND DATEADD(DAY, -1, GETDATE()) BETWEEN CAP.cap_dataInicio AND CAP.cap_dataFim
+				    AND GETDATE() BETWEEN CAP.cap_dataInicio AND CAP.cap_dataFim
         """,
     },
     "CLS_AlunoAvaliacaoTurma": {

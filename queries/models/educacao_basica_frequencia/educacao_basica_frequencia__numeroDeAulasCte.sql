@@ -5,7 +5,7 @@
 
 
 with source as (
-        select * from {{ source('educacao_basica_frequencia_staging', 'numeroDeAulasCte') }} 
+        select * from {{ source('educacao_basica_frequencia_staging', 'numeroDeAulasCte') }}
   ),
   renamed as (
       select

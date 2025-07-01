@@ -5,7 +5,7 @@
 
 WITH frequencia_acumulada AS (
     -- Primeira parte: Frequência dos COCs anteriores
-    SELECT 
+    SELECT
         AAT.alu_id,
         --AAT.mtu_id, -- ??? qual o motivo? trazer uma linha por aluno ao inves de aluno/turma
         CAP.tpc_id,
@@ -13,19 +13,19 @@ WITH frequencia_acumulada AS (
         AAT.aat_numeroFaltas AS numeroFaltas
     FROM {{ ref('brutos_gestao_escolar__aluno_avaliacao_turma') }} AAT
     INNER JOIN {{ ref('brutos_gestao_escolar__tur_turma') }} TUR
-        ON AAT.tur_id = TUR.tur_id 
+        ON AAT.tur_id = TUR.tur_id
         AND TUR.tur_situacao IN (1,5)
     INNER JOIN {{ ref('brutos_gestao_escolar__calendario_anual') }} CAL
-        ON TUR.cal_id = CAL.cal_id 
+        ON TUR.cal_id = CAL.cal_id
         AND CAL.cal_ano = EXTRACT(YEAR FROM CURRENT_DATE())
     INNER JOIN {{ ref('brutos_gestao_escolar__calendario_periodo') }} CAP
-        ON TUR.cal_id = CAP.cal_id 
+        ON TUR.cal_id = CAP.cal_id
         AND CAP.cap_dataFim < CURRENT_DATE()
 
     UNION DISTINCT
 
     -- Segunda parte: Frequência do COC atual usando o modelo numeroDeAulasCte
-    SELECT 
+    SELECT
         NUM.alu_id,
         NUM.tpc_id,
         NUM.numeroAulas,
@@ -65,7 +65,7 @@ WITH frequencia_acumulada AS (
         LEFT JOIN {{ source('brutos_core_sso_staging', 'SYS_DiaNaoUtil') }} DNU
             ON (
                 TAU.data_aula = CAST(DNU.dnu_data AS DATE)
-                OR 
+                OR
                 (DNU.dnu_recorrencia = '1'
                     AND EXTRACT(MONTH FROM TAU.data_aula) = EXTRACT(MONTH FROM CAST(DNU.dnu_data AS DATE))
                     AND EXTRACT(DAY FROM TAU.data_aula) = EXTRACT(DAY FROM CAST(DNU.dnu_data AS DATE))
@@ -83,7 +83,7 @@ WITH frequencia_acumulada AS (
         ON NUM.alu_id = SQ_FALTAS.alu_id
         AND SQ_FALTAS.id_tipo_calendario = NUM.tpc_id
 ), sum_cte AS (
-    SELECT 
+    SELECT
         alu_id,
         SUM(numeroFaltas) AS numeroFaltas,
         SUM(numeroAulas) AS numeroAulas
@@ -91,7 +91,7 @@ WITH frequencia_acumulada AS (
 	GROUP BY alu_id
 )
 
-SELECT 
+SELECT
     alu_id,
     numeroFaltas,
     numeroAulas,

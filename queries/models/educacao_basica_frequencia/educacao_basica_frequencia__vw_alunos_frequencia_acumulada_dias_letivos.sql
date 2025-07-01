@@ -98,14 +98,14 @@ WITH frequencia_acumulada AS (
 )
 
 SELECT
-    alu_id,
-    tpc_id,
-    numeroFaltas,
-    numeroAulas,
+    alu_id AS id_aluno,
+    tpc_id AS id_tipo_calendario,
+    numeroFaltas AS numero_faltas,
+    numeroAulas AS numero_aulas,
     CASE
         WHEN numeroAulas = 0 THEN 0.00
         ELSE ROUND(100.00 - ((numeroFaltas * 1.00) / (numeroAulas * 1.00) * 100.00), 2)
-    END AS FREQUENCIA
+    END AS frequencia_percentual
 
 FROM sum_cte
 ORDER BY alu_id

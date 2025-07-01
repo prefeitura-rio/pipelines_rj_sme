@@ -60,7 +60,7 @@
                 taa.id_matricula_disciplina,
                 taa.id_situacao AS id_situacao_aula,
                 CASE
-                    WHEN tipo_frequencia_apurada = 2 AND taa.faltas_disciplina_dia > '0' THEN '1'
+                    WHEN tipo_frequencia_apurada = 2 AND taa.faltas_disciplina_dia > 0 THEN 1
                     ELSE taa.faltas_disciplina_dia
                 END AS taa_frequencia,
                 taa.frequencia_tempo,

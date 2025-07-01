@@ -35,7 +35,6 @@ WITH frequencia_acumulada AS (
         -- Subquery para calcular faltas do COC atual
         SELECT
             MTU.alu_id,
-            MTU.mtu_id,
             TAU.id_tipo_calendario,
             SUM(TAA.faltas_disciplina_dia) AS num_faltas
         FROM {{ ref('brutos_gestao_escolar__turma_aula_aluno') }} TAA
@@ -77,7 +76,6 @@ WITH frequencia_acumulada AS (
             AND TJF.tjf_abonaFalta IS NULL
         GROUP BY
             MTU.alu_id,
-            MTU.mtu_id,
             TAU.id_tipo_calendario
     ) SQ_FALTAS
         ON NUM.alu_id = SQ_FALTAS.alu_id

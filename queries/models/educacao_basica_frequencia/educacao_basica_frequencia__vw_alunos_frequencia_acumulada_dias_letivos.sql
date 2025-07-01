@@ -102,7 +102,7 @@ SELECT
     tpc_id,
     numeroFaltas,
     numeroAulas,
-    CASE 
+    CASE
         WHEN numeroAulas = 0 THEN 0.00
         ELSE ROUND(100.00 - ((numeroFaltas * 1.00) / (numeroAulas * 1.00) * 100.00), 2)
     END AS FREQUENCIA

@@ -3019,8 +3019,8 @@ sgrc = ["aiohttp (>=3.8.5,<4.0.0)", "pendulum (>=2.1.2,<3.0.0)", "pytz (>=2023.3
 [package.source]
 type = "git"
 url = "https://github.com/prefeitura-rio/prefeitura-rio"
-reference = "0a29c92fa0ebe4fe4074178b887d406f5405e36f"
-resolved_reference = "0a29c92fa0ebe4fe4074178b887d406f5405e36f"
+reference = "66a1851481a6a171475e9fe2099405e3cea0eefb"
+resolved_reference = "66a1851481a6a171475e9fe2099405e3cea0eefb"
 
 [[package]]
 name = "propcache"
@@ -4990,4 +4990,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "e3223dd2ca6c9be0adfd31460f157a273e73b0e9b0c948791a52db31267e0396"
+content-hash = "6806d64364cfd1ef87035df6c99be8032cd553e72cad5f7c9244943f9511b21f"

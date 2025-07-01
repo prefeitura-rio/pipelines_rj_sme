@@ -1,5 +1,5 @@
 {{ config(
-    alias='vw_alunos_frequencia_acumulada_dias_letivos',
+    alias='frequencia_acumulada_dias_letivos',
     materialized='table',
 ) }}
 
@@ -22,7 +22,7 @@ WITH frequencia_acumulada AS (
         ON TUR.cal_id = CAP.cal_id
         AND CAP.cap_dataFim < CURRENT_DATE()
 
-    UNION DISTINCT
+    UNION ALL
 
     -- Segunda parte: Frequência do COC atual usando o modelo numeroDeAulasCte
     SELECT
@@ -82,20 +82,30 @@ WITH frequencia_acumulada AS (
     ) SQ_FALTAS
         ON NUM.alu_id = SQ_FALTAS.alu_id
         AND SQ_FALTAS.id_tipo_calendario = NUM.tpc_id
+    GROUP BY
+        NUM.alu_id,
+        NUM.tpc_id,
+        NUM.numeroAulas
 ), sum_cte AS (
     SELECT
-        alu_id,
-        SUM(numeroFaltas) AS numeroFaltas,
-        SUM(numeroAulas) AS numeroAulas
+         alu_id,
+        --mtu_id,
+        tpc_id,
+        COALESCE(SUM(numeroFaltas),0) numeroFaltas,
+        COALESCE(SUM(numeroAulas),0) numeroAulas,
     FROM frequencia_acumulada
-	GROUP BY alu_id
+	GROUP BY alu_id, tpc_id
 )
 
 SELECT
     alu_id,
+    tpc_id,
     numeroFaltas,
     numeroAulas,
-    ROUND(100.00 - ((numeroFaltas * 1.00) / (numeroAulas * 1.00) * 100.00), 2) AS FREQUENCIA
+    CASE 
+        WHEN numeroAulas = 0 THEN 0.00
+        ELSE ROUND(100.00 - ((numeroFaltas * 1.00) / (numeroAulas * 1.00) * 100.00), 2)
+    END AS FREQUENCIA
 
 FROM sum_cte
 ORDER BY alu_id

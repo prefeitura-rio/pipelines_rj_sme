@@ -91,8 +91,86 @@ sme_frequencia_queries = {
             inner join MTR_ProcessoFechamentoInicio pfi WITH(NOLOCK) ON pfi.pfi_anoInicio = cal.cal_ano and pfi_situacao <> 3 and pfi_AnoLetivoCorrente = 1
         """,
     },
+    "numeroDeAulasCte": {
+        "materialize_after_dump": False,
+        "materialize_to_datario": False,
+        "dump_to_gcs": False,
+        "materialization_mode": "prod",
+        "dump_mode": "overwrite",
+        "dbt_alias": True,
+        "execute_query": """
+           SELECT
+                    MTU.alu_id
+                    ,CAP.tpc_id
+			        ,GestaoEscolar.dbo.FN_CalcularDiasUteis(CAP.cap_dataInicio,GETDATE(),'8BB1DECA-BB19-E011-87E8-E61F133BFC53',CAP.cal_id) * ISNULL(CRP.crp_qtdeTemposDia,1) numeroAulas
+                    ,GETDATE() AS loaded_at
+            FROM MTR_MatriculaTurma MTU WITH(NOLOCK)
+                INNER JOIN TUR_Turma TUR WITH(NOLOCK)
+                    ON MTU.tur_id = TUR.tur_id
+                    AND TUR.tur_situacao IN (1,5)
+                INNER JOIN ACA_CalendarioAnual CAL WITH(NOLOCK)
+                    ON TUR.cal_id = CAL.cal_id
+                    AND CAL.cal_ano = YEAR(GETDATE())
+                INNER JOIN TUR_TurmaCurriculo TCR WITH(NOLOCK)
+                    ON TUR.tur_id = TCR.tur_id
+                    AND TCR.tcr_situacao = 1
+                INNER JOIN ACA_CurriculoPeriodo CRP WITH(NOLOCK)
+                    ON TCR.cur_id = CRP.cur_id
+                    AND TCR.crr_id = CRP.crr_id
+                    AND TCR.crp_id = CRP.crp_id
+                    AND CRP.crp_situacao = 1
+                INNER JOIN ACA_CalendarioPeriodo CAP WITH(NOLOCK)
+                    ON TUR.cal_id = CAP.cal_id
+				    AND GETDATE() BETWEEN CAP.cap_dataInicio AND CAP.cap_dataFim
+        """,
+    },
+    "CLS_AlunoAvaliacaoTurma": {
+        "dataset_id": "educacao_basica_frequencia",
+        "partition_columns": "aat_dataAlteracao_converted",
+        "partition_date_format": "%Y-%m-%d",
+        "break_query_frequency": "month",
+        "break_query_start": "current_month",
+        "break_query_end": "current_month",
+        "dump_mode": "append",
+        "materialize_after_dump": False,
+        "materialize_to_datario": False,
+        "dump_to_gcs": False,
+        "materialization_mode": "prod",
+        "dbt_alias": True,
+        "execute_query": """
+            SELECT  tur_id,
+                    alu_id,
+                    mtu_id,
+                    aat_id,
+                    fav_id,
+                    ava_id,
+                    aat_avaliacao,
+                    aat_frequencia,
+                    aat_comentarios,
+                    aat_relatorio,
+                    aat_situacao,
+                    aat_dataCriacao,
+                    aat_dataAlteracao,
+                    CONVERT(date, aat_dataAlteracao) AS aat_dataAlteracao_converted,
+                    aat_semProfessor,
+                    aat_numeroFaltas,
+                    aat_numeroAulas,
+                    arq_idRelatorio,
+                    aat_ausenciasCompensadas,
+                    aat_avaliacaoAdicional,
+                    aat_faltoso,
+                    aat_frequenciaAcumulada,
+                    aat_registroexterno,
+                    aat_frequenciaAcumuladaCalculada,
+                    aat_naoAvaliado,
+                    aat_avaliacaoPosConselho,
+                    aat_justificativaPosConselho,
+                    aat_frequenciaFinalAjustada,
+                    GETDATE() AS loaded_at
+            FROM GestaoEscolar.dbo.CLS_AlunoAvaliacaoTurma
+        """,
+    },
 }
-
 
 sme_clocks = generate_dump_db_schedules(
     interval=timedelta(days=1),

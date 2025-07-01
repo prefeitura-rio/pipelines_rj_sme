@@ -29,7 +29,7 @@ renamed as (
         SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("taa_anotacao") }}), r'\.0$', '') AS STRING) AS anotacao,
         SAFE_CAST({{ adapter.quote("taa_dataalteracao") }} AS TIMESTAMP) AS data_alteracao,
         SAFE_CAST({{ adapter.quote("taa_datacriacao") }} AS TIMESTAMP) AS data_criacao,
-        SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("taa_frequencia") }}), r'\.0$', '') AS STRING) AS faltas_disciplina_dia,
+        SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("taa_frequencia") }}), r'\.0$', '') AS INT64) AS faltas_disciplina_dia,
         SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("taa_frequenciabitmap") }}), r'\.0$', '') AS STRING) AS frequencia_tempo,
         SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("taa_situacao") }}), r'\.0$', '') AS STRING) AS id_situacao,
         SAFE_CAST(REGEXP_REPLACE(TRIM({{ adapter.quote("tau_id") }}), r'\.0$', '') AS STRING) AS id_aula_disciplina,

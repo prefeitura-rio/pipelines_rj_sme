@@ -12,6 +12,9 @@ WITH frequencia_acumulada AS (
         AAT.aat_numeroAulas AS numeroAulas,
         AAT.aat_numeroFaltas AS numeroFaltas
     FROM {{ ref('brutos_gestao_escolar__aluno_avaliacao_turma') }} AAT
+    INNER JOIN {{ ref('brutos_gestao_escolar__avaliacao') }} AVA
+        ON AAT.fav_id = AVA.fav_id
+        AND AAT.ava_id = AVA.ava_id
     INNER JOIN {{ ref('brutos_gestao_escolar__tur_turma') }} TUR
         ON AAT.tur_id = TUR.tur_id
         AND TUR.tur_situacao IN (1,5)
@@ -20,6 +23,7 @@ WITH frequencia_acumulada AS (
         AND CAL.cal_ano = EXTRACT(YEAR FROM CURRENT_DATE())
     INNER JOIN {{ ref('brutos_gestao_escolar__calendario_periodo') }} CAP
         ON TUR.cal_id = CAP.cal_id
+        AND CAP.cap_id = AVA.tpc_id
         AND CAP.cap_dataFim < CURRENT_DATE()
 
     UNION ALL

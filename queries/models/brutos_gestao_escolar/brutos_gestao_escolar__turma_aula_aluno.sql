@@ -43,7 +43,7 @@ renamed as (
             order by data_alteracao desc
         ) as row_num
     from renamed
-    
+
 )
 SELECT
     id_aluno,

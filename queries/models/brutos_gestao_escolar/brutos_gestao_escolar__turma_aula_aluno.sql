@@ -43,7 +43,20 @@ renamed as (
             order by data_alteracao desc
         ) as row_num
     from renamed
+    
 )
-SELECT *
+SELECT
+    id_aluno,
+    id_matricula_disciplina,
+    id_matricula_turma,
+    anotacao,
+    data_alteracao,
+    data_criacao,
+    faltas_disciplina_dia,
+    frequencia_tempo,
+    id_situacao,
+    id_aula_disciplina,
+    id_disciplina_turma,
+    usuario_alteracao
 FROM dedup
 WHERE row_num = 1

@@ -18,7 +18,7 @@
 with source as (
     select * from {{ source('educacao_basica_frequencia_staging', 'CLS_TurmaAulaAluno') }}
     {% if is_incremental() %}
-      where data_particao in (CAST(current_date AS STRING), CAST(date_sub(current_date, interval 1 day) AS STRING))
+      where data_particao in (CAST(current_date AS STRING), CAST(date_sub(current_date, interval 3 day) AS STRING))
     {% endif %}
 ),
 renamed as (
@@ -43,7 +43,20 @@ renamed as (
             order by data_alteracao desc
         ) as row_num
     from renamed
+
 )
-SELECT *
+SELECT
+    id_aluno,
+    id_matricula_disciplina,
+    id_matricula_turma,
+    anotacao,
+    data_alteracao,
+    data_criacao,
+    faltas_disciplina_dia,
+    frequencia_tempo,
+    id_situacao,
+    id_aula_disciplina,
+    id_disciplina_turma,
+    usuario_alteracao
 FROM dedup
 WHERE row_num = 1

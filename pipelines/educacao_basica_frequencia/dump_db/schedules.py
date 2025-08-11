@@ -101,7 +101,6 @@ sme_frequencia_queries = {
         "execute_query": """
            SELECT
                     MTU.alu_id
-                    ,MTU.mtu_id
                     ,CAP.tpc_id
 			        ,GestaoEscolar.dbo.FN_CalcularDiasUteis(CAP.cap_dataInicio,GETDATE(),'8BB1DECA-BB19-E011-87E8-E61F133BFC53',CAP.cal_id) * ISNULL(CRP.crp_qtdeTemposDia,1) numeroAulas
                     ,GETDATE() AS loaded_at

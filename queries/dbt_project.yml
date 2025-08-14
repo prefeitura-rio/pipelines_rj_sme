@@ -26,7 +26,7 @@ models:
   queries:
     example:
       +materialized: view
-      +schema: example  
+      +schema: example
     educacao_basica:
       +materialized: table
       +schema: educacao_basica_staging
